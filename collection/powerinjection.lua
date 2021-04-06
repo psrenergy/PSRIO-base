@@ -1,0 +1,1 @@
+local powerinjection = PowerInjection(); return powerinjection;

@@ -1,0 +1,1 @@
+local demandsegment = DemandSegment(); return demandsegment;

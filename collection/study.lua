@@ -1,0 +1,1 @@
+local study = Study(); return study;

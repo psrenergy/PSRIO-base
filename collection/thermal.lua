@@ -1,0 +1,1 @@
+local thermal = Thermal(); return thermal;

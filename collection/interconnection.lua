@@ -1,0 +1,1 @@
+local interconnection = Interconnection(); return interconnection;

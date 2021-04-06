@@ -1,0 +1,1 @@
+local battery = Battery(); return battery;

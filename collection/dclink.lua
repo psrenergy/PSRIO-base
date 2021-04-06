@@ -1,0 +1,1 @@
+local dclink = DCLink(); return dclink;

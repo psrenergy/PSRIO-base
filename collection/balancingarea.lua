@@ -1,0 +1,1 @@
+local balancingarea = BalancingArea(); return balancingarea;
