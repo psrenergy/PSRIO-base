@@ -1,18 +1,18 @@
-local function sddpgrxxd()
+local function sddpgrxxd(suffix)
     local hydro = require("collection/hydro");
-    local gerhid = hydro:load("gerhid");
+    local gerhid = hydro:load("gerhid" .. (suffix or ""));
 
     local thermal = require("collection/thermal");
-    local gerter = thermal:load("gerter");
+    local gerter = thermal:load("gerter" .. (suffix or ""));
     
     local renewable = require("collection/renewable");
-    local gergnd = renewable:load("gergnd");
+    local gergnd = renewable:load("gergnd" .. (suffix or ""));
     
     local battery = require("collection/battery")
-    local gerbat = battery:load("gerbat");
+    local gerbat = battery:load("gerbat" .. (suffix or ""));
 
     local system = require("collection/system")
-    local defcit = system:load("defcit");
+    local defcit = system:load("defcit" .. (suffix or ""));
 
     return concatenate(
         gerhid:aggregate_agents(BY_SUM(), "Total Hydro"):aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()),
