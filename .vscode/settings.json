@@ -79,6 +79,7 @@
         "study",
         "system",
         "powerinjection",
-        "thermal"
+        "thermal",
+        "InterconnectionSum"
     ]
 }
