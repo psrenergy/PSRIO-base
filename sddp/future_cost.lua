@@ -1,6 +1,7 @@
 local function future_cost()
     local generic = require("collection/generic");
     local objcop = generic:load("objcop");
+    
     local study = require("collection/study");
 
     if study:is_hourly() then
