@@ -1,1 +1,0 @@
-local expansion_project = ExpansionProject(); return expansion_project;
