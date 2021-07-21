@@ -2,48 +2,79 @@ local function generation(labels)
     local n = #labels;
     local dashboard = Dashboard("Generation");
 
+    local battery = {};
     local hydro = {};
     local renewable = {};
+    local system = {};
     local thermal = {};
     
     for i=1,n,1 do
+        table.insert(battery, require_collection("Battery", i));
         table.insert(hydro, require_collection("Hydro", i));
         table.insert(renewable, require_collection("Renewable", i));
+        table.insert(system, require_collection("System", i));
         table.insert(thermal, require_collection("Thermal", i));
     end
 
-    local chart_gerhid = Chart("Hydro Generation");
+    local chart = Chart("Total Battery Generation");
     for i=1,n,1 do
-        local output = hydro[i]:load("gerhid")
-            :aggregate_blocks(BY_SUM())
-            :aggregate_scenarios(BY_AVERAGE())
-            :aggregate_agents(BY_SUM(), labels[i]);
+        local gerbat = battery[i]:load("gerbat");
 
-        if output:loaded() then chart_gerhid:add_line(output); end
+        if gerbat:loaded() then 
+            chart:add_line(
+                gerbat:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i]):convert("GWh")
+            ); 
+        end
     end
-    dashboard:push(chart_gerhid);  
+    dashboard:push(chart);  
 
-    local chart_gergnd = Chart("Renewable Generation");
+    local chart = Chart("Total Hydro Generation");
     for i=1,n,1 do
-        local output = renewable[i]:load("gergnd")        
-            :aggregate_blocks(BY_SUM())
-            :aggregate_scenarios(BY_AVERAGE())
-            :aggregate_agents(BY_SUM(), labels[i]);
+        local gerhid = hydro[i]:load("gerhid");
 
-        if output:loaded() then chart_gergnd:add_line(output); end
+        if gerhid:loaded() then 
+            chart:add_line(
+                gerhid:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i])
+            ); 
+        end
     end
-    dashboard:push(chart_gergnd);  
+    dashboard:push(chart);  
 
-    local chart_gerter = Chart("Thermal Generation");
+    local chart = Chart("Total Renewable Generation");
     for i=1,n,1 do
-        local output = thermal[i]:load("gerter")        
-            :aggregate_blocks(BY_SUM())
-            :aggregate_scenarios(BY_AVERAGE())
-            :aggregate_agents(BY_SUM(), labels[i]);
+        local gergnd = renewable[i]:load("gergnd");
 
-        if output:loaded() then chart_gerter:add_line(output); end
+        if gergnd:loaded() then 
+            chart:add_line(
+                gergnd:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i])
+            ); 
+        end
     end
-    dashboard:push(chart_gerter);  
+    dashboard:push(chart);  
+
+    local chart = Chart("Total Thermal Generation");
+    for i=1,n,1 do
+        local gerter = thermal[i]:load("gerter");
+
+        if gerter:loaded() then 
+            chart:add_line(
+                gerter:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i])
+            ); 
+        end
+    end
+    dashboard:push(chart);
+    
+    local chart = Chart("Deficit");
+    for i=1,n,1 do
+        local defcit = system[i]:load("defcit");
+
+        if defcit:loaded() then 
+            chart:add_line(
+                defcit:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i])
+            ); 
+        end
+    end
+    dashboard:push(chart);
 
     return dashboard;
 end
