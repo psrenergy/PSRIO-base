@@ -80,6 +80,11 @@
         "system",
         "powerinjection",
         "thermal",
-        "InterconnectionSum"
+        "InterconnectionSum",
+        "require_collection",
+        "Chart",
+        "Dashboard",
+        "Compare",
+        "Report"
     ]
 }

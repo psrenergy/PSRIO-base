@@ -1,5 +1,6 @@
 local function generation(labels)
     local n = #labels;
+    local report = Report("Generation", 1e-5);
     local dashboard = Dashboard("Generation");
 
     local hydro = {};
@@ -12,39 +13,39 @@ local function generation(labels)
         table.insert(thermal, require_collection("Thermal", i));
     end
 
-    local chart_gerhid = Chart("Hydro Generation");
+    local compare = Compare("gerhid");
+    local chart = Chart("Hydro Generation");
     for i=1,n,1 do
         local output = hydro[i]:load("gerhid")
-            :aggregate_blocks(BY_SUM())
-            :aggregate_scenarios(BY_AVERAGE())
-            :aggregate_agents(BY_SUM(), labels[i]);
+        compare:add(output);
 
-        if output:loaded() then chart_gerhid:add_line(output); end
+        chart:add_line(output:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i]));
     end
-    dashboard:push(chart_gerhid);  
+    report:push(compare);
+    dashboard:push(chart);
 
-    local chart_gergnd = Chart("Renewable Generation");
+    local compare = Compare("gergnd");
+    local chart = Chart("Renewable Generation");
     for i=1,n,1 do
-        local output = renewable[i]:load("gergnd")        
-            :aggregate_blocks(BY_SUM())
-            :aggregate_scenarios(BY_AVERAGE())
-            :aggregate_agents(BY_SUM(), labels[i]);
+        local output = renewable[i]:load("gergnd");
+        compare:add(output);
 
-        if output:loaded() then chart_gergnd:add_line(output); end
+        chart:add_line(output:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i]));
     end
-    dashboard:push(chart_gergnd);  
+    report:push(compare);
+    dashboard:push(chart);
 
-    local chart_gerter = Chart("Thermal Generation");
+    local compare = Compare("gerter");
+    local chart = Chart("Thermal Generation");
     for i=1,n,1 do
-        local output = thermal[i]:load("gerter")        
-            :aggregate_blocks(BY_SUM())
-            :aggregate_scenarios(BY_AVERAGE())
-            :aggregate_agents(BY_SUM(), labels[i]);
+        local output = thermal[i]:load("gerter");
+        compare:add(output);
 
-        if output:loaded() then chart_gerter:add_line(output); end
+        chart:add_line(output:aggregate_blocks(BY_SUM()):aggregate_scenarios(BY_AVERAGE()):aggregate_agents(BY_SUM(), labels[i]));
     end
-    dashboard:push(chart_gerter);  
+    report:push(compare);
+    dashboard:push(chart);
 
-    return dashboard;
+    return dashboard, report;
 end
 return generation;
