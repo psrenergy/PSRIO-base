@@ -85,6 +85,7 @@
         "Chart",
         "Dashboard",
         "Compare",
-        "Report"
+        "Report",
+        "ExpansionCapacity"
     ]
 }
