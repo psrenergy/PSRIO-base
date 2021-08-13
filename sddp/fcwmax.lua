@@ -1,5 +1,5 @@
 local function fcwmax()
-    local fuelcontract = require("collection/fuelcontract");
+    local fuelcontract = FuelContract();
     return fuelcontract.max_offtake;
 end
 return fcwmax;

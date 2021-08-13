@@ -1,17 +1,17 @@
 local function sddpgrxxd(suffix)
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     local gerhid = hydro:load("gerhid" .. (suffix or ""));
 
-    local thermal = require("collection/thermal");
+    local thermal = Thermal();
     local gerter = thermal:load("gerter" .. (suffix or ""));
     
-    local renewable = require("collection/renewable");
+    local renewable = Renewable();
     local gergnd = renewable:load("gergnd" .. (suffix or ""));
     
-    local battery = require("collection/battery")
+    local battery = Battery()
     local gerbat = battery:load("gerbat" .. (suffix or ""));
 
-    local system = require("collection/system")
+    local system = System()
     local defcit = system:load("defcit" .. (suffix or ""));
 
     return concatenate(

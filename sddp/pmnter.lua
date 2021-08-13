@@ -1,5 +1,5 @@
 local function pmnter()
-    local thermal = require("collection/thermal");
+    local thermal = Thermal();
     return thermal.germin;
 end
 return pmnter;

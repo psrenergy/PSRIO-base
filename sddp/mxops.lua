@@ -1,5 +1,5 @@
 local function mxops()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.vmax_chronological;
 end
 return mxops;

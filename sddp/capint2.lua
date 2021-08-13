@@ -1,5 +1,5 @@
 local function capint2()
-    local interconnection = require("collection/interconnection");
+    local interconnection = Interconnection();
     return interconnection.capacity_left;
 end
 return capint2;

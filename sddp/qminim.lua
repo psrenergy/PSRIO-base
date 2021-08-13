@@ -1,5 +1,5 @@
 local function qminim()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.qmin;
 end
 return qminim;

@@ -1,5 +1,5 @@
 local function lscinf()
-    local circuitssum = require("collection/circuitssum");
+    local circuitssum = CircuitsSum();
     return circuitssum.lb;
 end
 return lscinf;

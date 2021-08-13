@@ -1,5 +1,5 @@
 local function lscsup()
-    local circuitssum = require("collection/circuitssum");
+    local circuitssum = CircuitsSum();
     return circuitssum.ub;
 end
 return lscsup;

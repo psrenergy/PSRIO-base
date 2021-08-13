@@ -1,5 +1,5 @@
 local function tihter()
-    local thermal = require("collection/thermal");
+    local thermal = Thermal();
     return thermal.icp;
 end
 return tihter;

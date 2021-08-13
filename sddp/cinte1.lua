@@ -1,7 +1,6 @@
 local function cinte1()
-    local thermal = require("collection/thermal");
-    local fuel = require("collection/fuel");
-    
+    local thermal = Thermal();
+    local fuel = Fuel();
     return (thermal.cesp1 * (thermal.transport_cost + fuel.cost) + thermal.omcost);
 end
 return cinte1;

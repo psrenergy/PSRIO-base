@@ -1,5 +1,5 @@
 local function tsfter()
-    local thermal = require("collection/thermal");
+    local thermal = Thermal();
     return thermal.ih;
 end
 return tsfter;

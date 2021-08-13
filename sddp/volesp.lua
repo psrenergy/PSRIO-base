@@ -1,5 +1,5 @@
 local function volesp()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.flood_control;
 end
 return volesp;

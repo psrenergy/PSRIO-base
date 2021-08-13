@@ -1,5 +1,5 @@
 local function pnomhd()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.capacity;
 end
 return pnomhd;

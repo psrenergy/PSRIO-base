@@ -1,5 +1,5 @@
 local function duraci()
-    local system = require("collection/system");
+    local system = System();
     return system.duraci;
 end
 return duraci;

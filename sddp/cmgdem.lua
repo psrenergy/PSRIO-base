@@ -1,5 +1,5 @@
 local function cmgdem(suffix)
-    local bus = require("collection/bus");
+    local bus = Bus();
     local demxba = bus:load("demxba" .. (suffix or ""));
     local cmgbus = bus:load("cmgbus" .. (suffix or ""));
 

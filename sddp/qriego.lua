@@ -1,5 +1,5 @@
 local function qriego()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.irrigation;
 end
 return qriego;

@@ -1,5 +1,5 @@
 local function useful_storage()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.vmax - hydro.vmin;
 end
 return useful_storage;

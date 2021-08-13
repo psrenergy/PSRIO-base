@@ -1,5 +1,5 @@
 local function tsfhid()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.icp;
 end
 return tsfhid;

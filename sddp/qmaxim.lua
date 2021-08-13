@@ -1,5 +1,5 @@
 local function qmaxim()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.qmax;
 end
 return qmaxim;

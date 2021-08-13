@@ -1,5 +1,5 @@
 local function pnomnd()
-    local renewable = require("collection/renewable");
+    local renewable = Renewable();
     return renewable.capacity;
 end
 return pnomnd;

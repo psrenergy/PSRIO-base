@@ -1,5 +1,5 @@
 local function mnsout()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.min_spillage;
 end
 return mnsout;

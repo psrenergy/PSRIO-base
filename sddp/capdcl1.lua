@@ -1,5 +1,5 @@
 local function capdcl1()
-    local dclink = require("collection/dclink");
+    local dclink = DCLink();
     return dclink.capacity_right;
 end
 return capdcl1;

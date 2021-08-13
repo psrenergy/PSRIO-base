@@ -1,10 +1,8 @@
 local function gicmgb(suffix)
-    local powerinjection = require("collection/powerinjection");
+    local powerinjection = PowerInjection();
     local powinj = powerinjection:load("powinj" .. (suffix or ""));
-
-    local bus = require("collection/bus");
+    local bus = Bus();
     local cmgbus = bus:load("cmgbus" .. (suffix or ""));
-    
     return powinj * cmgbus;
 end
 return gicmgb;

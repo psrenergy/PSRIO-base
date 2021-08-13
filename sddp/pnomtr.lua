@@ -1,5 +1,5 @@
 local function pnomtr()
-    local thermal = require("collection/thermal");
+    local thermal = Thermal();
     return thermal.capacity;
 end
 return pnomtr;

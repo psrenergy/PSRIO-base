@@ -1,5 +1,5 @@
 local function fcvmax()
-    local fuelcontract = require("collection/fuelcontract");
+    local fuelcontract = FuelContract();
     return fuelcontract.amount;
 end
 return fcvmax;

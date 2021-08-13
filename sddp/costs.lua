@@ -1,8 +1,8 @@
 local function costs()
-    local generic = require("collection/generic");
+    local generic = Generic();
     local objcop = generic:load("objcop");
-    local study = require("collection/study");
-    
+
+    local study = Study();
     if study:is_hourly() then
         return objcop:remove_agents({1}); -- remove future cost
     else

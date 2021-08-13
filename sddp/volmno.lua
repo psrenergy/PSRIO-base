@@ -1,5 +1,5 @@
 local function volmno()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.vmin;
 end
 return volmno;

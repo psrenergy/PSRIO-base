@@ -1,5 +1,5 @@
 local function tihhid()
-    local hydro = require("collection/hydro");
+    local hydro = Hydro();
     return hydro.ih;
 end
 return tihhid;
