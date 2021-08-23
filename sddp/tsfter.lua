@@ -1,5 +1,5 @@
 local function tsfter()
     local thermal = Thermal();
-    return thermal.ih;
+    return thermal.COR;
 end
 return tsfter;

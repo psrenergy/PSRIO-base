@@ -1,5 +1,5 @@
 local function tihhid()
     local hydro = Hydro();
-    return hydro.ih;
+    return hydro.COR;
 end
 return tihhid;
