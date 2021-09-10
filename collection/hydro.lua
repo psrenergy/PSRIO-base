@@ -1,1 +1,3 @@
-local hydro = Hydro(); return hydro;
+local hydro = Hydro(); 
+warning("hydro = require(\"collection/hydro\") will be deprecated in the future, use hydro = Hydro();");
+return hydro;
