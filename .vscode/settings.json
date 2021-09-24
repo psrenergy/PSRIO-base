@@ -87,6 +87,8 @@
         "Compare",
         "Report",
         "ExpansionCapacity",
-        "Generator"
+        "Generator",
+        "warning",
+        "Topology"
     ]
 }
