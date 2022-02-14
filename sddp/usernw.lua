@@ -1,6 +1,6 @@
 local function usernw(suffix)
     local renewable = Renewable();
     local gergnd = renewable:load("gergnd" .. (suffix or "")):convert("MW");
-    return (gergnd / renewable.capacity):convert("%");
+    return ifelse(renewable.capacity:eq(0), 0, gergnd / renewable.capacity):convert("%");
 end
 return usernw;
