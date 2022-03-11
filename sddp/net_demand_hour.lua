@@ -1,7 +1,6 @@
 local function net_demand_hour()
     local demand = require("sddp/demand_hour");
-    local renewable = Renewable();
-    local generation = renewable.hour_generation;
-    return demand() - generation:aggregate_agents(BY_SUM(), Collection.RENEWABLE):convert("GWh");
+    local renewable_generation = require("sddp/renewable_generation_hour");
+    return demand() - renewable_generation():convert("GWh");
 end
 return net_demand_hour;
