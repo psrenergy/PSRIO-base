@@ -5,4 +5,3 @@ local function losses(suffix)
     return r * (f^2);
 end
 return losses;
-
