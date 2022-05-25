@@ -1,5 +1,5 @@
 local function tihter()
     local thermal = Thermal();
-    return thermal.FOR;
+    return thermal.forced_outage_rate;
 end
 return tihter;

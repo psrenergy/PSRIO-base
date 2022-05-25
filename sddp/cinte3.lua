@@ -1,6 +1,6 @@
 local function cinte3()
     local thermal = Thermal();
     local fuel = Fuel();
-    return (thermal.cesp3 * (thermal.transport_cost + fuel.cost) + thermal.omcost);
+    return (thermal.specific_consumption_segment_3 * (thermal.fuel_transportation_cost + fuel.cost) + thermal.om_cost);
 end
 return cinte3;
