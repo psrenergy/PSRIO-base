@@ -2,7 +2,7 @@ local function vere15(suffix)
     local system = System();
     local demand = Generic();
 
-    local tolerance = 0.015; -- %
+    local tolerance = 0.015;
 
     local deficit = system:load("defcit" .. suffix):aggregate_blocks(BY_SUM());
     local supplied_load = demand:load("demandel" .. suffix):aggregate_blocks(BY_SUM());
