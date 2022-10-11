@@ -3,6 +3,6 @@ local function gbcmgs(suffix)
     local gerbat = battery:load("gerbat" .. (suffix or ""));
     local system = System();
     local cmgdem = system:load("cmgdem" .. (suffix or ""));
-    return gerbat * cmgdem;
+    return (gerbat * cmgdem):convert("k$");
 end
 return gbcmgs;

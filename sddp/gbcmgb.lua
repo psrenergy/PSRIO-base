@@ -3,6 +3,6 @@ local function gbcmgb(suffix)
     local gerbat = battery:load("gerbat" .. (suffix or ""));
     local bus = Bus();
     local cmgbus = bus:load("cmgbus" .. (suffix or ""));
-    return gerbat * cmgbus;
+    return (gerbat * cmgbus):convert("k$");
 end
 return gbcmgb;
