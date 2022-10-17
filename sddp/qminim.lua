@@ -1,5 +1,5 @@
 local function qminim()
     local hydro = Hydro();
-    return hydro.qmin;
+    return hydro.min_turbining_outflow;
 end
 return qminim;

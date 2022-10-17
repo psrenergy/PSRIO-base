@@ -1,5 +1,5 @@
 local function qmaxim()
     local hydro = Hydro();
-    return hydro.qmax;
+    return hydro.max_turbining_outflow;
 end
 return qmaxim;

@@ -3,9 +3,9 @@ local function future_cost()
     local objcop = generic:load("objcop");
     local study = Study();
     if study:is_hourly() then
-        return objcop:select_agents({1});
+        return objcop:select_agent(1);
     else
-        return objcop:select_agents({-1});
+        return objcop:select_agent(-1);
     end
 end
 return future_cost;

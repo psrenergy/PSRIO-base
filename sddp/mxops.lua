@@ -1,5 +1,5 @@
 local function mxops()
     local hydro = Hydro();
-    return hydro.vmax_chronological;
+    return hydro.max_operative_storage;
 end
 return mxops;

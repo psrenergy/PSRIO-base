@@ -1,5 +1,5 @@
 local function useful_storage()
     local hydro = Hydro();
-    return hydro.vmax - hydro.vmin;
+    return hydro.max_storage - hydro.min_storage;
 end
 return useful_storage;

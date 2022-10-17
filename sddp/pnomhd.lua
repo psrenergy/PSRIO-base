@@ -1,5 +1,5 @@
 local function pnomhd()
     local hydro = Hydro();
-    return hydro.capacity;
+    return hydro.max_generation;
 end
 return pnomhd;

@@ -1,5 +1,5 @@
 local function volmno()
     local hydro = Hydro();
-    return hydro.vmin;
+    return hydro.min_storage;
 end
 return volmno;

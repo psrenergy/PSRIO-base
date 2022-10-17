@@ -1,10 +1,7 @@
-local function eco2tr()
+local function eco2tr(suffix)
     local thermal = Thermal();
-    local gerter = thermal:load("gerter");
-    
+    local gerter = thermal:load("gerter" .. (suffix or ""));
     local fuel = Fuel();
-    local emission_factor = fuel.emission_factor;
-
-    return gerter * emission_factor;
+    return gerter * fuel.emission_factor;
 end
 return eco2tr;
