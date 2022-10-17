@@ -1,5 +1,5 @@
 local function pmnter()
     local thermal = Thermal();
-    return thermal.minimum_generation;
+    return thermal.min_generation;
 end
 return pmnter;

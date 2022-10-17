@@ -1,5 +1,5 @@
 local function pnomtr()
     local thermal = Thermal();
-    return thermal.maximum_generation;
+    return thermal.max_generation;
 end
 return pnomtr;
