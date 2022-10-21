@@ -1,7 +1,7 @@
-local function gicmgs(suffix)
-    local powerinjection = PowerInjection();
+local function gicmgs(i, suffix)
+    local powerinjection = PowerInjection(i or 1);
+    local system = System(i or 1);
     local powinj = powerinjection:load("powinj" .. (suffix or ""));
-    local system = System();
     local cmgdem = system:load("cmgdem" .. (suffix or ""));
     return powinj * cmgdem;
 end

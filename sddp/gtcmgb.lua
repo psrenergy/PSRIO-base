@@ -1,7 +1,7 @@
-local function gtcmgb(suffix)
-    local thermal = Thermal();
+local function gtcmgb(i, suffix)
+    local bus = Bus(i or 1);
+    local thermal = Thermal(i or 1);
     local gerter = thermal:load("gerter" .. (suffix or ""));
-    local bus = Bus();
     local cmgbus = bus:load("cmgbus" .. (suffix or ""));
     return gerter * cmgbus;
 end

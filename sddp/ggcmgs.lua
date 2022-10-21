@@ -1,7 +1,7 @@
-local function ggcmgs(suffix)
-    local renewable = Renewable();
+local function ggcmgs(i, suffix)
+    local renewable = Renewable(i or 1);
+    local system = System(i or 1);
     local gergnd = renewable:load("gergnd" .. (suffix or ""));
-    local system = System();
     local cmgdem = system:load("cmgdem" .. (suffix or ""));
     return gergnd * cmgdem;
 end

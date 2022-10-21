@@ -1,5 +1,5 @@
-local function gergnd_per_tech(suffix)
-    local renewable = Renewable();
+local function gergnd_per_tech(i, suffix)
+    local renewable = Renewable(i or 1);
     local gergnd = renewable:load("gergnd" .. (suffix or ""));
 
     local general = renewable.tech_type:eq(0);
