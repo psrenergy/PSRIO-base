@@ -2,7 +2,7 @@ local function aggregate_agents_by_label(data, aggregation)
     local spairs = require("lua/spairs");
     local agents = data:agents();
 
-    -- BUILD DICTIONARY WITH UNIQUE AGENT NAMES
+    -- build dictionary with unique agent names
     local dictionary = {};
     for i, agent in spairs(agents) do
         if dictionary[agent] then
@@ -12,7 +12,7 @@ local function aggregate_agents_by_label(data, aggregation)
         end
     end
 
-    -- AGGREGATE AGENTS
+    -- aggregate agents
     local unique_agents = {};
     for agent, indices in pairs(dictionary) do
         table.insert(unique_agents, data:select_agents(indices):aggregate_agents(aggregation, agent));
