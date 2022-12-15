@@ -1,5 +1,5 @@
 local function cinter1()
     local interconnection = Interconnection();
-    return interconnection.cost_right;
+    return interconnection.cost_from;
 end
 return cinter1;
