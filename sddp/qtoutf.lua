@@ -1,7 +1,5 @@
 local function qtoutf(suffix)
-    local hydro = Hydro();
-    local qverti = hydro:load("qverti" .. (suffix or ""));
-    local qturbi = hydro:load("qturbi" .. (suffix or ""));
-    return qverti + qturbi;
+    local total_outflow = require("sddp/total_outflow");
+    return total_outflow(suffix);
 end
 return qtoutf;
