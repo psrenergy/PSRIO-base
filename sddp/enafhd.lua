@@ -1,7 +1,7 @@
 local function enafhd(suffix)
     local hydro = Hydro();
     local inflow = hydro:load("inflow" .. (suffix or ""));
-    local fprodtac = hydro:load("fprodtac" .. (suffix or ""));
-    return ifelse(hydro.state:gt(0.5), 0, inflow * fprodtac):convert("GWh");
+    local accumulated_production_factor = hydro:load("fprodtac" .. (suffix or ""));
+    return ifelse(hydro.state:gt(0.5), 0, inflow * accumulated_production_factor):convert("GWh");
 end
 return enafhd;
