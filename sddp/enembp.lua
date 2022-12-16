@@ -1,8 +1,14 @@
 local function enembp(suffix)
     local hydro = Hydro();
+
     local reservoirs = hydro.max_storage:gt(hydro.min_storage);
-    local eneemb = hydro:load("eneemb" .. (suffix or ""));
-    local eembmx = hydro:load("eembmx" .. (suffix or ""));
-    return ifelse(eembmx:ne(0), eneemb / eembmx, 0):select_agents(reservoirs):convert("%");
+    local reservoir_stored_energy = hydro:load("eneemb" .. (suffix or ""));
+    local max_reservoir_stored_energy = hydro:load("eembmx" .. (suffix or ""));
+
+    return ifelse(
+        max_reservoir_stored_energy:ne(0),
+        reservoir_stored_energy / max_reservoir_stored_energy,
+        0
+    ):select_agents(reservoirs):convert("%");
 end
 return enembp;

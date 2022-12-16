@@ -1,5 +1,6 @@
 local function mntcir()
     local circuit = Circuit();
-    return ifelse(circuit.state:gt(0.5), 0, 1);
+    local has_circuit = circuit.state:lt(1);
+    return ifelse(has_circuit, 1, 0);
 end
 return mntcir;

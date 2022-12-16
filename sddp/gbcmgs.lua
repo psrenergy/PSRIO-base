@@ -1,8 +1,10 @@
 local function gbcmgs(suffix)
     local battery = Battery();
-    local gerbat = battery:load("gerbat" .. (suffix or ""));
     local system = System();
-    local cmgdem = system:load("cmgdem" .. (suffix or ""));
-    return (gerbat * cmgdem):convert("k$");
+
+    local battery_generation = battery:load("gerbat" .. (suffix or ""));    
+    local load_marginal_cost = system:load("cmgdem" .. (suffix or ""));
+
+    return (battery_generation * load_marginal_cost):convert("k$");
 end
 return gbcmgs;

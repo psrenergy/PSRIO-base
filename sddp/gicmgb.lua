@@ -1,8 +1,10 @@
 local function gicmgb(suffix)
-    local powerinjection = PowerInjection();
-    local powinj = powerinjection:load("powinj" .. (suffix or ""));
     local bus = Bus();
-    local cmgbus = bus:load("cmgbus" .. (suffix or ""));
-    return powinj * cmgbus;
+    local powerinjection = PowerInjection();
+
+    local injection = powerinjection:load("powinj" .. (suffix or ""));
+    local bus_marginal_cost = bus:load("cmgbus" .. (suffix or ""));
+
+    return injection * bus_marginal_cost;
 end
 return gicmgb;

@@ -1,6 +1,13 @@
 local function pothid(suffix)
     local hydro = Hydro();
-    local fprodt = hydro:load("fprodt" .. (suffix or ""));
-    return ifelse(hydro.state:gt(0.5), 0, min(hydro.max_turbining_outflow * fprodt, hydro.max_generation_available));
+
+    local production_factor = hydro:load("fprodt" .. (suffix or ""));
+    local has_hydro = hydro.state:lt(1);
+
+    return ifelse(
+        has_hydro,
+        min(hydro.max_turbining_outflow * production_factor, hydro.max_generation_available),
+        0
+    );
 end
 return pothid;

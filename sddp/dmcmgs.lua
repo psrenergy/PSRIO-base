@@ -1,8 +1,10 @@
 local function dmcmgs(suffix)
     local system = System();
+
     local demand = system:load("demand" .. (suffix or ""));
-    local defcit = system:load("defcit" .. (suffix or ""));
-    local cmgdem = system:load("cmgdem" .. (suffix or ""));
-    return (demand - defcit) * cmgdem;
+    local deficit = system:load("defcit" .. (suffix or ""));
+    local load_marginal_cost = system:load("cmgdem" .. (suffix or ""));
+
+    return (demand - deficit) * load_marginal_cost;
 end
 return dmcmgs;

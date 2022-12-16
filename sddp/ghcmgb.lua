@@ -1,8 +1,10 @@
 local function ghcmgb(suffix)
-    local hydro = Hydro();
-    local gerhid = hydro:load("gerhid" .. (suffix or ""));
     local bus = Bus();
-    local cmgbus = bus:load("cmgbus" .. (suffix or ""));
-    return gerhid * cmgbus;
+    local hydro = Hydro();
+
+    local hydro_generation = hydro:load("gerhid" .. (suffix or ""));
+    local bus_marginal_cost = bus:load("cmgbus" .. (suffix or ""));
+
+    return hydro_generation * bus_marginal_cost;
 end
 return ghcmgb;

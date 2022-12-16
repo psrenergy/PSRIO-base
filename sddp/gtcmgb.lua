@@ -1,8 +1,10 @@
 local function gtcmgb(suffix)
     local thermal = Thermal();
-    local gerter = thermal:load("gerter" .. (suffix or ""));
     local bus = Bus();
-    local cmgbus = bus:load("cmgbus" .. (suffix or ""));
-    return gerter * cmgbus;
+
+    local thermal_generation = thermal:load("gerter" .. (suffix or ""));
+    local bus_marginal_cost = bus:load("cmgbus" .. (suffix or ""));
+
+    return thermal_generation * bus_marginal_cost;
 end
 return gtcmgb;

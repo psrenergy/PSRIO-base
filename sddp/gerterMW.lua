@@ -1,6 +1,8 @@
 local function gerterMW(suffix)
     local thermal = Thermal();
-    local gerter = thermal:load("gerter" .. (suffix or ""));
-    return gerter:convert("MW");
+
+    local thermal_generation = thermal:load("gerter" .. (suffix or ""));
+
+    return thermal_generation:convert("MW");
 end
 return gerterMW;
