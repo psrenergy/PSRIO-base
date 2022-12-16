@@ -1,6 +1,5 @@
 local function enearm(suffix)
-    local hydro = Hydro();
-    local eneemb = hydro:load("eneemb" .. (suffix or ""));
-    return eneemb:aggregate_agents(BY_SUM(), Collection.SYSTEMS);
+    local system_stored_energy = require("sddp/system_stored_energy");
+    return system_stored_energy(suffix);
 end
 return enearm;
