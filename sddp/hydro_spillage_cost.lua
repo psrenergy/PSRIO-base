@@ -1,7 +1,9 @@
 local function hydro_spillage_cost(suffix)
     local hydro = Hydro();
-    local qverti = hydro:load("qverti" .. (suffix or ""));
-    local cpnspl = hydro:load("cpnspl" .. (suffix or ""));
-    return qverti * cpnspl;
+
+    local spilled_outflow = hydro:load("qverti" .. (suffix or ""));
+    local spilled_outflow_unit_violation_cost = hydro:load("cpnspl" .. (suffix or ""));
+
+    return spilled_outflow * spilled_outflow_unit_violation_cost;
 end
 return hydro_spillage_cost;
