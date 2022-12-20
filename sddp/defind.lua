@@ -1,5 +1,5 @@
-local function defind(suffix)
-    local system = System();
+local function defind(i, suffix)
+    local system = System(i or 1);
 
     local deficit = system:load("defcit" .. (suffix or ""));
     local has_deficit = deficit:gt(0);

@@ -1,6 +1,6 @@
-local function gerter_running_hours(suffix)
-    local system = System();
-    local thermal = Thermal();
+local function gerter_running_hours(i, suffix)
+    local system = System(i or 1);
+    local thermal = Thermal(i or 1);
 
     local thermal_generation = thermal:load("gerter" .. (suffix or ""));
     local load_level_length = system.load_level_length;

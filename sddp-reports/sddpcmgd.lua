@@ -1,5 +1,5 @@
-local function sddpcmgd(suffix)
-    local system = System();
+local function sddpcmgd(i, suffix)
+    local system = System(i or 1);
 
     local load_marginal_cost = system:load("cmgdem" .. (suffix or ""));
 

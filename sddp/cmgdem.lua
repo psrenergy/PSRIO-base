@@ -1,5 +1,5 @@
-local function cmgdem(suffix)
-    local bus = Bus();
+local function cmgdem(i, suffix)
+    local bus = Bus(i or 1);
 
     local bus_marginal_cost = bus:load("cmgbus" .. (suffix or ""));
     local demand_per_bus = bus:load("demxba" .. (suffix or ""));

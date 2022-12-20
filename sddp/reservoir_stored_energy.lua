@@ -1,5 +1,5 @@
-local function reservoir_stored_energy(suffix)
-    local hydro = Hydro();
+local function reservoir_stored_energy(i, suffix)
+    local hydro = Hydro(i or 1);
 
     local final_storage = hydro:load("volfin" .. (suffix or ""));
     local accumulated_production_factor = hydro:load("fprodtac" .. (suffix or ""));

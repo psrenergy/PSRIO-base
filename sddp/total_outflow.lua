@@ -1,5 +1,5 @@
-local function total_outflow(suffix)
-    local hydro = Hydro();
+local function total_outflow(i, suffix)
+    local hydro = Hydro(i or 1);
 
     local spilled_outflow = hydro:load("qverti" .. (suffix or ""));
     local turbined_outflow = hydro:load("qturbi" .. (suffix or ""));

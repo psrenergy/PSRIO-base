@@ -1,5 +1,5 @@
-local function gerterMW(suffix)
-    local thermal = Thermal();
+local function gerterMW(i, suffix)
+    local thermal = Thermal(i or 1);
 
     local thermal_generation = thermal:load("gerter" .. (suffix or ""));
 

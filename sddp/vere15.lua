@@ -1,5 +1,5 @@
-local function vere15(suffix)
-    local system = System();
+local function vere15(i, suffix)
+    local system = System(i or 1);
 
     local tolerance = 0.015;
 

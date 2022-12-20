@@ -1,5 +1,5 @@
-local function usedcl(suffix)
-    local dclink = DCLink();
+local function usedcl(i, suffix)
+    local dclink = DCLink(i or 1);
 
     local dclink_flow = dclink:load("dclink" .. (suffix or "")):convert("MW");
     local flow_direction = dclink_flow:gt(0);

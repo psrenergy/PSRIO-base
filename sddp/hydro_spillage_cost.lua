@@ -1,5 +1,5 @@
-local function hydro_spillage_cost(suffix)
-    local hydro = Hydro();
+local function hydro_spillage_cost(i, suffix)
+    local hydro = Hydro(i or 1);
 
     local spilled_outflow = hydro:load("qverti" .. (suffix or ""));
     local spilled_outflow_unit_violation_cost = hydro:load("cpnspl" .. (suffix or ""));

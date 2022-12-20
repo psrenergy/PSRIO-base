@@ -1,5 +1,5 @@
-local function enembp(suffix)
-    local hydro = Hydro();
+local function enembp(i, suffix)
+    local hydro = Hydro(i or 1);
 
     local reservoirs = hydro.max_storage:gt(hydro.min_storage);
     local reservoir_stored_energy = hydro:load("eneemb" .. (suffix or ""));

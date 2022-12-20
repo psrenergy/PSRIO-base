@@ -1,5 +1,5 @@
-local function usecir(suffix)
-    local circuit = Circuit();
+local function usecir(i, suffix)
+    local circuit = Circuit(i or 1);
 
     local circuit_flow = circuit:load("cirflw" .. (suffix or ""));
 
