@@ -3,6 +3,6 @@ local function gerfuel_per_bus(i, suffix)
 
     local gerfuel = fuelconsumption:load("gerter" .. (suffix or ""));
 
-    return gerfuel:aggregate_agents(BY_SUM(), Collection.BUSES);
+    return gerfuel:aggregate_agents(BY_SUM(), Collection.BUS);
 end
 return gerfuel_per_bus;

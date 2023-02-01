@@ -9,6 +9,6 @@ local function enaflu(i, suffix)
         has_hydro,
         inflow * accumulated_production_factor,
         0
-    ):aggregate_agents(BY_SUM(), Collection.SYSTEMS):convert("GWh");
+    ):aggregate_agents(BY_SUM(), Collection.SYSTEM):convert("GWh");
 end
 return enaflu;

@@ -3,6 +3,6 @@ local function gerbat_per_bus(i, suffix)
 
     local battery_generation = battery:load("gerbat" .. (suffix or ""));
 
-    return battery_generation:aggregate_agents(BY_SUM(), Collection.BUSES);
+    return battery_generation:aggregate_agents(BY_SUM(), Collection.BUS);
 end
 return gerbat_per_bus;

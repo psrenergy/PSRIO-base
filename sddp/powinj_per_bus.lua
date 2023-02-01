@@ -3,6 +3,6 @@ local function powinj_per_bus(i, suffix)
 
     local injection = powerinjection:load("powinj" .. (suffix or ""));
 
-    return injection:aggregate_agents(BY_SUM(), Collection.BUSES);
+    return injection:aggregate_agents(BY_SUM(), Collection.BUS);
 end
 return powinj_per_bus;
