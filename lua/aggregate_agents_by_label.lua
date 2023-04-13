@@ -8,7 +8,7 @@ local function aggregate_agents_by_label(data, aggregation)
         if dictionary[agent] then
             table.insert(dictionary[agent], i);
         else
-            dictionary[agent] = {i};
+            dictionary[agent] = { i };
         end
     end
 

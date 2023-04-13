@@ -5,6 +5,6 @@ local function losses(i, suffix)
     local r = circuit.resistance:convert("pu");
     local f = (circuit_flow / 100):force_unit("pu");
 
-    return r * (f^2);
+    return r * (f ^ 2);
 end
 return losses;
