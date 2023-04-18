@@ -1,8 +1,6 @@
 local function usecir(i, suffix)
-    local circuit = Circuit(i or 1);
+    local circuit_loading = require("sddp/circuit_loading");
 
-    local circuit_flow = circuit:load("cirflw" .. (suffix or ""));
-
-    return (circuit_flow:abs() / circuit.capacity):convert("%");
+    return circuit_loading(i, suffix);
 end
 return usecir;

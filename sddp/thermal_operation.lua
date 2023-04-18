@@ -1,4 +1,4 @@
-local function thermal_plant_operation(i, suffix)
+local function thermal_operation(i, suffix)
     local thermal = Thermal(i or 1);
 
     local thermal_generation = thermal:load("gerter" .. (suffix or ""));
@@ -10,4 +10,4 @@ local function thermal_plant_operation(i, suffix)
         return has_generation:uncouple_stages();
     end
 end
-return thermal_plant_operation;
+return thermal_operation;
