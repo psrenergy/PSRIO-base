@@ -1,6 +1,6 @@
-local function aggregate_agents_by_label(data, aggregation)
+function Expression.aggregate_agents_by_label(self, aggregation)
     local spairs = require("lua/spairs");
-    local agents = data:agents();
+    local agents = self:agents();
 
     -- build dictionary with unique agent names
     local dictionary = {};
@@ -15,9 +15,8 @@ local function aggregate_agents_by_label(data, aggregation)
     -- aggregate agents
     local unique_agents = {};
     for agent, indices in pairs(dictionary) do
-        table.insert(unique_agents, data:select_agents(indices):aggregate_agents(aggregation, agent));
+        table.insert(unique_agents, self:select_agents(indices):aggregate_agents(aggregation, agent));
     end
 
     return concatenate(unique_agents);
 end
-return aggregate_agents_by_label;
