@@ -9,6 +9,6 @@ local function sddpcope(i, suffix)
     return concatenate(
         (costs_aggregated / discount_rate(i)):aggregate_stages(BY_SUM()),
         (future_cost_aggregated / discount_rate(i)):aggregate_stages(BY_LAST_VALUE())
-    );
+    ):remove_zeros();
 end
 return sddpcope;
