@@ -65,6 +65,7 @@
         "warning",
         "Topology",
         "Expression",
-        "Tab"
+        "Tab",
+        "info"
     ]
 }
