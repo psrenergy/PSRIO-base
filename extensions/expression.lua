@@ -1,6 +1,10 @@
 function Expression.add_prefix(self, prefix)
+    if not self:loaded() then
+        error("ADD_PREFIX: null");
+    end
+
     if prefix == nil then
-        error("Prefix must not be nil");
+        error("ADD_PREFIX: prefix must not be nil");
     end
 
     local agents = self:agents();
@@ -11,8 +15,12 @@ function Expression.add_prefix(self, prefix)
 end
 
 function Expression.add_suffix(self, suffix)
+    if not self:loaded() then
+        error("ADD_SUFFIX: null");
+    end
+
     if suffix == nil then
-        error("Suffix must not be nil");
+        error("ADD_SUFFIX: suffix must not be nil");
     end
 
     local agents = self:agents();
@@ -23,8 +31,12 @@ function Expression.add_suffix(self, suffix)
 end
 
 function Expression.aggregate_agents_by_label(self, aggregation)
+    if not self:loaded() then
+        error("AGGREGATE_AGENTS_BY_LABEL: null");
+    end
+
     if aggregation == nil then
-        error("Aggregation must not be nil");
+        error("AGGREGATE_AGENTS_BY_LABEL: aggregation must not be nil");
     end
 
     local spairs = require("lua/spairs");
@@ -50,66 +62,108 @@ function Expression.aggregate_agents_by_label(self, aggregation)
 end
 
 function Expression.clamp(self, low, hi)
-    if low == nil then
-        error("Low must not be nil");
+    if not self:loaded() then
+        error("CLAMP: null");
     end
+
+    if low == nil then
+        error("CLAMP: low must not be nil");
+    end
+
     if hi == nil then
-        error("Hi must not be nil");
+        error("CLAMP: hi must not be nil");
     end
     return min(max(self, low), hi);
 end
 
 function Expression.remove_agent(self, agent)
-    if agent == nil then
-        error("Agent must not be nil");
+    if not self:loaded() then
+        error("REMOVE_AGENT: null");
     end
+
+    if agent == nil then
+        error("REMOVE_AGENT: agent must not be nil");
+    end
+
     return self:remove_agents({ agent });
 end
 
 function Expression.remove_zeros(self)
+    if not self:loaded() then
+        error("REMOVE_ZEROS: null");
+    end
+
     return self:select_agents(self:ne(0));
 end
 
 function Expression.rename_agent(self, agent)
-    if agent == nil then
-        error("Agent must not be nil");
+    if not self:loaded() then
+        error("RENAME_AGENT: null");
     end
+
+    if agent == nil then
+        error("RENAME_AGENT: agent must not be nil");
+    end
+
     return self:rename_agents({ agent });
 end
 
 function Expression.rename_agents_with_codes(self)
+    if not self:loaded() then
+        error("RENAME_AGENTS_WITH_CODES: null");
+    end
+
     local agents = {};
     for i, code in ipairs(self:codes()) do
         table.insert(agents, tostring(code));
     end
+
     return self:rename_agents(agents);
 end
 
 function Expression.remove_agent_by_code(self, code)
+    if not self:loaded() then
+        error("REMOVE_AGENT_BY_CODE: null");
+    end
+
     if code == nil then
-        error("Code must not be nil");
+        error("REMOVE_AGENT_BY_CODE: code must not be nil");
     end
 
     return self:remove_agents_by_code({ code });
 end
 
 function Expression.select_agent(self, agent)
-    if agent == nil then
-        error("Agent must not be nil");
+    if not self:loaded() then
+        error("SELECT_AGENT: null");
     end
+
+    if agent == nil then
+        error("SELECT_AGENT: agent must not be nil");
+    end
+
     return self:select_agents({ agent });
 end
 
 function Expression.select_stage(self, stage)
-    if stage == nil then
-        error("Stage must not be nil");
+    if not self:loaded() then
+        error("SELECT_STAGE: null");
     end
+
+    if stage == nil then
+        error("SELECT_STAGE: stage must not be nil");
+    end
+
     return self:select_first_stage(stage):select_last_stage(stage);
 end
 
 function Expression.select_agent_by_code(self, code)
+    if not self:loaded() then
+        error("SELECT_AGENT_BY_CODE: null");
+    end
+
     if code == nil then
-        error("Code must not be nil");
+        error("SELECT_AGENT_BY_CODE: code must not be nil");
     end
 
     return self:select_agents_by_code({ code });
