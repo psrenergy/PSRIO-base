@@ -66,6 +66,7 @@
         "Topology",
         "Expression",
         "Tab",
-        "info"
+        "info",
+        "PSR"
     ]
 }

@@ -2,7 +2,7 @@ function Expression.add_prefix(self, prefix)
     local tag = "ADD_PREFIX";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -21,7 +21,7 @@ function Expression.add_suffix(self, suffix)
     local tag = "ADD_SUFFIX";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -40,7 +40,7 @@ function Expression.aggregate_agents_by_label(self, aggregation)
     local tag = "AGGREGATE_AGENTS_BY_LABEL";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -75,7 +75,7 @@ function Expression.clamp(self, low, hi)
     local tag = "CLAMP";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -93,7 +93,7 @@ function Expression.remove_agent(self, agent)
     local tag = "REMOVE_AGENT";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -112,7 +112,7 @@ function Expression.remove_zeros(self)
     local tag = "REMOVE_ZEROS";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -127,7 +127,7 @@ function Expression.rename_agent(self, agent)
     local tag = "RENAME_AGENT";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -142,7 +142,7 @@ function Expression.rename_agents_with_codes(self)
     local tag = "RENAME_AGENTS_WITH_CODES";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -158,7 +158,7 @@ function Expression.remove_agent_by_code(self, code)
     local tag = "REMOVE_AGENT_BY_CODE";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -173,7 +173,7 @@ function Expression.select_agent(self, agent)
     local tag = "SELECT_AGENT";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -188,7 +188,7 @@ function Expression.select_stage(self, stage)
     local tag = "SELECT_STAGE";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
@@ -203,7 +203,7 @@ function Expression.select_agent_by_code(self, code)
     local tag = "SELECT_AGENT_BY_CODE";
 
     if not self:loaded() then
-        warning(tag .. ": null");
+        warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
