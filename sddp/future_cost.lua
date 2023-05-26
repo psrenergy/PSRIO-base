@@ -11,4 +11,3 @@ local function future_cost(i, suffix)
     end
 end
 return future_cost;
-
