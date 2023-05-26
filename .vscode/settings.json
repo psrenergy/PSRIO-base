@@ -67,6 +67,7 @@
         "Expression",
         "Tab",
         "info",
-        "PSR"
+        "PSR",
+        "Writer"
     ]
 }
