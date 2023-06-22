@@ -1,8 +1,6 @@
 local function gerhid_per_bus(i, suffix)
-    local hydro = Hydro(i or 1);
+    local hydro_generation_per_bus = require("sddp/hydro_generation_per_bus");
 
-    local hydro_generation = hydro:load("gerhid" .. (suffix or ""));
-
-    return hydro_generation:aggregate_agents(BY_SUM(), Collection.BUS);
+    return hydro_generation_per_bus(i, suffix)
 end
 return gerhid_per_bus;
