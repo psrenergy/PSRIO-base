@@ -1,8 +1,6 @@
 local function powinj_per_bus(i, suffix)
-    local powerinjection = PowerInjection(i or 1);
+    local power_injection_per_bus = require("sddp/power_injection_per_bus");
 
-    local injection = powerinjection:load("powinj" .. (suffix or ""));
-
-    return injection:aggregate_agents(BY_SUM(), Collection.BUS);
+    return power_injection_per_bus(i, suffix);
 end
 return powinj_per_bus;
