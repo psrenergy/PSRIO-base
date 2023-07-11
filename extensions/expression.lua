@@ -135,6 +135,10 @@ function Expression.rename_agent(self, agent)
         error(tag .. ": agent must not be nil");
     end
 
+    if self:agents_size() ~= 1 then
+        error(tag .. ": expression have more than 1 agent at " .. PSR.source_line(2));
+    end
+
     return self:rename_agents({ agent });
 end
 
