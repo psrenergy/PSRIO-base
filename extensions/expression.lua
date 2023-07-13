@@ -218,7 +218,7 @@ function Expression.select_agent_by_code(self, code)
     return self:select_agents_by_code({ code });
 end
 
-function Expression.order_agents(self, agent_order)
+function Expression.reorder_agents(self, agents)
     local tag = "ORDER_AGENTS";
 
     if not self:loaded() then
@@ -226,23 +226,18 @@ function Expression.order_agents(self, agent_order)
         return self;
     end
 
-    if agent_order == nil then
-        error(tag .. ": agent_order must not be nil");
+    if agents == nil then
+        error(tag .. ": agents must not be nil");
     end
 
-    local data_ord = {};
-    for _,agent in ipairs(agent_order) do
-        local agent_data = self:select_agent(agent);
-        if not agent_data:loaded() then
-            warning(tag .. ": agent" .. agent .. "not found");
-        else
-            table.insert(data_ord,agent_data)
-        end
+    if type(agents) ~= "table" then
+        error(tag .. ": agents must be a table");
     end
 
-    if #data_ord == 0 then
-        warning(tag .. ": any agent was found");
-        return self
+    local data = {};
+    for _, agent in ipairs(agents) do
+        table.insert(data, self:select_agent(agent));
     end
-    return concatenate(data_ord);
+
+    return concatenate(data);
 end
