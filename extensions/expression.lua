@@ -217,3 +217,27 @@ function Expression.select_agent_by_code(self, code)
 
     return self:select_agents_by_code({ code });
 end
+
+function Expression.reorder_agents(self, agents)
+    local tag = "ORDER_AGENTS";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if agents == nil then
+        error(tag .. ": agents must not be nil");
+    end
+
+    if type(agents) ~= "table" then
+        error(tag .. ": agents must be a table");
+    end
+
+    local data = {};
+    for _, agent in ipairs(agents) do
+        table.insert(data, self:select_agent(agent));
+    end
+
+    return concatenate(data);
+end
