@@ -241,3 +241,14 @@ function Expression.reorder_agents(self, agents)
 
     return concatenate(data);
 end
+
+function Expression.select_and_rename_agent(self, agent, label)
+    local tag = "SELECT_AND_RENAME_AGENT";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    return self:select_agent(agent):rename_agent(label);
+end
