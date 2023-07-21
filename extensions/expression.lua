@@ -252,3 +252,39 @@ function Expression.select_and_rename_agent(self, agent, label)
 
     return self:select_agent(agent):rename_agent(label);
 end
+
+function Expression.add_agents_left(self, ...)
+    local tag = "ADD_AGENTS_LEFT";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    local expression = self;
+
+    local labels = { ... };
+    for i = #labels, 1, -1 do
+        expression = expression:add_agent_left(labels[i]);
+    end
+
+    return expression;
+end
+
+function Expression.add_agents_right(self, ...)
+    local tag = "ADD_AGENTS_RIGHT";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    local expression = self;
+
+    local labels = { ... };
+    for i = 1, #labels do
+        expression = expression:add_agent_right(labels[i]);
+    end
+
+    return expression;
+end
