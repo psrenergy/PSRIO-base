@@ -288,3 +288,27 @@ function Expression.add_agents_right(self, ...)
 
     return expression;
 end
+
+function Expression.select_agents_with_prefix(self,str)
+    local tag = "SELECT_AGENTS_WITH_PREFIX"
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if str == nil then
+        error(tag .. ": prefix string must not be nil");
+    end
+
+    local lenth_str = string.len(str);
+
+    local found_agents = {};
+    local agents = self:agents();
+    for _,agent in ipairs(agents) do
+        if (string.sub(agent, 1, lenth_str) == str) then
+            table.insert(found_agents,agent)
+        end
+    end
+    return self:select_agents(found_agents)
+end
