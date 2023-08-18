@@ -385,3 +385,33 @@ function Expression.replace_stages(self,data_rep,vec_stages)
     return concatenate_stages(vec_selc_stag)
 
 end
+
+function Expression.replace_scenario(self,data_repli,vec_scn)
+    local tag = "REPLACE SCENARIOS";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if( data_repli:scenarios() ~= 1) then
+        error("Number of data_repli scenario must be 1")
+    end
+
+    N_scn = self:scenarios();
+
+    local aux_table = {};
+    for scn = 1,N_scn do
+        for _,scn_v in ipairs(vec_scn) do
+            if( scn == scn_v ) then
+                table.insert(aux_table,data_repli);
+                goto scn_found
+            end
+        end
+        table.insert(aux_table,self:select_scenario(scn));
+        ::scn_found::
+    end
+    
+    return concatenate_scenarios(aux_table)
+    
+end
