@@ -312,3 +312,35 @@ function Expression.select_agents_with_prefix(self,str)
     end
     return self:select_agents(found_agents)
 end
+
+function Expression.remove_stages(self,vec_stages)
+    local tag = "REMOVE STAGES"
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+    
+    if vec_stages == nil then
+        error(tag .. ": stages vector must not be nil");
+    end
+
+    warning(tag .. ": data will lose chronology");
+    
+    local inital_stage = self:inital_stage();
+    local last_stage   = self:last_stage();
+
+    local vec_selc_stag = {};
+    for stg = inital_stage,last_stage do
+        for _,stg_v in ipairs(vec_stages) do
+            if( stg == stg_v ) then
+                goto stg_found
+            end
+        end
+        table.insert(vec_selc_stag,self:select_stages({stg}));
+        ::stg_found::
+    end
+
+    return concatenate_stages(vec_selc_stag)
+
+end
