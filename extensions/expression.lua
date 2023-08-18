@@ -290,7 +290,7 @@ function Expression.add_agents_right(self, ...)
 end
 
 function Expression.select_agents_with_prefix(self,str)
-    local tag = "SELECT_AGENTS_WITH_PREFIX"
+    local tag = "SELECT_AGENTS_WITH_PREFIX";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -314,7 +314,7 @@ function Expression.select_agents_with_prefix(self,str)
 end
 
 function Expression.remove_stages(self,vec_stages)
-    local tag = "REMOVE STAGES"
+    local tag = "REMOVE STAGES";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -326,7 +326,7 @@ function Expression.remove_stages(self,vec_stages)
     end
 
     warning(tag .. ": data will lose chronology");
-    
+
     local inital_stage = self:inital_stage();
     local last_stage   = self:last_stage();
 
@@ -334,6 +334,47 @@ function Expression.remove_stages(self,vec_stages)
     for stg = inital_stage,last_stage do
         for _,stg_v in ipairs(vec_stages) do
             if( stg == stg_v ) then
+                goto stg_found
+            end
+        end
+        table.insert(vec_selc_stag,self:select_stages({stg}));
+        ::stg_found::
+    end
+
+    return concatenate_stages(vec_selc_stag)
+
+end
+
+function Expression.replace_stages(self,data_rep,vec_stages)
+    local tag = "REPLACE STAGES";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if vec_stages == nil then
+        error(tag .. ": stages vector must not be nil");
+    end
+
+    if not data_rep:loaded() then
+        warning(tag .. ": data to replace must not be nil");
+        return self;
+    end
+
+    if data_rep:stages() ~= 1 then
+        warning(tag .. ": data to replace must have just 1 stage");
+        return self;
+    end
+
+    local inital_stage = self:inital_stage();
+    local last_stage   = self:last_stage();
+
+    local vec_selc_stag = {};
+    for stg = inital_stage,last_stage do
+        for _,stg_v in ipairs(vec_stages) do
+            if( stg == stg_v ) then
+                table.insert(vec_selc_stag,data_rep);
                 goto stg_found
             end
         end
