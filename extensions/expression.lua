@@ -289,7 +289,7 @@ function Expression.add_agents_right(self, ...)
     return expression;
 end
 
-function Expression.select_agents_with_prefix(self,str)
+function Expression.select_agents_with_prefix(self, str)
     local tag = "SELECT_AGENTS_WITH_PREFIX";
 
     if not self:loaded() then
@@ -305,47 +305,45 @@ function Expression.select_agents_with_prefix(self,str)
 
     local found_agents = {};
     local agents = self:agents();
-    for _,agent in ipairs(agents) do
-        if (string.sub(agent, 1, lenth_str) == str) then
-            table.insert(found_agents,agent)
+    for _, agent in ipairs(agents) do
+        if string.sub(agent, 1, lenth_str) == str then
+            table.insert(found_agents, agent);
         end
     end
-    return self:select_agents(found_agents)
+    return self:select_agents(found_agents);
 end
 
-function Expression.remove_stages(self,vec_stages)
+function Expression.remove_stages(self, selected_stages)
     local tag = "REMOVE STAGES";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
-    
-    if vec_stages == nil then
+
+    if selected_stages == nil then
         error(tag .. ": stages vector must not be nil");
     end
 
-    warning(tag .. ": data will lose chronology");
-
-    local inital_stage = self:inital_stage();
-    local last_stage   = self:last_stage();
-
-    local vec_selc_stag = {};
-    for stg = inital_stage,last_stage do
-        for _,stg_v in ipairs(vec_stages) do
-            if( stg == stg_v ) then
-                goto stg_found
-            end
-        end
-        table.insert(vec_selc_stag,self:select_stages({stg}));
-        ::stg_found::
+    local selected = {};
+    for _, stage in ipairs(selected_stages) do
+        selected[stage] = true;
     end
 
-    return concatenate_stages(vec_selc_stag)
+    local initial_stage = self:inital_stage();
+    local last_stage = self:last_stage();
 
+    local data = {};
+    for stage = initial_stage, last_stage do
+        if not selected[stage] then
+            table.insert(data, self:select_stage(stage));
+        end
+    end
+
+    return concatenate_stages(data);
 end
 
-function Expression.replace_stages(self,data_rep,vec_stages)
+function Expression.replace_stages(self, data_rep, selected_stages)
     local tag = "REPLACE STAGES";
 
     if not self:loaded() then
@@ -353,7 +351,7 @@ function Expression.replace_stages(self,data_rep,vec_stages)
         return self;
     end
 
-    if vec_stages == nil then
+    if selected_stages == nil then
         error(tag .. ": stages vector must not be nil");
     end
 
@@ -367,26 +365,28 @@ function Expression.replace_stages(self,data_rep,vec_stages)
         return self;
     end
 
-    local inital_stage = self:inital_stage();
-    local last_stage   = self:last_stage();
-
-    local vec_selc_stag = {};
-    for stg = inital_stage,last_stage do
-        for _,stg_v in ipairs(vec_stages) do
-            if( stg == stg_v ) then
-                table.insert(vec_selc_stag,data_rep);
-                goto stg_found
-            end
-        end
-        table.insert(vec_selc_stag,self:select_stages({stg}));
-        ::stg_found::
+    local selected = {};
+    for _, stage in ipairs(selected_stages) do
+        selected[stage] = true;
     end
 
-    return concatenate_stages(vec_selc_stag)
+    local initial_stage = self:initial_stage();
+    local last_stage = self:last_stage();
+
+    local data = {};
+    for stage = initial_stage, last_stage do
+        if selected[stage] then
+            table.insert(data, data_rep);
+        else
+            table.insert(data, self:select_stage(stage));
+        end
+    end
+
+    return concatenate_stages(data);
 
 end
 
-function Expression.replace_scenario(self,data_repli,vec_scn)
+function Expression.replace_scenario(self, data_repli, selected_scenarios)
     local tag = "REPLACE SCENARIOS";
 
     if not self:loaded() then
@@ -394,24 +394,26 @@ function Expression.replace_scenario(self,data_repli,vec_scn)
         return self;
     end
 
-    if( data_repli:scenarios() ~= 1) then
-        error("Number of data_repli scenario must be 1")
+    if data_repli:scenarios() ~= 1 then
+        error("Number of data_repli scenario must be 1");
+    end
+
+    local selected = {};
+    for _, scn in ipairs(selected_scenarios) do
+        selected[scn] = true;
     end
 
     N_scn = self:scenarios();
 
-    local aux_table = {};
-    for scn = 1,N_scn do
-        for _,scn_v in ipairs(vec_scn) do
-            if( scn == scn_v ) then
-                table.insert(aux_table,data_repli);
-                goto scn_found
-            end
+    local data = {};
+    for scn = 1, N_scn do
+        if selected[scn] then
+            table.insert(data, data_repli);
+        else
+            table.insert(data, self:select_scenario(scn));
         end
-        table.insert(aux_table,self:select_scenario(scn));
-        ::scn_found::
     end
-    
-    return concatenate_scenarios(aux_table)
-    
+
+    return concatenate_scenarios(data);
+
 end
