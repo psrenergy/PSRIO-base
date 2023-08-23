@@ -288,3 +288,84 @@ function Expression.add_agents_right(self, ...)
 
     return expression;
 end
+
+function Expression.remove_stages(self, stages)
+    local tag = "REMOVE STAGES";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if stages == nil then
+        error(tag .. ": stages vector must not be nil");
+    end
+
+    local selected = {};
+    for _, stage in ipairs(stages) do
+        selected[stage] = true;
+    end
+
+    local data = {};
+    for stage = self:inital_stage(), self:last_stage() do
+        if not selected[stage] then
+            table.insert(data, self:select_stage(stage));
+        end
+    end
+    return concatenate_stages(data);
+end
+
+function Expression.replace_stages(self, source, stages)
+    local tag = "REPLACE STAGES";
+
+    if not self:loaded() or not source:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if stages == nil then
+        error(tag .. ": stages vector must not be nil");
+    end
+
+    local selected = {};
+    for _, stage in ipairs(stages) do
+        selected[stage] = true;
+    end
+
+    local initial_stage = self:initial_stage();
+    local last_stage = self:last_stage();
+
+    local data = {};
+    for stage = initial_stage, last_stage do
+        if selected[stage] then
+            table.insert(data, source);
+        else
+            table.insert(data, self:select_stage(stage));
+        end
+    end
+    return concatenate_stages(data);
+end
+
+function Expression.replace_scenarios(self, source, scenarios)
+    local tag = "REPLACE SCENARIOS";
+
+    if not self:loaded() or not source:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    local selected = {};
+    for _, scenario in ipairs(scenarios) do
+        selected[scenario] = true;
+    end
+
+    local data = {};
+    for scenario = 1, self:scenarios() do
+        if selected[scenario] then
+            table.insert(data, source);
+        else
+            table.insert(data, self:select_scenario(scenario));
+        end
+    end
+    return concatenate_scenarios(data);
+end
