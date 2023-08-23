@@ -362,7 +362,7 @@ function Expression.replace_scenarios(self, source, scenarios)
     local data = {};
     for scenario = 1, self:scenarios() do
         if selected[scenario] then
-            table.insert(data, source);
+            table.insert(data, source:select_scenario(scenario));
         else
             table.insert(data, self:select_scenario(scenario));
         end
