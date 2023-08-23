@@ -289,31 +289,7 @@ function Expression.add_agents_right(self, ...)
     return expression;
 end
 
-function Expression.select_agents_with_prefix(self, str)
-    local tag = "SELECT_AGENTS_WITH_PREFIX";
-
-    if not self:loaded() then
-        warning(tag .. ": null at " .. PSR.source_line(2));
-        return self;
-    end
-
-    if str == nil then
-        error(tag .. ": prefix string must not be nil");
-    end
-
-    local lenth_str = string.len(str);
-
-    local found_agents = {};
-    local agents = self:agents();
-    for _, agent in ipairs(agents) do
-        if string.sub(agent, 1, lenth_str) == str then
-            table.insert(found_agents, agent);
-        end
-    end
-    return self:select_agents(found_agents);
-end
-
-function Expression.remove_stages(self, selected_stages)
+function Expression.remove_stages(self, stages)
     local tag = "REMOVE STAGES";
 
     if not self:loaded() then
@@ -321,52 +297,38 @@ function Expression.remove_stages(self, selected_stages)
         return self;
     end
 
-    if selected_stages == nil then
+    if stages == nil then
         error(tag .. ": stages vector must not be nil");
     end
 
     local selected = {};
-    for _, stage in ipairs(selected_stages) do
+    for _, stage in ipairs(stages) do
         selected[stage] = true;
     end
 
-    local initial_stage = self:inital_stage();
-    local last_stage = self:last_stage();
-
     local data = {};
-    for stage = initial_stage, last_stage do
+    for stage = self:inital_stage(), self:last_stage() do
         if not selected[stage] then
             table.insert(data, self:select_stage(stage));
         end
     end
-
     return concatenate_stages(data);
 end
 
-function Expression.replace_stages(self, data_rep, selected_stages)
+function Expression.replace_stages(self, source, stages)
     local tag = "REPLACE STAGES";
 
-    if not self:loaded() then
+    if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
-    if selected_stages == nil then
+    if stages == nil then
         error(tag .. ": stages vector must not be nil");
     end
 
-    if not data_rep:loaded() then
-        warning(tag .. ": data to replace must not be nil");
-        return self;
-    end
-
-    if data_rep:stages() ~= 1 then
-        warning(tag .. ": data to replace must have just 1 stage");
-        return self;
-    end
-
     local selected = {};
-    for _, stage in ipairs(selected_stages) do
+    for _, stage in ipairs(stages) do
         selected[stage] = true;
     end
 
@@ -376,44 +338,34 @@ function Expression.replace_stages(self, data_rep, selected_stages)
     local data = {};
     for stage = initial_stage, last_stage do
         if selected[stage] then
-            table.insert(data, data_rep);
+            table.insert(data, source);
         else
             table.insert(data, self:select_stage(stage));
         end
     end
-
     return concatenate_stages(data);
-
 end
 
-function Expression.replace_scenario(self, data_repli, selected_scenarios)
+function Expression.replace_scenarios(self, source, scenarios)
     local tag = "REPLACE SCENARIOS";
 
-    if not self:loaded() then
+    if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
 
-    if data_repli:scenarios() ~= 1 then
-        error("Number of data_repli scenario must be 1");
-    end
-
     local selected = {};
-    for _, scn in ipairs(selected_scenarios) do
-        selected[scn] = true;
+    for _, scenario in ipairs(scenarios) do
+        selected[scenario] = true;
     end
-
-    N_scn = self:scenarios();
 
     local data = {};
-    for scn = 1, N_scn do
-        if selected[scn] then
-            table.insert(data, data_repli);
+    for scenario = 1, self:scenarios() do
+        if selected[scenario] then
+            table.insert(data, source);
         else
-            table.insert(data, self:select_scenario(scn));
+            table.insert(data, self:select_scenario(scenario));
         end
     end
-
     return concatenate_scenarios(data);
-
 end
