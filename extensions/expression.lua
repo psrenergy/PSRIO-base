@@ -290,7 +290,7 @@ function Expression.add_agents_right(self, ...)
 end
 
 function Expression.remove_stages(self, stages)
-    local tag = "REMOVE STAGES";
+    local tag = "REMOVE_STAGES";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -316,7 +316,7 @@ function Expression.remove_stages(self, stages)
 end
 
 function Expression.replace_stages(self, source, stages)
-    local tag = "REPLACE STAGES";
+    local tag = "REPLACE_STAGES";
 
     if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -347,7 +347,7 @@ function Expression.replace_stages(self, source, stages)
 end
 
 function Expression.replace_scenarios(self, source, scenarios)
-    local tag = "REPLACE SCENARIOS";
+    local tag = "REPLACE_SCENARIOS";
 
     if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -368,4 +368,23 @@ function Expression.replace_scenarios(self, source, scenarios)
         end
     end
     return concatenate_scenarios(data);
+end
+
+function Expression.aggregate_stages_weighted(self, by, profile, weights)
+    local tag = "AGGREGATE_STAGES_WEIGHTED";
+
+    if not self:loaded() or not weights:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if type(by) ~= "Function" then
+        error(tag .. ": by must be a Function");
+    end
+
+    if type(profile) ~= "Profile" then
+        error(tag .. ": profile must be a Profile");
+    end
+
+    return (self * weights):aggregate_stages(by, profile) / weights:aggregate_stages(by, profile);
 end
