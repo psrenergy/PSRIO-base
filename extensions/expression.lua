@@ -389,22 +389,22 @@ function Expression.aggregate_stages_weighted(self, by, profile, weights)
     return (self * weights):aggregate_stages(by, profile) / weights:aggregate_stages(by, profile);
 end
 
-function Expression.select_first_stage(self)
-    local tag = "SELECT_FIRST_STAGE";
+-- function Expression.select_first_stage(self)
+--     local tag = "SELECT_FIRST_STAGE";
 
-    if not self:loaded() then
-        warning(tag .. ": null at " .. PSR.source_line(2));
-        return self;
-    end
-    return self:select_stage(self:first_stage());
-end
+--     if not self:loaded() then
+--         warning(tag .. ": null at " .. PSR.source_line(2));
+--         return self;
+--     end
+--     return self:select_stage(self:first_stage());
+-- end
 
-function Expression.select_last_stage(self)
-    local tag = "SELECT_LAST_STAGE";
+-- function Expression.select_last_stage(self)
+--     local tag = "SELECT_LAST_STAGE";
 
-    if not self:loaded() then
-        warning(tag .. ": null at " .. PSR.source_line(2));
-        return self;
-    end
-    return self:select_stage(self:last_stage());
-end
+--     if not self:loaded() then
+--         warning(tag .. ": null at " .. PSR.source_line(2));
+--         return self;
+--     end
+--     return self:select_stage(self:last_stage());
+-- end
