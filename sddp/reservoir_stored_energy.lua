@@ -2,7 +2,7 @@ local function reservoir_stored_energy(i, suffix)
     local hydro = Hydro(i or 1);
 
     local final_storage = hydro:load("volfin" .. (suffix or ""));
-    local accumulated_production_factor = hydro:load("fprodtac" .. (suffix or ""));
+    local accumulated_production_factor = hydro:load("fprodt" .. (suffix or "")):aggregate_topology(BY_SUM(), Topology.STORED_ENERGY_TO);
     local reservoirs = hydro.max_storage:gt(hydro.min_storage);
     local has_hydro = hydro.state:lt(1);
 
