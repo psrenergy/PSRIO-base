@@ -2,12 +2,24 @@ function Chart.add_line(self, expression1, options)
     self:add("line", expression1, options);
 end
 
+function Chart.add_line_exclude_zeros(self, expression1, options)
+    self:add_exclude_zeros("line", expression1, options);
+end
+
 function Chart.add_line_stacking(self, expression1, options)
     self:add("line_stacking", expression1, options);
 end
 
+function Chart.add_line_stacking_exclude_zeros(self, expression1, options)
+    self:add_exclude_zeros("line_stacking", expression1, options);
+end
+
 function Chart.add_spline(self, expression1, options)
     self:add("spline", expression1, options);
+end
+
+function Chart.add_spline_exclude_zeros(self, expression1, options)
+    self:add_exclude_zeros("spline", expression1, options);
 end
 
 function Chart.add_column(self, expression1, options)
