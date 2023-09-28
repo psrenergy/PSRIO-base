@@ -370,7 +370,7 @@ function Expression.replace_scenarios(self, source, scenarios)
     return concatenate_scenarios(data);
 end
 
-function Expression.aggregate_stages_weighted(self, by, profile, weights)
+function Expression.aggregate_stages_weighted(self, by, weights, profile)
     local tag = "AGGREGATE_STAGES_WEIGHTED";
 
     if not self:loaded() or not weights:loaded() then
@@ -382,11 +382,14 @@ function Expression.aggregate_stages_weighted(self, by, profile, weights)
         error(tag .. ": by must be a Function");
     end
 
-    if type(profile) ~= "Profile" then
-        error(tag .. ": profile must be a Profile");
+    if profile then
+        if type(profile) ~= "Profile" then
+            error(tag .. ": profile must be a Profile");
+        end
+        return (self * weights):aggregate_stages(by, profile) / weights:aggregate_stages(by, profile);
+    else
+        return (self * weights):aggregate_stages(by) / weights:aggregate_stages(by);
     end
-
-    return (self * weights):aggregate_stages(by, profile) / weights:aggregate_stages(by, profile);
 end
 
 -- function Expression.select_first_stage(self)
