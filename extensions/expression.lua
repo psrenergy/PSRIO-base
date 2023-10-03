@@ -378,12 +378,12 @@ function Expression.aggregate_stages_weighted(self, by, weights, profile)
         return self;
     end
 
-    if type(by) ~= "Function" then
+    if type(by) ~= "userdata" then
         error(tag .. ": by must be a Function");
     end
 
     if profile then
-        if type(profile) ~= "Profile" then
+        if type(profile) ~= "number" then
             error(tag .. ": profile must be a Profile");
         end
         return (self * weights):aggregate_stages(by, profile) / weights:aggregate_stages(by, profile);
