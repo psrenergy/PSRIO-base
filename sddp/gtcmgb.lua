@@ -1,5 +1,5 @@
 local function gtcmgb(i, suffix)
-    local thermal<const> = Thermal(i);
+    local thermal<const> = Thermal(i or 1);
     local bus<const> = Bus(i or 1);
 
     local thermal_generation = thermal:load("gerter" .. (suffix or ""));

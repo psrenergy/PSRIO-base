@@ -4,7 +4,7 @@ local function bus_injection(i, suffix)
     local dclink<const> = DCLink(i or 1);
     local hydro<const> = Hydro(i or 1);
     local renewable<const> = Renewable(i or 1);
-    local thermal<const> = Thermal(i);
+    local thermal<const> = Thermal(i or 1);
 
     local thermal_generation_per_bus = thermal:load("gerter" .. (suffix or "")):convert("MW"):aggregate_agents(BY_SUM(), Collection.BUS);
     local injection = thermal_generation_per_bus;

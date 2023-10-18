@@ -1,5 +1,5 @@
 local function potter(i)
-    local thermal<const> = Thermal(i);
+    local thermal<const> = Thermal(i or 1);
 
     local has_thermal = thermal.state:lt(1);
 

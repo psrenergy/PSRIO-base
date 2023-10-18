@@ -1,5 +1,5 @@
 local function thermal_dispatch_factor(i, suffix)
-    local thermal<const> = Thermal(i);
+    local thermal<const> = Thermal(i or 1);
 
     local thermal_generation = thermal:load("gerter" .. (suffix or ""));
     local available_thermal_capacity = thermal:load("potter" .. (suffix or ""));
