@@ -1,5 +1,5 @@
 local function useful_storage_initial(i, suffix)
-    local hydro = Hydro(i or 1);
+    local hydro<const> = Hydro(i or 1);
 
     local initial_storage = hydro:load("volini" .. (suffix or ""));
 

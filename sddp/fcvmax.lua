@@ -1,5 +1,5 @@
 local function fcvmax(i)
-    local fuelcontract = FuelContract(i or 1);
+    local fuelcontract<const> = FuelContract(i or 1);
 
     return fuelcontract.amount;
 end

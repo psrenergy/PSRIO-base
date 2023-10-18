@@ -1,5 +1,5 @@
 local function tsfter(i)
-    local thermal = Thermal(i or 1);
+    local thermal<const> = Thermal(i);
 
     return thermal.historical_outage_factor;
 end

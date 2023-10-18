@@ -1,5 +1,5 @@
 local function circuit_loading(i, suffix)
-    local circuit = Circuit(i or 1);
+    local circuit<const> = Circuit(i or 1);
 
     local circuit_flow = circuit:load("cirflw" .. (suffix or ""));
 

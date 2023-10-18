@@ -1,5 +1,5 @@
 local function enaflu(i, suffix)
-    local hydro = Hydro(i or 1);
+    local hydro<const> = Hydro(i or 1);
 
     local inflow = hydro:load("inflow" .. (suffix or ""));
     local accumulated_production_factor = hydro:load("fprodtac" .. (suffix or ""));

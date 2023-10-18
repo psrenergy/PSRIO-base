@@ -1,7 +1,7 @@
 local function vere15(i, suffix)
-    local system = System(i or 1);
+    local system<const> = System(i or 1);
 
-    local tolerance = 0.015;
+    local tolerance<const> = 0.015;
 
     local deficit = system:load("defcit" .. (suffix or "")):aggregate_blocks(BY_SUM());
     local supplied_demand = system:load("demandel" .. (suffix or "")):aggregate_blocks(BY_SUM());

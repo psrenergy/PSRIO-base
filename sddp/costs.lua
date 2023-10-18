@@ -1,8 +1,8 @@
 local function costs(i, suffix)
-    local generic = Generic(i or 1);
+    local generic<const> = Generic(i or 1);
     local costs_by_category = generic:load("objcop" .. (suffix or ""));
 
-    local study = Study(i or 1);
+    local study<const> = Study(i or 1);
     if study:is_hourly() then
         return costs_by_category:remove_agent(1); -- remove future cost
     else

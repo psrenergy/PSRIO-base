@@ -1,5 +1,5 @@
 local function discount_rate_per_year(i)
-    local study = Study(i or 1);
+    local study<const> = Study(i or 1);
 
     local initial_year = study.discount_rate:initial_year();
     local discount_rate = study.discount_rate:aggregate_stages(BY_FIRST_VALUE(), Profile.PER_YEAR);

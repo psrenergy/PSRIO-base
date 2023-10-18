@@ -1,5 +1,5 @@
 local function pmnter(i)
-    local thermal = Thermal(i or 1);
+    local thermal<const> = Thermal(i);
 
     return thermal.min_generation;
 end

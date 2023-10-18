@@ -1,5 +1,5 @@
 local function battery_generation_per_bus(i, suffix)
-    local battery = Battery(i or 1);
+    local battery<const> = Battery(i or 1);
 
     local battery_generation = battery:load("gerbat" .. (suffix or ""));
 

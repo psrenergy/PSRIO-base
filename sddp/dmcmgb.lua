@@ -1,5 +1,5 @@
 local function dmcmgb(i, suffix)
-    local bus = Bus(i or 1);
+    local bus<const> = Bus(i or 1);
 
     local supplied_demand_per_bus = bus:load("demxbael" .. (suffix or ""));
     local deficit_per_bus = bus:load("defbus" .. (suffix or ""));

@@ -1,5 +1,5 @@
 local function dmcmgs(i, suffix)
-    local system = System(i or 1);
+    local system<const> = System(i or 1);
 
     local demand = system:load("demand" .. (suffix or ""));
     local deficit = system:load("defcit" .. (suffix or ""));

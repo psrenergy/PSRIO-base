@@ -1,5 +1,5 @@
 local function renewable_generation_per_tech(i, suffix)
-    local renewable = Renewable(i or 1);
+    local renewable<const> = Renewable(i or 1);
     local general = renewable.tech_type:eq(0);
     local wind = renewable.tech_type:eq(1);
     local solar = renewable.tech_type:eq(2);

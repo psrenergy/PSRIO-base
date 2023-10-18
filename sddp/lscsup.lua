@@ -1,5 +1,5 @@
 local function lscsup(i)
-    local circuitssum = CircuitsSum(i or 1);
+    local circuitssum<const> = CircuitsSum(i or 1);
 
     return circuitssum.ub;
 end

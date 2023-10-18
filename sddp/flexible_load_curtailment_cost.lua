@@ -1,5 +1,5 @@
 local function flexible_load_curtailment_cost(i, suffix)
-    local demand = Demand(i or 1);
+    local demand<const> = Demand(i or 1);
 
     local flexible_load_curtailment = demand:load("lshcurt" .. (suffix or ""));
 

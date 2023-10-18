@@ -1,5 +1,5 @@
 local function pothid(i, suffix)
-    local hydro = Hydro(i or 1);
+    local hydro<const> = Hydro(i or 1);
 
     local production_factor = hydro:load("fprodt" .. (suffix or ""));
     local has_hydro = hydro.state:lt(1);

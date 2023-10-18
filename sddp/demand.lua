@@ -1,5 +1,5 @@
 local function demand(i)
-    local study = Study(i or 1);
+    local study<const> = Study(i or 1);
 
     if study:has_hourly_load() then
         local demand_hour = require("sddp/demand_hour");

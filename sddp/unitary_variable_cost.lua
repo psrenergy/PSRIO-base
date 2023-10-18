@@ -1,17 +1,16 @@
 local function unitary_variable_cost(i)
-    local thermal = Thermal(i);
-    local fuel = Fuel(i);
+    local thermal<const> = Thermal(i);
+    local fuel<const> = Fuel(i);
 
     local thermal_generation = thermal:load("gerter"):convert("MW");
     local specific_consumption = thermal.specific_consumption_segment_1;
 
     if thermal_generation:loaded() then
-        -- Percentage of each specific consumption curve segment
+        -- percentage of each specific consumption curve segment
         local percent_1 = thermal.curve_segment_1:convert("pu");
         local percent_2 = thermal.curve_segment_2:convert("pu");
-        local percent_3 = thermal.curve_segment_3:convert("pu");
 
-        -- Value of each specific consumption curve segment
+        -- value of each specific consumption curve segment
         local segment_1 = thermal.specific_consumption_segment_1;
         local segment_2 = thermal.specific_consumption_segment_2;
         local segment_3 = thermal.specific_consumption_segment_3;

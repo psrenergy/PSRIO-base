@@ -1,5 +1,5 @@
 local function power_injection_per_bus(i, suffix)
-    local powerinjection = PowerInjection(i or 1);
+    local powerinjection<const> = PowerInjection(i or 1);
 
     local injection = powerinjection:load("powinj" .. (suffix or ""));
 

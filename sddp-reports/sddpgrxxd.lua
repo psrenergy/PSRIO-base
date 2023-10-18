@@ -1,9 +1,9 @@
 local function sddpgrxxd(i, suffix)
-    local battery = Battery(i or 1);
-    local hydro = Hydro(i or 1);
-    local renewable = Renewable(i or 1);
-    local system = System(i or 1);
-    local thermal = Thermal(i or 1);
+    local battery<const> = Battery(i or 1);
+    local hydro<const> = Hydro(i or 1);
+    local renewable<const> = Renewable(i or 1);
+    local system<const> = System(i or 1);
+    local thermal<const> = Thermal(i);
 
     local hydro_generation = hydro:load("gerhid" .. (suffix or ""));
     local thermal_generation = thermal:load("gerter" .. (suffix or ""));

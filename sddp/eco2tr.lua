@@ -1,6 +1,6 @@
 local function eco2tr(i, suffix)
-    local fuel = Fuel(i or 1);
-    local thermal = Thermal(i or 1);
+    local fuel<const> = Fuel(i or 1);
+    local thermal<const> = Thermal(i);
 
     local thermal_generation = thermal:load("gerter" .. (suffix or ""));
 

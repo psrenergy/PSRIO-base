@@ -1,5 +1,5 @@
 local function hydro_balance(i, suffix)
-    local hydro = Hydro(i or 1);
+    local hydro<const> = Hydro(i or 1);
 
     local inflow = hydro:load("inflow" .. (suffix or "")):convert("hm3");
     local spillage = hydro:load("qverti" .. (suffix or "")):convert("hm3");

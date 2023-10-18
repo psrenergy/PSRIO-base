@@ -1,5 +1,5 @@
 local function tihter(i)
-    local thermal = Thermal(i or 1);
+    local thermal<const> = Thermal(i);
 
     return thermal.forced_outage_rate;
 end

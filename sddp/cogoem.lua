@@ -1,5 +1,5 @@
 local function cogoem(i, suffix)
-    local renewable = Renewable(i or 1);
+    local renewable<const> = Renewable(i or 1);
 
     local renewable_generation = renewable:load("gergnd" .. (suffix or ""));
 

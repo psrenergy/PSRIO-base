@@ -1,5 +1,5 @@
 local function mntcir(i)
-    local circuit = Circuit(i or 1);
+    local circuit<const> = Circuit(i or 1);
 
     local has_circuit = circuit.state:lt(1);
 

@@ -1,6 +1,6 @@
 local function future_cost(i, suffix)
-    local generic = Generic(i or 1);
-    local study = Study(i or 1);
+    local generic<const> = Generic(i or 1);
+    local study<const> = Study(i or 1);
 
     local costs_by_category = generic:load("objcop" .. (suffix or ""));
 

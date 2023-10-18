@@ -1,5 +1,5 @@
 local function datarr(i)
-    local thermal = Thermal(i or 1);
+    local thermal<const> = Thermal(i);
 
     return thermal.startup_cost;
 end

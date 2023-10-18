@@ -1,5 +1,5 @@
 local function hydro_spillage_probability(i, suffix)
-    local hydro = Hydro(i or 1);
+    local hydro<const> = Hydro(i or 1);
 
     local spillage = hydro:load("qverti" .. (suffix or ""));
     local has_spillage = ifelse(spillage:gt(0), 1, 0);

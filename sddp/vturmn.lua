@@ -1,5 +1,5 @@
 local function vturmn(i, suffix)
-    local hydro = Hydro(i or 1);
+    local hydro<const> = Hydro(i or 1);
 
     local turbined_outflow = hydro:load("qturbi" .. (suffix or ""));
 
