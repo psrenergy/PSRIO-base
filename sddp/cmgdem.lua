@@ -6,10 +6,6 @@ local function cmgdem(i, suffix)
     local demand_per_system = demand_per_bus:aggregate_agents(BY_SUM(), Collection.SYSTEM);
     local has_demand = demand_per_system:ne(0);
 
-    return ifelse(
-        has_demand,
-        (bus_marginal_cost * demand_per_bus):aggregate_agents(BY_SUM(), Collection.SYSTEM) / demand_per_system,
-        0
-    );
+    return ifelse(has_demand, (bus_marginal_cost * demand_per_bus):aggregate_agents(BY_SUM(), Collection.SYSTEM) / demand_per_system, 0);
 end
 return cmgdem;

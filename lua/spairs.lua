@@ -8,7 +8,11 @@ local function spairs(data, compare)
 
     -- if compare function given, sort by it by passing the table and keys a, b, otherwise just sort the keys
     if compare then
-        table.sort(keys, function(a, b) return compare(data, a, b); end);
+        table.sort(
+            keys, function(a, b)
+                return compare(data, a, b);
+            end
+        );
     else
         table.sort(keys);
     end
