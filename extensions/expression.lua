@@ -1,5 +1,5 @@
 function Expression.add_prefix(self, prefix)
-    local tag = "ADD_PREFIX";
+    local tag <const> = "ADD_PREFIX";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -18,7 +18,7 @@ function Expression.add_prefix(self, prefix)
 end
 
 function Expression.add_suffix(self, suffix)
-    local tag = "ADD_SUFFIX";
+    local tag <const> = "ADD_SUFFIX";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -37,7 +37,7 @@ function Expression.add_suffix(self, suffix)
 end
 
 function Expression.aggregate_agents_by_label(self, aggregation)
-    local tag = "AGGREGATE_AGENTS_BY_LABEL";
+    local tag <const> = "AGGREGATE_AGENTS_BY_LABEL";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -49,7 +49,7 @@ function Expression.aggregate_agents_by_label(self, aggregation)
     end
 
     -- build dictionary with unique agent names
-    local agents = self:agents();
+    local agents <const> = self:agents();
 
     local dictionary = {};
     for i, agent in ipairs(agents) do
@@ -72,7 +72,7 @@ function Expression.aggregate_agents_by_label(self, aggregation)
 end
 
 function Expression.clamp(self, low, hi)
-    local tag = "CLAMP";
+    local tag <const> = "CLAMP";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -90,7 +90,7 @@ function Expression.clamp(self, low, hi)
 end
 
 function Expression.remove_agent(self, agent)
-    local tag = "REMOVE_AGENT";
+    local tag <const> = "REMOVE_AGENT";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -109,7 +109,7 @@ function Expression.remove_agent(self, agent)
 end
 
 function Expression.remove_zeros(self)
-    local tag = "REMOVE_ZEROS";
+    local tag <const> = "REMOVE_ZEROS";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -124,7 +124,7 @@ function Expression.remove_zeros(self)
 end
 
 function Expression.rename_agent(self, agent)
-    local tag = "RENAME_AGENT";
+    local tag <const> = "RENAME_AGENT";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -143,7 +143,7 @@ function Expression.rename_agent(self, agent)
 end
 
 function Expression.rename_agents_with_codes(self)
-    local tag = "RENAME_AGENTS_WITH_CODES";
+    local tag <const> = "RENAME_AGENTS_WITH_CODES";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -159,7 +159,7 @@ function Expression.rename_agents_with_codes(self)
 end
 
 function Expression.remove_agent_by_code(self, code)
-    local tag = "REMOVE_AGENT_BY_CODE";
+    local tag <const> = "REMOVE_AGENT_BY_CODE";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -174,7 +174,7 @@ function Expression.remove_agent_by_code(self, code)
 end
 
 function Expression.select_agent(self, agent)
-    local tag = "SELECT_AGENT";
+    local tag <const> = "SELECT_AGENT";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -189,7 +189,7 @@ function Expression.select_agent(self, agent)
 end
 
 function Expression.select_stage(self, stage)
-    local tag = "SELECT_STAGE";
+    local tag <const> = "SELECT_STAGE";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -204,7 +204,7 @@ function Expression.select_stage(self, stage)
 end
 
 function Expression.select_agent_by_code(self, code)
-    local tag = "SELECT_AGENT_BY_CODE";
+    local tag <const> = "SELECT_AGENT_BY_CODE";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -219,7 +219,7 @@ function Expression.select_agent_by_code(self, code)
 end
 
 function Expression.reorder_agents(self, agents)
-    local tag = "ORDER_AGENTS";
+    local tag <const> = "REORDER_AGENTS";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -228,10 +228,6 @@ function Expression.reorder_agents(self, agents)
 
     if agents == nil then
         error(tag .. ": agents must not be nil");
-    end
-
-    if type(agents) ~= "table" then
-        error(tag .. ": agents must be a table");
     end
 
     local data = {};
@@ -243,7 +239,7 @@ function Expression.reorder_agents(self, agents)
 end
 
 function Expression.select_and_rename_agent(self, agent, label)
-    local tag = "SELECT_AND_RENAME_AGENT";
+    local tag <const> = "SELECT_AND_RENAME_AGENT";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -254,7 +250,7 @@ function Expression.select_and_rename_agent(self, agent, label)
 end
 
 function Expression.add_agents_left(self, ...)
-    local tag = "ADD_AGENTS_LEFT";
+    local tag <const> = "ADD_AGENTS_LEFT";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -272,7 +268,7 @@ function Expression.add_agents_left(self, ...)
 end
 
 function Expression.add_agents_right(self, ...)
-    local tag = "ADD_AGENTS_RIGHT";
+    local tag <const> = "ADD_AGENTS_RIGHT";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -290,7 +286,7 @@ function Expression.add_agents_right(self, ...)
 end
 
 function Expression.remove_stages(self, stages)
-    local tag = "REMOVE_STAGES";
+    local tag <const> = "REMOVE_STAGES";
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -316,7 +312,7 @@ function Expression.remove_stages(self, stages)
 end
 
 function Expression.replace_stages(self, source, stages)
-    local tag = "REPLACE_STAGES";
+    local tag <const> = "REPLACE_STAGES";
 
     if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -332,8 +328,8 @@ function Expression.replace_stages(self, source, stages)
         selected[stage] = true;
     end
 
-    local initial_stage = self:initial_stage();
-    local last_stage = self:last_stage();
+    local initial_stage <const> = self:initial_stage();
+    local last_stage <const> = self:last_stage();
 
     local data = {};
     for stage = initial_stage, last_stage do
@@ -347,7 +343,7 @@ function Expression.replace_stages(self, source, stages)
 end
 
 function Expression.replace_scenarios(self, source, scenarios)
-    local tag = "REPLACE_SCENARIOS";
+    local tag <const> = "REPLACE_SCENARIOS";
 
     if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -371,15 +367,11 @@ function Expression.replace_scenarios(self, source, scenarios)
 end
 
 function Expression.aggregate_stages_weighted(self, by, weights, profile)
-    local tag = "AGGREGATE_STAGES_WEIGHTED";
+    local tag <const> = "AGGREGATE_STAGES_WEIGHTED";
 
     if not self:loaded() or not weights:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
-    end
-
-    if type(by) ~= "userdata" then
-        error(tag .. ": by must be a Function");
     end
 
     if profile then
@@ -393,7 +385,7 @@ function Expression.aggregate_stages_weighted(self, by, weights, profile)
 end
 
 -- function Expression.select_first_stage(self)
---     local tag = "SELECT_FIRST_STAGE";
+--     local tag<const> = "SELECT_FIRST_STAGE";
 
 --     if not self:loaded() then
 --         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -403,7 +395,7 @@ end
 -- end
 
 -- function Expression.select_last_stage(self)
---     local tag = "SELECT_LAST_STAGE";
+--     local tag<const> = "SELECT_LAST_STAGE";
 
 --     if not self:loaded() then
 --         warning(tag .. ": null at " .. PSR.source_line(2));

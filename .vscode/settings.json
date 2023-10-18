@@ -68,6 +68,9 @@
         "Tab",
         "info",
         "PSR",
-        "Writer"
+        "Writer",
+        "Markdown",
+        "concatenate_stages",
+        "concatenate_scenarios"
     ]
 }

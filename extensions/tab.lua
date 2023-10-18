@@ -3,7 +3,7 @@ function Tab.push_table(self, input)
         error("Input must not be nil");
     end
 
-    local markdown = Markdown();
+    local markdown<const> = Markdown();
     markdown:add_table(input);
     self:push(markdown);
 end
