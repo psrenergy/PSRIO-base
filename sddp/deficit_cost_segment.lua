@@ -1,9 +1,9 @@
-local function defict_cost_segment(i)
+local function deficit_cost_segment(i, suffix)
     local system<const> = System(i or 1);
     local study<const> = Study(i or 1);
 
-    local defict = system:load("defcit"):convert("MW");
-    local demand = system:load("demand"):convert("MW");
+    local defict = system:load("defcit" .. (suffix or "")):convert("MW");
+    local demand = system:load("demand" .. (suffix or "")):convert("MW");
 
     local segment_1 = study.deficit_segment_1;
     local segment_2 = study.deficit_segment_2;
@@ -43,4 +43,4 @@ local function defict_cost_segment(i)
     return segment_1_cost + segment_2_cost + segment_3_cost + segment_4_cost
 
 end
-return defict_cost_segment;
+return deficit_cost_segment;
