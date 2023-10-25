@@ -1,7 +1,7 @@
 local function unitary_variable_cost(i)
     local thermal<const> = Thermal(i or 1);
     local fuel<const> = Fuel(i or 1);
-    local study<const> = Study(i or 1)
+    local study<const> = Study(i or 1);
 
     local thermal_generation = thermal:load("gerter"):convert("MW");
     local specific_consumption = thermal.specific_consumption_segment_1;
