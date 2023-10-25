@@ -1,6 +1,7 @@
 local function unitary_variable_cost(i)
     local thermal<const> = Thermal(i or 1);
     local fuel<const> = Fuel(i or 1);
+    local study<const> = Study(i or 1)
 
     local thermal_generation = thermal:load("gerter"):convert("MW");
     local specific_consumption = thermal.specific_consumption_segment_1;
@@ -14,6 +15,12 @@ local function unitary_variable_cost(i)
         local segment_1 = thermal.specific_consumption_segment_1;
         local segment_2 = thermal.specific_consumption_segment_2;
         local segment_3 = thermal.specific_consumption_segment_3;
+
+        if study:is_hourly() then
+            segment_1 = segment_1:to_hour(BY_AVERAGE());
+            segment_2 = segment_2:to_hour(BY_AVERAGE());
+            segment_3 = segment_3:to_hour(BY_AVERAGE());
+        end
 
         local thermal_capacity = thermal.max_generation_available;
 
