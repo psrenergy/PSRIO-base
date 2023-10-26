@@ -17,9 +17,9 @@ local function unitary_variable_cost(i)
         local segment_3 = thermal.specific_consumption_segment_3;
 
         if study:is_hourly() then
-            segment_1 = segment_1:to_hour(BY_AVERAGE());
-            segment_2 = segment_2:to_hour(BY_AVERAGE());
-            segment_3 = segment_3:to_hour(BY_AVERAGE());
+            segment_1 = segment_1:to_hour(BY_REPEATING());
+            segment_2 = segment_2:to_hour(BY_REPEATING());
+            segment_3 = segment_3:to_hour(BY_REPEATING());
         end
 
         local thermal_capacity = thermal.max_generation_available;
