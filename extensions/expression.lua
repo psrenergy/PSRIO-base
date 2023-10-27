@@ -403,3 +403,33 @@ end
 --     end
 --     return self:select_stage(self:last_stage());
 -- end
+
+function Expression.rename_unique_agent(self, agent_name, substitute_name)
+    local tag<const> = "REMANE_UNIT_AGENT";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if agent_name == nil then
+        warning(tag .. ": agent name must not be nil");
+        return self;
+    end
+
+    if substitute_name == nil then
+        warning(tag .. ": substite name must not be nil");
+        return self;
+    end
+
+    local data_selected_agent = self:select_agent(agent_name):rename_agents({ substitute_name });
+
+    if not data_selected_agent:loaded() then
+        warning(tag .. ": " .. agent_name .. " not found");
+        return self;
+    end
+
+    local data_remoded_agent = self:remove_agent(agent_name);
+
+    return concatenate(data_selected_agent, data_remoded_agent);
+end
