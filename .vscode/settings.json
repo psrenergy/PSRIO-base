@@ -71,6 +71,10 @@
         "Writer",
         "Markdown",
         "concatenate_stages",
-        "concatenate_scenarios"
+        "concatenate_scenarios",
+        "datetime",
+        "ConcentratedSolarPower",
+        "ReserveGenerationConstraint",
+        "ReservoirSet"
     ]
 }
