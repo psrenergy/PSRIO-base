@@ -5,8 +5,10 @@ local function load_ncp(collection, filename)
     local initial_date = study:get_parameter("ShortTerm", "InitialDate", "");
     local year, month, day = string.match(initial_date, "(%d+)-(%d+)-(%d+)");
 
+    local hour = study:get_parameter("ShortTerm", "InitialHour", 0)
+
     local epoch = datetime.epoch_from_date(year, month, day);
-    local year_hour = datetime.year_hour_from_epoch(epoch);
+    local year_hour = datetime.year_hour_from_epoch(epoch) + hour;
 
     return collection:load(filename):set_initial_stage(year_hour);
 end
