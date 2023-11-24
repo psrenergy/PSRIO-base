@@ -96,11 +96,11 @@ function Chart.add_thermal_merit_order_curve(self, generation, cost)
     end
 
     if generation:collection() ~= Collection.THERMAL or cost:collection() ~= Collection.THERMAL then
-        error("Merit Order Curve only works for thermal generation and cost");
+        error("Thermal Merit Order Curve only works for thermal generation and cost");
     end
 
     if generation:study_index() ~= cost:study_index() then
-        error("Merit Order Curve only works for the same study");
+        error("Thermal Merit Order Curve only works for the same study");
     end
 
     local study_index = generation:study_index();
