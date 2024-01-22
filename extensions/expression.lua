@@ -120,7 +120,7 @@ function Expression.remove_zeros(self)
         error(tag .. ": null");
     end
 
-    return self:select_agents(self:ne(0));
+    return self:select_agents(self);
 end
 
 function Expression.rename_agent(self, agent)
