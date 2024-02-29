@@ -145,3 +145,7 @@ function Chart.add_thermal_merit_order_curve(self, generation, cost)
         self:add_scatter(x, y, agent .. " (" .. fuel_label .. ")", options);
     end
 end
+
+function Chart.add_waterfall(self, expression1, options)
+    self:add("waterfall", expression1, options);
+end
