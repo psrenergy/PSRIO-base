@@ -384,6 +384,18 @@ function Expression.aggregate_stages_weighted(self, by, weights, profile)
     end
 end
 
+function Expression.stage_profile_day(self, aggregation)
+    local first_stage = self:first_stage();
+    local last_stage = self:last_stage();
+
+    local stages = {};
+    for stage = first_stage, last_stage do
+        local data = self:select_stage(stage):reshape_stages(Profile.DAILY):aggregate_stages(aggregation or BY_AVERAGE());
+        table.insert(stages, data);
+    end
+    return concatenate_stages(stages);
+end
+
 -- function Expression.select_first_stage(self)
 --     local tag<const> = "SELECT_FIRST_STAGE";
 
