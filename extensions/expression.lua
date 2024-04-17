@@ -385,6 +385,17 @@ function Expression.aggregate_stages_weighted(self, by, weights, profile)
 end
 
 function Expression.stage_profile_day(self, aggregation)
+    local tag<const> = "STAGE_PROFILE_DAY";
+
+    if aggregation == nil then
+        error(tag .. ": aggregation must not be nil");
+    end
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
     local first_stage = self:first_stage();
     local last_stage = self:last_stage();
 
@@ -394,6 +405,23 @@ function Expression.stage_profile_day(self, aggregation)
         table.insert(stages, data);
     end
     return concatenate_stages(stages);
+end
+
+function Expression.select_outputs_stages(self)
+    local tag<const> = "SELECT_OUTPUTS_STAGES";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    local index = self:study_index();
+    local last_stage = Study(index):stages_without_buffer_years();
+    if Study(index):get_parameter("NumeroAnosAdicionaisParm2", -1) == 1 then
+        last_stage = Study(index):stages();
+    end
+
+    return self:select_stages(1, last_stage)
 end
 
 -- function Expression.select_first_stage(self)
