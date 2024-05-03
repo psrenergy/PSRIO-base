@@ -443,3 +443,15 @@ end
 --     end
 --     return self:select_stage(self:last_stage());
 -- end
+
+function ifelse_convert(a, b, c)
+    local input_b = b;
+    local input_c = c;
+    if type(input_b) == "userdata" then
+        input_b = b:convert();
+    end
+    if type(input_c) == "userdata" then
+        input_c = c:convert();
+    end
+    return ifelse(a, input_b, input_c);
+end
