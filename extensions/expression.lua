@@ -36,6 +36,34 @@ function Expression.add_suffix(self, suffix)
     return self:rename_agents(agents);
 end
 
+function Expression.add_suffixes(self, suffixes)
+    local tag<const> = "ADD_SUFFIXES";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if suffixes == nil then
+        error(tag .. ": suffixes must not be nil");
+    end
+
+    if #suffixes <= 0 then
+        return self;
+    end
+
+    local agents = self:agents();
+
+    if #suffixes ~= #agents then
+        error(tag .. ": suffixes vector and agents size are not the same");
+    end
+
+    for i, agent in ipairs(agents) do
+        agents[i] = agent .. suffixes[i];
+    end
+    return self:rename_agents(agents);
+end
+
 function Expression.aggregate_agents_by_label(self, aggregation)
     local tag<const> = "AGGREGATE_AGENTS_BY_LABEL";
 
