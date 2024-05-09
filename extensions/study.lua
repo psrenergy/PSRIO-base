@@ -135,7 +135,7 @@ function Study.get_version_load_bar_info(self)
 end
 
 function Study.get_version_renewable_block_profile(self)
-    return self:get_parameter("VersionRenewableBlockProfile", "");
+    return self:get_parameter("VersionRenewableBlockProfile", -1);
 end
 
 function Study.get_number_of_simulations(self)
@@ -191,13 +191,13 @@ function Study.get_final_stage_future_cost(self)
 end
 
 function Study.get_flag_reduced_uncertainty(self)
-    return self:get_parameter("FlagReducedUncertainty", "");
+    return self:get_parameter("FlagReducedUncertainty", -1);
 end
 
 function Study.get_min_spillage_unit(self)
-    return self:get_parameter("MinSpillageUnit", "");
+    return self:get_parameter("MinSpillageUnit", -1);
 end
 
 function Study.get_sub_hourly_discretization(self)
-    return self:get_parameter("SubHourlyDiscretization", "");
+    return self:get_parameter("SubHourlyDiscretization", -1);
 end
