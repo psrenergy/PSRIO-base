@@ -170,36 +170,37 @@ function Chart.add_thermal_merit_order_curve(self, generation, cost)
     end
 end
 
-function Chart.add_waterfall(self, expression1, options)
-    self:add("waterfall", expression1, options);
+function Chart.add_waterfall(self, e1, options)
+    self:add("waterfall", e1, options);
 end
 
-function Chart.add_line_play(self, expression1, options)
-    local initial_stage = expression1:initial_stage();
-    local final_stage = expression1:stages();
-    local levels = expression1:blocks(1)
-    local is_typicalday = expression1:is_typicalday();
-    if is_typicalday then
-        levels = expression1:blocks(1)/24;
-    end
-
+function Chart.add_line_TODO(self, e1, options)
+    local is_typical_day = e1:is_typical_day();
+    
     if not options then
         options = {};
     end
-    
-    self:enable_controls();
-    for stage = initial_stage, final_stage do
-        options.sequence = stage;
-        local data_stg = expression1:select_stage(stage):force_hourly();
 
-        for level =1,levels do
-            if is_typicalday then
-                self:add_line(data_stg:select_typical_day(level):add_suffix(" (Typical day " .. level .. ")"),options);
+    local initial_stage = e1:initial_stage();
+    local final_stage = e1:last_stage();
+    for stage = initial_stage, final_stage do
+        local data = e1:select_stage(stage):force_hourly();
+        
+        local levels = e1:blocks(stage);
+        if is_typical_day then
+            levels = levels // 24;
+        end
+
+        for level = 1, levels do
+            if is_typical_day then
+                self:add_line(data:select_typical_day(level):add_suffix(" (typical day " .. level .. ")"), options);
             else
-                self:add_line(data_stg,options);
+                self:add_line(data, options);
             end
         end
 
+        options.sequence = stage;
     end
 
+    self:enable_controls();
 end
