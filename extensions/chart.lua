@@ -2,6 +2,10 @@ function Chart.add_line(self, e1, options)
     self:add("line", e1, options);
 end
 
+function Chart.add_line_play(self, e1, label, options)
+    self:add("line", e1, label, options);
+end
+
 function Chart.add_line_categories(self, e1, options)
     self:add_category("line", e1, options);
 end
