@@ -483,3 +483,54 @@ function ifelse_convert(a, b, c)
     end
     return ifelse(a, input_b, input_c);
 end
+
+function Expression.initial_date(self)
+    local tag<const> = "INITIAL_DATE";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    local initial_year = self:year(1);
+    local initial_month = self:month(1);
+    local initial_day = self:day(1);
+
+    local year = tostring(initial_year);
+    local month = tostring(initial_month);
+    if initial_month < 10 then
+        month = "0" .. month;
+    end
+    local day = tostring(initial_day);
+    if initial_day < 10 then
+        day = "0" .. day;
+    end
+
+    return day .. "/" .. month .. "/" .. year;
+end
+
+function Expression.final_date(self)
+    local tag<const> = "FINAL_DATE";
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    local stages = self:stages();
+    local final_year = self:year(stages);
+    local final_month = self:month(stages);
+    local final_day = self:day(stages);
+
+    local year = tostring(final_year);
+    local month = tostring(final_month);
+    if final_month < 10 then
+        month = "0" .. month;
+    end
+    local day = tostring(final_day);
+    if final_day < 10 then
+        day = "0" .. day;
+    end
+
+    return day .. "/" .. month .. "/" .. year;
+end
