@@ -489,7 +489,7 @@ function Expression.initial_date(self)
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
-        return self;
+        return "";
     end
 
     local initial_year = self:year(1);
@@ -514,7 +514,7 @@ function Expression.final_date(self)
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
-        return self;
+        return "";
     end
 
     local stages = self:stages();
