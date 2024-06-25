@@ -10,11 +10,15 @@ function Expression.add_prefix(self, prefix)
         error(tag .. ": prefix must not be nil");
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
     local agents = self:agents();
     for i, agent in ipairs(agents) do
         agents[i] = prefix .. agent;
     end
-    return self:rename_agents(agents);
+    local output = self:rename_agents(agents);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.add_suffix(self, suffix)
@@ -29,11 +33,15 @@ function Expression.add_suffix(self, suffix)
         error(tag .. ": suffix must not be nil");
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
     local agents = self:agents();
     for i, agent in ipairs(agents) do
         agents[i] = agent .. suffix;
     end
-    return self:rename_agents(agents);
+    local output = self:rename_agents(agents);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.add_suffixes(self, suffixes)
@@ -52,16 +60,19 @@ function Expression.add_suffixes(self, suffixes)
         return self;
     end
 
-    local agents = self:agents();
-
-    if #suffixes ~= #agents then
+    if #suffixes ~= #self:agents() then
         error(tag .. ": suffixes vector and agents size are not the same");
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+    local agents = self:agents();
     for i, agent in ipairs(agents) do
         agents[i] = agent .. suffixes[i];
     end
-    return self:rename_agents(agents);
+    local output = self:rename_agents(agents);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.aggregate_agents_by_label(self, aggregation)
@@ -76,9 +87,10 @@ function Expression.aggregate_agents_by_label(self, aggregation)
         error(tag .. ": aggregation must not be nil");
     end
 
-    -- build dictionary with unique agent names
-    local agents<const> = self:agents();
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
 
+    local agents<const> = self:agents();
     local dictionary = {};
     for i, agent in ipairs(agents) do
         if dictionary[agent] then
@@ -88,15 +100,15 @@ function Expression.aggregate_agents_by_label(self, aggregation)
         end
     end
 
-    -- aggregate agents
     local spairs = require("lua/spairs");
-
     local unique_agents = {};
     for agent, indices in spairs(dictionary) do
         table.insert(unique_agents, self:select_agents(indices):aggregate_agents(aggregation, agent));
     end
 
-    return concatenate(unique_agents);
+    local output = concatenate(unique_agents);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.clamp(self, low, hi)
@@ -114,7 +126,13 @@ function Expression.clamp(self, low, hi)
     if hi == nil then
         error(tag .. ": hi must not be nil");
     end
-    return min(max(self, low), hi);
+
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = min(max(self, low), hi);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.remove_agent(self, agent)
@@ -125,15 +143,16 @@ function Expression.remove_agent(self, agent)
         return self;
     end
 
-    if not self:loaded() then
-        error(tag .. ": null");
-    end
-
     if agent == nil then
         error(tag .. ": agent must not be nil");
     end
 
-    return self:remove_agents({ agent });
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = self:remove_agents({ agent });
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.remove_zeros(self)
@@ -144,11 +163,12 @@ function Expression.remove_zeros(self)
         return self;
     end
 
-    if not self:loaded() then
-        error(tag .. ": null");
-    end
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
 
-    return self:select_agents(self);
+    local output = self:select_agents(self);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.rename_agent(self, agent)
@@ -164,10 +184,15 @@ function Expression.rename_agent(self, agent)
     end
 
     if self:agents_size() ~= 1 then
-        error(tag .. ": expression have more than 1 agent at " .. PSR.source_line(2));
+        error(tag .. ": expression has more than 1 agent at " .. PSR.source_line(2));
     end
 
-    return self:rename_agents({ agent });
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = self:rename_agents({ agent });
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.rename_agents_with_codes(self)
@@ -178,12 +203,17 @@ function Expression.rename_agents_with_codes(self)
         return self;
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
     local agents = {};
-    for i, code in ipairs(self:codes()) do
+    for _, code in ipairs(self:codes()) do
         table.insert(agents, tostring(code));
     end
 
-    return self:rename_agents(agents);
+    local output = self:rename_agents(agents);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.remove_agent_by_code(self, code)
@@ -198,7 +228,12 @@ function Expression.remove_agent_by_code(self, code)
         error(tag .. ": code must not be nil");
     end
 
-    return self:remove_agents_by_code({ code });
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = self:remove_agents_by_code({ code });
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.select_agent(self, agent)
@@ -213,7 +248,12 @@ function Expression.select_agent(self, agent)
         error(tag .. ": agent must not be nil");
     end
 
-    return self:select_agents({ agent });
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = self:select_agents({ agent });
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.select_stage(self, stage)
@@ -228,7 +268,12 @@ function Expression.select_stage(self, stage)
         error(tag .. ": stage must not be nil");
     end
 
-    return self:select_first_stage(stage):select_last_stage(stage);
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = self:select_first_stage(stage):select_last_stage(stage);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.select_agent_by_code(self, code)
@@ -243,7 +288,12 @@ function Expression.select_agent_by_code(self, code)
         error(tag .. ": code must not be nil");
     end
 
-    return self:select_agents_by_code({ code });
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = self:select_agents_by_code({ code });
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.reorder_agents(self, agents)
@@ -258,12 +308,17 @@ function Expression.reorder_agents(self, agents)
         error(tag .. ": agents must not be nil");
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
     local data = {};
     for _, agent in ipairs(agents) do
         table.insert(data, self:select_agent(agent));
     end
 
-    return concatenate(data);
+    local output = concatenate(data);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.select_and_rename_agent(self, agent, label)
@@ -274,7 +329,12 @@ function Expression.select_and_rename_agent(self, agent, label)
         return self;
     end
 
-    return self:select_agent(agent):rename_agent(label);
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
+    local output = self:select_agent(agent):rename_agent(label);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.add_agents_left(self, ...)
@@ -285,13 +345,16 @@ function Expression.add_agents_left(self, ...)
         return self;
     end
 
-    local expression = self;
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
 
+    local expression = self;
     local labels = { ... };
     for i = #labels, 1, -1 do
         expression = expression:add_agent_left(labels[i]);
     end
 
+    console_verbose_level(original_console_verbose);
     return expression;
 end
 
@@ -303,13 +366,16 @@ function Expression.add_agents_right(self, ...)
         return self;
     end
 
-    local expression = self;
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
 
+    local expression = self;
     local labels = { ... };
     for i = 1, #labels do
         expression = expression:add_agent_right(labels[i]);
     end
 
+    console_verbose_level(original_console_verbose);
     return expression;
 end
 
@@ -325,18 +391,24 @@ function Expression.remove_stages(self, stages)
         error(tag .. ": stages vector must not be nil");
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
     local selected = {};
     for _, stage in ipairs(stages) do
         selected[stage] = true;
     end
 
     local data = {};
-    for stage = self:inital_stage(), self:last_stage() do
+    for stage = self:initial_stage(), self:last_stage() do
         if not selected[stage] then
             table.insert(data, self:select_stage(stage));
         end
     end
-    return concatenate_stages(data);
+
+    local output = concatenate_stages(data);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.replace_stages(self, source, stages)
@@ -350,6 +422,9 @@ function Expression.replace_stages(self, source, stages)
     if stages == nil then
         error(tag .. ": stages vector must not be nil");
     end
+
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
 
     local selected = {};
     for _, stage in ipairs(stages) do
@@ -367,7 +442,10 @@ function Expression.replace_stages(self, source, stages)
             table.insert(data, self:select_stage(stage));
         end
     end
-    return concatenate_stages(data);
+
+    local output = concatenate_stages(data);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.replace_scenarios(self, source, scenarios)
@@ -377,6 +455,9 @@ function Expression.replace_scenarios(self, source, scenarios)
         warning(tag .. ": null at " .. PSR.source_line(2));
         return self;
     end
+
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
 
     local selected = {};
     for _, scenario in ipairs(scenarios) do
@@ -391,7 +472,10 @@ function Expression.replace_scenarios(self, source, scenarios)
             table.insert(data, self:select_scenario(scenario));
         end
     end
-    return concatenate_scenarios(data);
+
+    local output = concatenate_scenarios(data);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.aggregate_stages_weighted(self, by, weights, profile)
@@ -402,14 +486,22 @@ function Expression.aggregate_stages_weighted(self, by, weights, profile)
         return self;
     end
 
+    local original_console_verbose = console_verbose_level();
+
+    local output;
     if profile then
         if type(profile) ~= "number" then
             error(tag .. ": profile must be a Profile");
         end
-        return (self * weights):aggregate_stages(by, profile) / weights:aggregate_stages(by, profile);
+        console_verbose_level(0);
+        output = (self * weights):aggregate_stages(by, profile) / weights:aggregate_stages(by, profile);
     else
-        return (self * weights):aggregate_stages(by) / weights:aggregate_stages(by);
+        console_verbose_level(0);
+        output = (self * weights):aggregate_stages(by) / weights:aggregate_stages(by);
     end
+
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.stage_profile_day(self, aggregation)
@@ -424,6 +516,13 @@ function Expression.stage_profile_day(self, aggregation)
         return self;
     end
 
+    if not self:is_hourly() then
+        error(tag .. ": expression must be hourly");
+    end
+
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
     local first_stage = self:first_stage();
     local last_stage = self:last_stage();
 
@@ -432,7 +531,10 @@ function Expression.stage_profile_day(self, aggregation)
         local data = self:select_stage(stage):reshape_stages(Profile.DAILY):aggregate_stages(aggregation or BY_AVERAGE());
         table.insert(stages, data);
     end
-    return concatenate_stages(stages);
+
+    local output = concatenate_stages(stages);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.select_outputs_stages(self)
@@ -443,45 +545,18 @@ function Expression.select_outputs_stages(self)
         return self;
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
+
     local index = self:study_index();
     local last_stage = Study(index):stages_without_buffer_years();
     if Study(index):get_parameter("NumeroAnosAdicionaisParm2", -1) == 1 then
         last_stage = Study(index):stages();
     end
 
-    return self:select_stages(1, last_stage)
-end
-
--- function Expression.select_first_stage(self)
---     local tag<const> = "SELECT_FIRST_STAGE";
-
---     if not self:loaded() then
---         warning(tag .. ": null at " .. PSR.source_line(2));
---         return self;
---     end
---     return self:select_stage(self:first_stage());
--- end
-
--- function Expression.select_last_stage(self)
---     local tag<const> = "SELECT_LAST_STAGE";
-
---     if not self:loaded() then
---         warning(tag .. ": null at " .. PSR.source_line(2));
---         return self;
---     end
---     return self:select_stage(self:last_stage());
--- end
-
-function ifelse_convert(a, b, c)
-    local input_b = b;
-    local input_c = c;
-    if type(input_b) == "userdata" then
-        input_b = b:convert();
-    end
-    if type(input_c) == "userdata" then
-        input_c = c:convert();
-    end
-    return ifelse(a, input_b, input_c);
+    local output = self:select_stages(1, last_stage);
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.initial_date(self)
@@ -492,6 +567,8 @@ function Expression.initial_date(self)
         return "";
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
     local initial_year = self:year(1);
     local initial_month = self:month(1);
     local initial_day = self:day(1);
@@ -506,7 +583,9 @@ function Expression.initial_date(self)
         day = "0" .. day;
     end
 
-    return day .. "/" .. month .. "/" .. year;
+    local output = day .. "/" .. month .. "/" .. year;
+    console_verbose_level(original_console_verbose);
+    return output;
 end
 
 function Expression.final_date(self)
@@ -517,6 +596,8 @@ function Expression.final_date(self)
         return "";
     end
 
+    local original_console_verbose = console_verbose_level();
+    console_verbose_level(0);
     local stages = self:stages();
     local final_year = self:year(stages);
     local final_month = self:month(stages);
@@ -531,6 +612,8 @@ function Expression.final_date(self)
     if final_day < 10 then
         day = "0" .. day;
     end
-
-    return day .. "/" .. month .. "/" .. year;
+    
+    local output = day .. "/" .. month .. "/" .. year;
+    console_verbose_level(original_console_verbose);
+    return output;
 end
