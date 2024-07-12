@@ -673,9 +673,10 @@ function Expression.initial_date(self)
 
     local original_console_verbose = console_verbose_level();
     console_verbose_level(0);
-    local initial_year = self:year(1);
-    local initial_month = self:month(1);
-    local initial_day = self:day(1);
+    local first_stage = self:first_stage();
+    local initial_year = self:year(first_stage);
+    local initial_month = self:month(first_stage);
+    local initial_day = self:day(first_stage);
 
     local year = tostring(initial_year);
     local month = tostring(initial_month);
@@ -696,8 +697,7 @@ end
 
 function Expression.final_date(self)
     local tag<const> = "FINAL_DATE";
-
-    self:data_info_input(tag);
+    local month_days = {31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -706,11 +706,24 @@ function Expression.final_date(self)
 
     local original_console_verbose = console_verbose_level();
     console_verbose_level(0);
-    local stages = self:stages();
-    local final_year = self:year(stages);
-    local final_month = self:month(stages);
-    local final_day = self:day(stages);
+    local last_stage = self:last_stage();
+    local final_year = self:year(last_stage);
+    local final_month = self:month(last_stage);
+    local final_day = self:day(last_stage);
 
+    if self:is_hourly() then
+        local hours_in_stage = self:blocks(last_stage);
+        final_day = final_day + math.floor(hours_in_stage / 24) - 1;
+        if final_day > month_days[final_month] then
+            final_day = final_day - month_days[final_month];
+            final_month = final_month + 1;
+            if final_month > 12 then
+                final_month = 1;
+                final_year = final_year + 1;
+            end
+        end
+    end
+    
     local year = tostring(final_year);
     local month = tostring(final_month);
     if final_month < 10 then
