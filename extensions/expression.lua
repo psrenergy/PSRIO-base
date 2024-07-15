@@ -301,7 +301,7 @@ function Expression.select_agent(self, agent)
     if output:loaded() then
         info(tag .. "= " .. output:data_info());
     else
-        warning(self:data_info() ..  ": didnt find agent (searched agents: " .. agent .. ") at " .. PSR.source_line(2));
+        warning(output:data_info() ..  ": didnt find agent (searched agents: " .. agent .. ") at " .. PSR.source_line(2));
     end
 
     return output;
