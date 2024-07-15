@@ -1,7 +1,7 @@
 function Expression.add_prefix(self, prefix)
     local tag<const> = "ADD_PREFIX";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -22,7 +22,7 @@ function Expression.add_prefix(self, prefix)
     local output = self:rename_agents(agents);
 
     PSR.console_verbose_level(original_console_verbose);
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
 
     return output;
 end
@@ -30,7 +30,7 @@ end
 function Expression.add_suffix(self, suffix)
     local tag<const> = "ADD_SUFFIX";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -50,14 +50,14 @@ function Expression.add_suffix(self, suffix)
     local output = self:rename_agents(agents);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.add_suffixes(self, suffixes)
     local tag<const> = "ADD_SUFFIXES";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -85,14 +85,14 @@ function Expression.add_suffixes(self, suffixes)
     local output = self:rename_agents(agents);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.aggregate_agents_by_label(self, aggregation)
     local tag<const> = "AGGREGATE_AGENTS_BY_LABEL";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -125,14 +125,14 @@ function Expression.aggregate_agents_by_label(self, aggregation)
     local output = concatenate(unique_agents);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.clamp(self, low, hi)
     local tag<const> = "CLAMP";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -153,14 +153,14 @@ function Expression.clamp(self, low, hi)
     local output = min(max(self, low), hi);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.remove_agent(self, agent)
     local tag<const> = "REMOVE_AGENT";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -177,14 +177,14 @@ function Expression.remove_agent(self, agent)
     local output = self:remove_agents({ agent });
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.remove_zeros(self)
     local tag<const> = "REMOVE_ZEROS";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -197,14 +197,14 @@ function Expression.remove_zeros(self)
     local output = self:select_agents(self);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.rename_agent(self, agent)
     local tag<const> = "RENAME_AGENT";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -225,14 +225,14 @@ function Expression.rename_agent(self, agent)
     local output = self:rename_agents({ agent });
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.rename_agents_with_codes(self)
     local tag<const> = "RENAME_AGENTS_WITH_CODES";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -250,14 +250,14 @@ function Expression.rename_agents_with_codes(self)
     local output = self:rename_agents(agents);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.remove_agent_by_code(self, code)
     local tag<const> = "REMOVE_AGENT_BY_CODE";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -274,7 +274,7 @@ function Expression.remove_agent_by_code(self, code)
     local output = self:remove_agents_by_code({ code });
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
@@ -299,7 +299,7 @@ function Expression.select_agent(self, agent)
     PSR.console_verbose_level(original_console_verbose);
 
     if self:loaded() then
-        info(tag .. "= " .. self:data_info());
+        info(tag .. "= " .. output:data_info());
     else
         warning(self:data_info() ..  ": didnt find agent (searched agents: " .. agent .. ") at " .. PSR.source_line(2));
     end
@@ -310,7 +310,7 @@ end
 function Expression.select_stage(self, stage)
     local tag<const> = "SELECT_STAGE";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -327,14 +327,14 @@ function Expression.select_stage(self, stage)
     local output = self:select_first_stage(stage):select_last_stage(stage);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.select_agent_by_code(self, code)
     local tag<const> = "SELECT_AGENT_BY_CODE";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -351,14 +351,14 @@ function Expression.select_agent_by_code(self, code)
     local output = self:select_agents_by_code({ code });
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.reorder_agents(self, agents)
     local tag<const> = "REORDER_AGENTS";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -380,14 +380,14 @@ function Expression.reorder_agents(self, agents)
     local output = concatenate(data);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.select_and_rename_agent(self, agent, label)
     local tag<const> = "SELECT_AND_RENAME_AGENT";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -400,14 +400,14 @@ function Expression.select_and_rename_agent(self, agent, label)
     local output = self:select_agent(agent):rename_agent(label);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.add_agents_left(self, ...)
     local tag<const> = "ADD_AGENTS_LEFT";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -417,22 +417,22 @@ function Expression.add_agents_left(self, ...)
     local original_console_verbose = PSR.console_verbose_level();
     PSR.console_verbose_level(0);
 
-    local expression = self;
+    local output = self;
     local labels = { ... };
     for i = #labels, 1, -1 do
-        expression = expression:add_agent_left(labels[i]);
+        output = output:add_agent_left(labels[i]);
     end
 
     PSR.console_verbose_level(original_console_verbose);
 
-    expression:data_info_output(tag);
-    return expression;
+    info(tag .. "= " .. output:data_info());
+    return output;
 end
 
 function Expression.add_agents_right(self, ...)
     local tag<const> = "ADD_AGENTS_RIGHT";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -442,22 +442,22 @@ function Expression.add_agents_right(self, ...)
     local original_console_verbose = PSR.console_verbose_level();
     PSR.console_verbose_level(0);
 
-    local expression = self;
+    local output = self;
     local labels = { ... };
     for i = 1, #labels do
-        expression = expression:add_agent_right(labels[i]);
+        output = output:add_agent_right(labels[i]);
     end
 
     PSR.console_verbose_level(original_console_verbose);
 
-    expression:data_info_output(tag);
-    return expression;
+    info(tag .. "= " .. output:data_info());
+    return output;
 end
 
 function Expression.remove_stages(self, stages)
     local tag<const> = "REMOVE_STAGES";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -486,14 +486,14 @@ function Expression.remove_stages(self, stages)
     local output = concatenate_stages(data);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.replace_stages(self, source, stages)
     local tag<const> = "REPLACE_STAGES";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -527,14 +527,14 @@ function Expression.replace_stages(self, source, stages)
     local output = concatenate_stages(data);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.replace_scenarios(self, source, scenarios)
     local tag<const> = "REPLACE_SCENARIOS";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() or not source:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -561,14 +561,14 @@ function Expression.replace_scenarios(self, source, scenarios)
     local output = concatenate_scenarios(data);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.aggregate_stages_weighted(self, by, weights, profile)
     local tag<const> = "AGGREGATE_STAGES_WEIGHTED";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() or not weights:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -591,14 +591,14 @@ function Expression.aggregate_stages_weighted(self, by, weights, profile)
 
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.stage_profile_day(self, aggregation)
     local tag<const> = "STAGE_PROFILE_DAY";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if aggregation == nil then
         error(tag .. ": aggregation must not be nil");
@@ -628,14 +628,14 @@ function Expression.stage_profile_day(self, aggregation)
     local output = concatenate_stages(stages);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.select_outputs_stages(self)
     local tag<const> = "SELECT_OUTPUTS_STAGES";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -654,14 +654,14 @@ function Expression.select_outputs_stages(self)
     local output = self:select_stages(1, last_stage);
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    info(tag .. "= " .. output:data_info());
     return output;
 end
 
 function Expression.initial_date(self)
     local tag<const> = "INITIAL_DATE";
 
-    self:data_info_input(tag);
+    info(tag .. ": " .. self:data_info());
 
     if not self:loaded() then
         warning(tag .. ": null at " .. PSR.source_line(2));
@@ -688,7 +688,6 @@ function Expression.initial_date(self)
     local output = day .. "/" .. month .. "/" .. year;
     PSR.console_verbose_level(original_console_verbose);
 
-    self:data_info_output(tag);
     return output;
 end
 
@@ -734,6 +733,5 @@ function Expression.final_date(self)
     local output = day .. "/" .. month .. "/" .. year;
     PSR.console_verbose_level(original_console_verbose);
 
-    self:data_info_output(tag);
     return output;
 end
