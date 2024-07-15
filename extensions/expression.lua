@@ -2,8 +2,13 @@ function Expression.data_info_input(self, tag)
     info(tag .. ": " .. self:data_info());
 end
 
-function Expression.data_info_output(self, tag)
-    info(tag .. "= " .. self:data_info());
+function Expression.data_info_output(self, tag, error)
+    if self:loaded() then
+        info(tag .. "= " .. self:data_info());
+    else
+        local error_mensage = error or "";
+        warning(self:data_info() .. error_mensage);
+    end
 end
 
 function Expression.add_prefix(self, prefix)
@@ -306,7 +311,7 @@ function Expression.select_agent(self, agent)
     local output = self:select_agents({ agent });
     PSR.console_verbose_level(original_console_verbose);
 
-    output:data_info_output(tag);
+    output:data_info_output(tag, ": didnt find agent (searched agents: " .. agent .. ") at " .. PSR.source_line(2));
     return output;
 end
 
