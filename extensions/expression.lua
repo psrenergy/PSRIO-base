@@ -298,7 +298,7 @@ function Expression.select_agent(self, agent)
     local output = self:select_agents({ agent });
     PSR.console_verbose_level(original_console_verbose);
 
-    if self:loaded() then
+    if output:loaded() then
         info(tag .. "= " .. output:data_info());
     else
         warning(self:data_info() ..  ": didnt find agent (searched agents: " .. agent .. ") at " .. PSR.source_line(2));
