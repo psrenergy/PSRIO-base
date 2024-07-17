@@ -110,6 +110,11 @@ function Chart.add_box_plot(self, e1, e2, e3, e4, e5, options)
     self:add("box_plot", e1, e2, e3, e4, e5, options);
 end
 
+function Chart.add_box_plot_categories(self, e1, e2, e3, e4, e5, label, options)
+    label = (label or "");
+    self:add_category("box_plot", e1, e2, e3, e4, e5, label, options);
+end
+
 function Chart.add_thermal_merit_order_curve(self, generation, cost)
     if generation:stages() ~= 1 or cost:stages() ~= 1 then
         error("Thermal Merit Order Curve only works for a single or aggregated stages");
