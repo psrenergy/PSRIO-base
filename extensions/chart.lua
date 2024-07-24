@@ -208,3 +208,10 @@ function Chart.add_line_TODO(self, e1, options)
 
     self:enable_controls();
 end
+
+function Chart.add_heatmap_agent(self, e1, options)
+    local agents_labels = e1:agents();
+
+    self:add_heatmap_series(e1, options);
+    self:set_yaxis_categories(agents_labels);
+end
