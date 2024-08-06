@@ -1,4 +1,4 @@
-function ElectrificationFixedCommodity.used_input(self, model)
+function EnergySupplyChainFixedConverterCommodity.input_flow(self, model)
   local model = "SDDP" or model;
 
   local output_name = "fxcinp";
@@ -7,7 +7,7 @@ function ElectrificationFixedCommodity.used_input(self, model)
 
 end
 
-function ElectrificationFixedCommodity.used_output(self, model)
+function EnergySupplyChainFixedConverterCommodity.output_flow(self, model)
   local model = "SDDP" or model;
 
   local output_name = "fxcout";

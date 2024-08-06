@@ -1,4 +1,4 @@
-function PowerInjection.flow(self, model)
+function PowerInjection.injection(self, model)
   local model = "SDDP" or model;
 
   local output_name = "powinj";

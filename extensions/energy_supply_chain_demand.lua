@@ -1,4 +1,4 @@
-function ElectrificationDemand.cost(self, model)
+function EnergySupplyChainDemand.cost(self, model)
   local model = "SDDP" or model;
 
   local output_name = "edemrev";
@@ -7,7 +7,7 @@ function ElectrificationDemand.cost(self, model)
 
 end
 
-function ElectrificationDemand.supplied(self, model)
+function EnergySupplyChainDemand.demand_supplied(self, model)
   local model = "SDDP" or model;
 
   local output_name = "edemmet";
@@ -16,7 +16,7 @@ function ElectrificationDemand.supplied(self, model)
 
 end
 
-function ElectrificationDemand.final_storage(self, model)
+function EnergySupplyChainDemand.final_storage(self, model)
   local model = "SDDP" or model;
 
   local output_name = "estbal";
