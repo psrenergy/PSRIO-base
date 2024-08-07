@@ -19,7 +19,7 @@ function Circuit.flow(self, model)
   if model == "OptGen2" then
     output_name = "opt2_cirflow";
   else
-    output_name = "cirflow";
+    output_name = "cirflw";
   end
 
   return self:load(output_name);
