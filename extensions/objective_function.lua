@@ -20,7 +20,7 @@ function ObjectiveFunction:cost(model)
 
     local generic = Generic(self.case_index);
     local output_name;
-    if model == "OPTGEN" then
+    if model == "OptGen" then
         output_name = "opt1_dashboard_totalcosts";
     else
         output_name = "objcop";
