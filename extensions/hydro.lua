@@ -61,7 +61,8 @@ function Hydro.final_head(self, model)
 
 end
 
-function Hydro.flow_control_storage(self, model)
+-- nome momentaneamente alterado para evitar conflito com o dos atributos
+function Hydro.flow_control_storages(self, model)
   local model = "SDDP" or model;
 
   local output_name = "volesp";
@@ -70,7 +71,8 @@ function Hydro.flow_control_storage(self, model)
 
 end
 
-function Hydro.max_operative_storage(self, model)
+-- nome momentaneamente alterado para evitar conflito com o dos atributos
+function Hydro.max_operative_storages(self, model)
   local model = "SDDP" or model;
 
   local output_name = "mxops";
@@ -79,7 +81,8 @@ function Hydro.max_operative_storage(self, model)
 
 end
 
-function Hydro.alert_storage(self, model)
+-- nome momentaneamente alterado para evitar conflito com o dos atributos
+function Hydro.alert_storages(self, model)
   local model = "SDDP" or model;
 
   local output_name = "volale";
