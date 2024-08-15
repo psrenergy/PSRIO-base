@@ -24,7 +24,7 @@ function Bus.demand(self, model)
 
 end
 
-function System.load_supplied(self, model)
+function Bus.load_supplied(self, model)
   local model = "SDDP" or model;
 
   local output_name = "demxbael";
