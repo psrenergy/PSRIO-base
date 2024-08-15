@@ -34,7 +34,7 @@ function System.max_stored_energy(self, model)
 
 end
 
-function System.load_level_length(self, model)
+function System.load_level_length_output(self, model)
   local model = "SDDP" or model;
 
   local output_name = "duraci";
@@ -43,7 +43,7 @@ function System.load_level_length(self, model)
 
 end
 
-function System.load_level_length_pu(self, model)
+function System.load_level_length_output_pu(self, model)
   local model = "SDDP" or model;
 
   local output_name = "duracipu";
