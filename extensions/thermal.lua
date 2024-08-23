@@ -7,7 +7,7 @@ function Thermal.generation(self, model)
 
 end
 
-function Thermal.utilization(self, model)
+function Thermal.load_factor(self, model)
   local model = "SDDP" or model;
 
   local output_name = "useter";

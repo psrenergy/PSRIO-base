@@ -26,7 +26,7 @@ function Circuit.flow(self, model)
 
 end
 
-function Circuit.utilization(self, model)
+function Circuit.load_factor(self, model)
   local model = "SDDP" or model;
 
   local output_name = "usecir";

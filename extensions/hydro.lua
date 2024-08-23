@@ -16,7 +16,7 @@ function Hydro.inflow(self, model)
 
 end
 
-function Hydro.final_volume(self, model)
+function Hydro.final_storage(self, model)
   local model = "SDDP" or model;
 
   local output_name = "volfin";
@@ -34,7 +34,7 @@ function Hydro.spillage(self, model)
 
 end
 
-function Hydro.turbinig(self, model)
+function Hydro.turbining(self, model)
   local model = "SDDP" or model;
 
   local output_name = "qturbi";
@@ -43,7 +43,7 @@ function Hydro.turbinig(self, model)
 
 end
 
-function Hydro.storage_energy(self, model)
+function Hydro.stored_energy(self, model)
   local model = "SDDP" or model;
 
   local output_name = "eneemb";
@@ -61,8 +61,7 @@ function Hydro.final_head(self, model)
 
 end
 
--- nome momentaneamente alterado para evitar conflito com o dos atributos
-function Hydro.flow_control_storages(self, model)
+function Hydro.flood_control_storage(self, model)
   local model = "SDDP" or model;
 
   local output_name = "volesp";
@@ -71,25 +70,25 @@ function Hydro.flow_control_storages(self, model)
 
 end
 
--- nome momentaneamente alterado para evitar conflito com o dos atributos
-function Hydro.max_operative_storages(self, model)
-  local model = "SDDP" or model;
+-- -- funcao momentaneamente retirada para evitar conflito com o dos atributos
+-- function Hydro.max_operative_storage(self, model)
+--   local model = "SDDP" or model;
 
-  local output_name = "mxops";
+--   local output_name = "mxops";
 
-  return self:load(output_name);
+--   return self:load(output_name);
 
-end
+-- end
 
--- nome momentaneamente alterado para evitar conflito com o dos atributos
-function Hydro.alert_storages(self, model)
-  local model = "SDDP" or model;
+-- -- funcao momentaneamente retirada para evitar conflito com o dos atributos
+-- function Hydro.alert_storage(self, model)
+--   local model = "SDDP" or model;
 
-  local output_name = "volale";
+--   local output_name = "volale";
 
-  return self:load(output_name);
+--   return self:load(output_name);
 
-end
+-- end
 
 function Hydro.nominal_capacity(self, model)
   local model = "SDDP" or model;
@@ -118,7 +117,7 @@ function Hydro.accumulated_production_factor(self, model)
 
 end
 
-function Hydro.spillage_energy(self, model)
+function Hydro.spilled_energy(self, model)
   local model = "SDDP" or model;
 
   local output_name = "envehd";

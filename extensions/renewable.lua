@@ -7,7 +7,7 @@ function Renewable.generation(self, model)
 
 end
 
-function Renewable.spillage(self, model)
+function Renewable.curtailment(self, model)
   local model = "SDDP" or model;
 
   local output_name = "vergnd";

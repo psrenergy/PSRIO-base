@@ -1,4 +1,4 @@
-function DCLink.utilization(self, model)
+function DCLink.load_factor(self, model)
   local model = "SDDP" or model;
 
   local output_name = "usedcl";
