@@ -331,6 +331,30 @@ function Expression.select_stage(self, stage)
     return output;
 end
 
+function Expression.select_block(self, block)
+    local tag<const> = "select_block";
+
+    info(tag .. ": " .. self:data_info());
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if block == nil then
+        error(tag .. ": block must not be nil");
+    end
+
+    local original_console_verbose = PSR.console_verbose_level();
+    PSR.console_verbose_level(0);
+
+    local output = self:select_blocks(block,block);
+    PSR.console_verbose_level(original_console_verbose);
+
+    info(tag .. "= " .. output:data_info());
+    return output;
+end
+
 function Expression.select_agent_by_code(self, code)
     local tag<const> = "SELECT_AGENT_BY_CODE";
 
