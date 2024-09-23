@@ -332,7 +332,7 @@ function Expression.select_stage(self, stage)
 end
 
 function Expression.select_block(self, block)
-    local tag<const> = "select_block";
+    local tag<const> = "SELECT_BLOCK";
 
     info(tag .. ": " .. self:data_info());
 
