@@ -7,7 +7,7 @@ local function usedcl(i, suffix)
     return ifelse( 
         flow_direction,
         safe_divide( dclink_flow, dclink.capacity_from),
-        safe_divide(-dclink_flow, dclink.capacity_to)
+        safe_divide( dclink_flow, dclink.capacity_to)
     ):convert("%");
 end
 return usedcl;
