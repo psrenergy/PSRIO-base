@@ -1,9 +1,11 @@
 local trim = require("lua/trim");
 
 local function historical_inflow(i)
-    local hydro_gauging_station<const> = HydroGaugingStation(i or 1);
     local generic<const> = Generic(i or 1);
+    local hydro_gauging_station<const> = HydroGaugingStation(i or 1);
+    local study<const> = Study(i or 1);
 
+    local stage_type = study:stage_type();
     local labels = hydro_gauging_station:labels();
     local codes = hydro_gauging_station:codes();
 
@@ -13,18 +15,20 @@ local function historical_inflow(i)
     end
 
     local reader = nil;
-    if generic:file_exists("hinflw_w.dat") then
+    if stage_type == 1 then
         reader = generic:create_reader("hinflw_w.dat");
-    elseif generic:file_exists("hinflw.dat") then
+    elseif stage_type == 2 then
         reader = generic:create_reader("hinflw.dat");
+    else
+        error("Invalid stage type");
     end
 
-    if not reader then
+    if reader == nil then
         error("No historical inflow data found");
     end
 
-    local filename = "hinflow";
-    local writer = generic:create_writer(filename .. ".csv");
+    local filename = "tmp" .. string.random(16);
+    local writer = generic:create_temporary_writer(filename .. ".csv");
 
     if writer:is_open() then
         local header = reader:get_line();
