@@ -38,7 +38,7 @@ local function historical_inflow(i)
         local initial_stage = trim(string.sub(header, 1, 2));
         local year = string.sub(header, 4, 8);
 
-        writer:write_line("Varies per block?,1,Unit,m3/s,1," .. initial_stage .. "," .. year);
+        writer:write_line("Varies per block?,1,Unit,m3/s," .. stage_type .. "," .. initial_stage .. "," .. year);
         writer:write_line("Varies per sequence?, 0");
         writer:write_line("# of agents," .. agents_size);
 
