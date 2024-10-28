@@ -1,5 +1,3 @@
-local trim = require("lua/trim");
-
 local function historical_inflow(i)
     local generic<const> = Generic(i or 1);
     local hydro_gauging_station<const> = HydroGaugingStation(i or 1);
@@ -35,7 +33,7 @@ local function historical_inflow(i)
         local line_length = string.len(header);
         local agents_size = (line_length // 7) - 1;
 
-        local initial_stage = trim(string.sub(header, 1, 2));
+        local initial_stage = string.trim(string.sub(header, 1, 2));
         local year = string.sub(header, 4, 8);
 
         writer:write_line("Varies per block?,1,Unit,m3/s," .. stage_type .. "," .. initial_stage .. "," .. year);
