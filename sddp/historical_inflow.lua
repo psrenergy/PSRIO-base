@@ -25,7 +25,7 @@ local function historical_inflow(i)
         error("No historical inflow data found");
     end
 
-    local filename = "tmp" .. string.random(16);
+    local filename = "tmp_" .. string.random(16);
     local writer = generic:create_temporary_writer(filename .. ".csv");
 
     if writer:is_open() then
