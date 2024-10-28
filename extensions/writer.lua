@@ -1,11 +1,7 @@
 function Writer.write_line(self, input)
     if input == nil then
-        error("Input must not be nil");
+        self:write("\n");
+    else
+        self:write(input .. "\n");
     end
-
-    if type(input) ~= "string" then
-        error("Input must be a string");
-    end
-
-    self:write(input .. "\n");
 end
