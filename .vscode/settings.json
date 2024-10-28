@@ -75,6 +75,7 @@
         "datetime",
         "ConcentratedSolarPower",
         "ReserveGenerationConstraint",
-        "ReservoirSet"
+        "ReservoirSet",
+        "safe_divide"
     ]
 }
