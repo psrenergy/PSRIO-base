@@ -52,7 +52,7 @@ local function historical_inflow(i)
         writer:write_line();
 
         local stage = 1;
-        while reader:good() do
+        while reader:is_good() do
             local row = reader:get_line();
             if string.len(row) == 0 then
                 break
