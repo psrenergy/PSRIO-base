@@ -50,8 +50,8 @@ function Chart.add_categories(self, e1, label, options) --TODO: isso vai morrer
     self:add_category("column", e1, label, options);
 end
 
-function Chart.add_box_plot_categories(self, e1, e2, e3, e4, e5, options)
-    self:add_category("box_plot", e1, e2, e3, e4, e5, options);
+function Chart.add_box_plot_categories(self, e1, e2, e3, e4, e5, label, options)
+    self:add_category("box_plot", e1, e2, e3, e4, e5, label, options);
 end
 
 function Chart.add_column_stacking(self, e1, options)
