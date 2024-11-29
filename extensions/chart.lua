@@ -30,6 +30,10 @@ function Chart.add_spline_categories(self, e1, options)
     self:add_category("spline", e1, options);
 end
 
+function Chart.add_waterfall_categories(self, e1, options)
+    self:add_category("waterfall", e1, options);
+end
+
 function Chart.add_spline_exclude_zeros(self, e1, options)
     self:add_exclude_zeros("spline", e1, options);
 end
