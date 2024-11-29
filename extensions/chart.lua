@@ -2,8 +2,8 @@ function Chart.add_line(self, e1, options)
     self:add("line", e1, options);
 end
 
-function Chart.add_line_categories(self, e1, options)
-    self:add_category("line", e1, options);
+function Chart.add_line_categories(self, e1, label, options)
+    self:add_category("line", e1, label, options);
 end
 
 function Chart.add_line_exclude_zeros(self, e1, options)
@@ -14,8 +14,8 @@ function Chart.add_line_stacking(self, e1, options)
     self:add("line_stacking", e1, options);
 end
 
-function Chart.add_line_stacking_categories(self, e1, options)
-    self:add_category("line_stacking", e1, options);
+function Chart.add_line_stacking_categories(self, e1, label, options)
+    self:add_category("line_stacking", e1, label, options);
 end
 
 function Chart.add_line_stacking_exclude_zeros(self, e1, options)
@@ -26,12 +26,12 @@ function Chart.add_spline(self, e1, options)
     self:add("spline", e1, options);
 end
 
-function Chart.add_spline_categories(self, e1, options)
-    self:add_category("spline", e1, options);
+function Chart.add_spline_categories(self, e1, label, options)
+    self:add_category("spline", e1, label, options);
 end
 
-function Chart.add_waterfall_categories(self, e1, options)
-    self:add_category("waterfall", e1, options);
+function Chart.add_waterfall_categories(self, e1, label, options)
+    self:add_category("waterfall", e1, label, options);
 end
 
 function Chart.add_spline_exclude_zeros(self, e1, options)
@@ -42,28 +42,28 @@ function Chart.add_column(self, e1, options)
     self:add("column", e1, options);
 end
 
-function Chart.add_column_categories(self, e1, options)
-    self:add_category("column", e1, options);
+function Chart.add_column_categories(self, e1, label, options)
+    self:add_category("column", e1, label, options);
 end
 
-function Chart.add_categories(self, e1, options) --TODO: isso vai morrer
-    self:add_category("column", e1, options);
+function Chart.add_categories(self, e1, label, options) --TODO: isso vai morrer
+    self:add_category("column", e1, label, options);
 end
 
 function Chart.add_column_stacking(self, e1, options)
     self:add("column_stacking", e1, options);
 end
 
-function Chart.add_column_stacking_categories(self, e1, options)
-    self:add_category("column_stacking", e1, options);
+function Chart.add_column_stacking_categories(self, e1, label, options)
+    self:add_category("column_stacking", e1, label, options);
 end
 
 function Chart.add_column_percent(self, e1, options)
     self:add("column_percent", e1, options);
 end
 
-function Chart.add_column_percent_categories(self, e1, options)
-    self:add_category("column_percent", e1, options);
+function Chart.add_column_percent_categories(self, e1, label, options)
+    self:add_category("column_percent", e1, label, options);
 end
 
 function Chart.add_column_range(self, e1, e2, options)
