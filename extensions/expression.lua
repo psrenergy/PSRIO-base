@@ -89,6 +89,33 @@ function Expression.add_suffixes(self, suffixes)
     return output;
 end
 
+function Expression.remove_characters(self, characters)
+    local tag<const> = "REMOVE_CHARACTERS";
+
+    info(tag .. ": " .. self:data_info());
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if characters == nil then
+        error(tag .. ": characters must not be nil");
+    end
+
+    local original_console_verbose = PSR.console_verbose_level();
+    PSR.console_verbose_level(0);
+    local agents = self:agents();
+    for i, agent in ipairs(agents) do
+        agents[i] = string.gsub(agent, characters, "");
+    end
+    local output = self:rename_agents(agents);
+    PSR.console_verbose_level(original_console_verbose);
+
+    info(tag .. "= " .. output:data_info());
+    return output;
+end
+
 function Expression.aggregate_agents_by_label(self, aggregation)
     local tag<const> = "AGGREGATE_AGENTS_BY_LABEL";
 
