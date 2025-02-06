@@ -1,3 +1,6 @@
+---------------------------------------------------------------
+--- NCP load
+--------------------------------------------------------------- 
 local function load_ncp(collection, filename)
     local index = collection:get_study_index();
     local study = Study(index);
@@ -119,4 +122,134 @@ end
 
 function Thermal.load_ncp(self, filename)
     return load_ncp(self, filename);
+end
+
+---------------------------------------------------------------
+--- Fallback load
+--------------------------------------------------------------- 
+local function load_or_fallback(collection, filename, options)
+
+    local fallback_value =  options.fallback or 0;
+    local unit = options.unit or "pu";
+    local data = collection:load(filename);
+
+    if data:loaded() then
+        return data;
+    else
+        warning("Could not load " .. filename .. ". Using fallback value " .. fallback_value);
+    end
+    
+    return (collection.code * 0 + fallback_value):force_unit(unit);
+end
+
+function Hydro.load_or_fallback(self, filename, options)
+  return load_or_fallback(self, filename, options);
+end
+
+function Area.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Battery.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Bus.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Circuit.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function CircuitsSum.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function ConcentratedSolarPower.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function DCLink.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Demand.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Fuel.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function FuelConsumption.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function FuelContract.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function FuelReservoir.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Generator.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function GenerationConstraint.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Generic.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Hydro.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function HydroGaugingStation.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Interconnection.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function InterconnectionSum.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function PowerInjection.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Renewable.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function RenewableGaugingStation.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function ReserveGenerationConstraint.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function ReservoirSet.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Study.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function System.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
+end
+
+function Thermal.load_or_fallback(self, filename, options)
+    return load_or_fallback(self, filename, options);
 end
