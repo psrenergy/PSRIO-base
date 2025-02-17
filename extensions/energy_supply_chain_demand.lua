@@ -1,17 +1,19 @@
 function EnergySupplyChainDemand.cost(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "edemrev";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("edemrev");
+  else
+    error("Model not supported");
+  end
 end
 
 function EnergySupplyChainDemand.demand_supplied(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "edemmet";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("edemmet");
+  else
+    error("Model not supported");
+  end
 end
