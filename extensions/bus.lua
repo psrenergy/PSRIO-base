@@ -1,34 +1,39 @@
 function Bus.marginal_cost(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "cmgbus";
-
-  return self:load(output_name);
+  if model == "SDDP" then
+    return self:load_sddp("cmgbus");
+  else
+    error("Model not supported");
+  end
 end
 
 function Bus.deficit(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "defbus";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("defbus");
+  else
+    error("Model not supported");
+  end
 end
 
 function Bus.demand(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "demxba";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("demxba");
+  else
+    error("Model not supported");
+  end
 end
 
 function Bus.load_supplied(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "demxbael";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("demxbael");
+  else
+    error("Model not supported");
+  end
 end

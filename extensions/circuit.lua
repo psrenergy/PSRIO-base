@@ -1,35 +1,33 @@
 function Circuit.losses(self, model)
   local model = "SDDP" or model;
 
-  local output_name;
-  if model == "OptGen2" then
-    output_name = "opt2_losses";
+  if model == "SDDP" then
+    return self:load_sddp("losses");
+  elseif model == "OptGen2" then
+    return self:load_optgen2("losses");
   else
-    output_name = "losses";
+    error("Model not supported");
   end
-
-  return self:load(output_name);
-
 end
 
 function Circuit.flow(self, model)
   local model = "SDDP" or model;
 
-  local output_name;
-  if model == "OptGen2" then
-    output_name = "opt2_cirflow";
+  if model == "SDDP" then
+    return self:load_sddp("cirflw");
+  elseif model == "OptGen2" then
+    return self:load_optgen2("cirflw");
   else
-    output_name = "cirflw";
+    error("Model not supported");
   end
-
-  return self:load(output_name);
-
 end
 
 function Circuit.load_factor(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "usecir";
-
-  return self:load(output_name);
+  if model == "SDDP" then
+    return self:load_sddp("usecir");
+  else
+    error("Model not supported");
+  end
 end

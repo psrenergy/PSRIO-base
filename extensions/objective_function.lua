@@ -16,14 +16,14 @@ function ObjectiveFunction.new(i)
 end
 
 function ObjectiveFunction:cost(model)
-    local model = (model or "SDDP");
-
+    local model = "SDDP" or model;
     local generic = Generic(self.case_index);
-    local output_name;
-    if model == "OptGen" then
-        output_name = "opt1_dashboard_totalcosts";
+
+    if model == "SDDP" then
+      return generic:load_sddp("objcop");
+    elseif model == "OptGen" then
+      return generic:load("opt1_dashboard_totalcosts");
     else
-        output_name = "objcop";
+      error("Model not supported");
     end
-    return generic:load(output_name);
 end

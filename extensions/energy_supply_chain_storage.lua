@@ -1,8 +1,9 @@
 function EnergySupplyChainStorage.final_storage(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "estbal";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("estbal");
+  else
+    error("Model not supported");
+  end
 end

@@ -1,17 +1,19 @@
 function PowerInjection.injection(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "powinj";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("powinj");
+  else
+    error("Model not supported");
+  end
 end
 
 function PowerInjection.cost(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "cosinj";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("cosinj");
+  else
+    error("Model not supported");
+  end
 end

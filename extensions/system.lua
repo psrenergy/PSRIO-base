@@ -1,107 +1,120 @@
 function System.marginal_cost(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "cmgdem";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("cmgdem");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.demand(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "demand";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("demand");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.deficit(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "defcit";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("defcit");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.max_stored_energy(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "earmzm";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("earmzm");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.block_duration(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "duraci";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("duraci");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.block_duration_pu(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "duracipu";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("duracipu");
+  else
+    error("Model not supported");
+  end
 end
+
 
 function System.hour_block_mapping(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "hblock";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("hblock");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.inflow_energy_65(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "enaf65";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("enaf65");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.inflow_energy(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "enaflu";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("enaflu");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.stored_energy(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "enearm";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("enearm");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.load_supplied(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "demandel";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("demandel");
+  else
+    error("Model not supported");
+  end
 end
 
 function System.deficit_cost(self, model)
   local model = "SDDP" or model;
 
-  local output_name = "defcos";
-
-  return self:load(output_name);
-
+  if model == "SDDP" then
+    return self:load_sddp("defcos");
+  else
+    error("Model not supported");
+  end
 end
