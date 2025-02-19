@@ -134,7 +134,12 @@ local function load_sddp(self, filename)
     local suffix = "";
     local is_genesys = study:get_parameter("GENE", -1) == 1;
     if is_genesys then
-        suffix = "_trueup";
+    	local is_trueup = study:get_parameter("TRUP", -1) == 1;
+		if is_trueup then
+	    	suffix = "_trueup";
+		else
+			suffix = "_hour";
+		end
     end
 
     return self:load(filename .. suffix);
