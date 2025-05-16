@@ -64,7 +64,15 @@ function FuelReservoir.load_ncp(self, filename)
     return load_ncp(self, filename);
 end
 
-function Generator.load_ncp(self, filename)
+function HydroGenerator.load_ncp(self, filename)
+    return load_ncp(self, filename);
+end
+
+function ThermalGenerator.load_ncp(self, filename)
+    return load_ncp(self, filename);
+end
+
+function RenewableGenerator.load_ncp(self, filename)
     return load_ncp(self, filename);
 end
 
@@ -193,7 +201,15 @@ function FuelReservoir.load_sddp(self, filename)
     return load_sddp(self, filename);
 end
 
-function Generator.load_sddp(self, filename)
+function HydroGenerator.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function ThermalGenerator.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function RenewableGenerator.load_sddp(self, filename)
     return load_sddp(self, filename);
 end
 
@@ -309,7 +325,15 @@ function FuelReservoir.load_optgen2(self, filename)
     return load_optgen2(self, filename);
 end
 
-function Generator.load_optgen2(self, filename)
+function HydroGenerator.load_optgen2(self, filename)
+    return load_optgen2(self, filename);
+end
+
+function ThermalGenerator.load_optgen2(self, filename)
+    return load_optgen2(self, filename);
+end
+
+function RenewableGenerator.load_optgen2(self, filename)
     return load_optgen2(self, filename);
 end
 
