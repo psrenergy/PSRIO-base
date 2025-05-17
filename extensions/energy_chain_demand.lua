@@ -1,4 +1,4 @@
-function EnergySupplyChainDemand.cost(self, model)
+function EnergyChainDemand.cost(self, model)
   local model = "SDDP" or model;
 
   if model == "SDDP" then
@@ -8,7 +8,7 @@ function EnergySupplyChainDemand.cost(self, model)
   end
 end
 
-function EnergySupplyChainDemand.demand_supplied(self, model)
+function EnergyChainDemand.demand_supplied(self, model)
   local model = "SDDP" or model;
 
   if model == "SDDP" then

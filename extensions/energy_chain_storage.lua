@@ -1,4 +1,4 @@
-function EnergySupplyChainStorage.final_storage(self, model)
+function EnergyChainStorage.final_storage(self, model)
   local model = "SDDP" or model;
 
   if model == "SDDP" then
