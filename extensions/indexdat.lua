@@ -3514,10 +3514,10 @@ function FlowController.reactance(self, model)
 end
 
 -------------------------------------------------------------------------
---SerieCapacitor extension
+--SeriesCapacitor extension
 -------------------------------------------------------------------------
 
-function SerieCapacitor.flow(self, model)
+function SeriesCapacitor.flow(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("seriescapacitor_flow");
@@ -3526,7 +3526,16 @@ function SerieCapacitor.flow(self, model)
    end
 end
 
-function SerieCapacitor.losses(self, model)
+function SeriesCapacitor.capacity_marg_cost(self, model)
+   local model = "SDDP" or model;
+   if model == "SDDP" then
+      return self:load_sddp("seriescapacitor_capacity_marg_cost");
+   else
+       error("Model not supported");
+   end
+end
+
+function SeriesCapacitor.losses(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("seriescapacitor_losses");
@@ -3535,7 +3544,7 @@ function SerieCapacitor.losses(self, model)
    end
 end
 
-function SerieCapacitor.quadratic_losses(self, model)
+function SeriesCapacitor.quadratic_losses(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("seriescapacitor_quadratic_losses");
@@ -3544,7 +3553,7 @@ function SerieCapacitor.quadratic_losses(self, model)
    end
 end
 
-function SerieCapacitor.losses_mismatch(self, model)
+function SeriesCapacitor.losses_mismatch(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("seriescapacitor_losses_mismatch");
@@ -3579,6 +3588,24 @@ function Transformer.losses(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("transformer_losses");
+   else
+       error("Model not supported");
+   end
+end
+
+function Transformer.quadratic_losses(self, model)
+   local model = "SDDP" or model;
+   if model == "SDDP" then
+      return self:load_sddp("transformer_quadraticlosses");
+   else
+       error("Model not supported");
+   end
+end
+
+function Transformer.losses_mismatch(self, model)
+   local model = "SDDP" or model;
+   if model == "SDDP" then
+      return self:load_sddp("transformer_losses_mismatch");
    else
        error("Model not supported");
    end
@@ -4196,41 +4223,6 @@ function EnergyChainNode.node_marg_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("endcmg");
-   else
-       error("Model not supported");
-   end
-end
-
--------------------------------------------------------------------------
---SeriesCapacitor extension
--------------------------------------------------------------------------
-
-function SeriesCapacitor.capacity_marg_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("seriescapacitor_capacity_marg_cost");
-   else
-       error("Model not supported");
-   end
-end
-
--------------------------------------------------------------------------
---Transformers extension
--------------------------------------------------------------------------
-
-function Transformers.quadratic_losses(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("transformer_quadraticlosses");
-   else
-       error("Model not supported");
-   end
-end
-
-function Transformers.losses_mismatch(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("transformer_losses_mismatch");
    else
        error("Model not supported");
    end
