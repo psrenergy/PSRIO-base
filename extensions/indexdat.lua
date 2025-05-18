@@ -254,7 +254,7 @@ function Hydro.nominal_capacity(self, model)
    end
 end
 
-function Hydro.om_cost(self, model)
+function Hydro.oem_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("coshid");
@@ -1023,7 +1023,7 @@ function Thermal.operative_cost(self, model)
    end
 end
 
-function Thermal.om_cost(self, model)
+function Thermal.oem_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("cotoem");
@@ -2180,7 +2180,7 @@ function Battery.joint_reserve_nexc(self, model)
    end
 end
 
-function Battery.om_cost(self, model)
+function Battery.oem_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("oembat");
@@ -2779,7 +2779,7 @@ function Renewable.scenario(self, model)
    end
 end
 
-function Renewable.om_cost(self, model)
+function Renewable.oem_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("cogoem");
