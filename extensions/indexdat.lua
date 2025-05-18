@@ -1607,7 +1607,7 @@ function Bus.voltage_angle(self, model)
    end
 end
 
-function Bus.outflow(self, model)
+function Bus.ac_outflow(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("wdrbus");
@@ -1670,7 +1670,7 @@ function Bus.lerner_idx(self, model)
    end
 end
 
-function Bus.injection(self, model)
+function Bus.ac_injection(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("businj");
@@ -1679,7 +1679,7 @@ function Bus.injection(self, model)
    end
 end
 
-function Bus.outflow(self, model)
+function Bus.cc_outflow(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("wdrbusdc");
@@ -1688,7 +1688,7 @@ function Bus.outflow(self, model)
    end
 end
 
-function Bus.injection(self, model)
+function Bus.cc_injection(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("businjdc");
