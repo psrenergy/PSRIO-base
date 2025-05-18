@@ -924,7 +924,7 @@ function Thermal.min_generation_constraint(self, model)
    end
 end
 
-function Thermal.min_generation(self, model)
+function Thermal.net_min_generation(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("pmnter");
@@ -1898,7 +1898,7 @@ function Fuel.consumption_rate_marg_cost(self, model)
    end
 end
 
-function Fuel.availability(self, model)
+function Fuel.available(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("fueavl");
