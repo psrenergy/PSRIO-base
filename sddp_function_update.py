@@ -26,9 +26,10 @@ for i in range(len(psrio_function)):
     if collection_name == "Generic":
         continue
     function_name = psrio_function[i].split(":")[1]
-
+    if ((("\""+file_name[i] + "\"") in function_name)):
+        continue
+    
     classes_dict[collection_name].append((function_name, file_name[i]))
-
 
 for key, values in classes_dict.items():
     print(f"key: {key}\n")

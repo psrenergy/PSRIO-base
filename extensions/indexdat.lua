@@ -2,15 +2,6 @@
 --Hydro extension
 -------------------------------------------------------------------------
 
-function Hydro.alert_storage(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("volale");
-   else
-       error("Model not supported");
-   end
-end
-
 function Hydro.available_capacity(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -38,46 +29,10 @@ function Hydro.inflow(self, model)
    end
 end
 
-function Hydro.max_storage(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("volmax");
-   else
-       error("Model not supported");
-   end
-end
-
-function Hydro.max_total_outflow(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("mxtout");
-   else
-       error("Model not supported");
-   end
-end
-
-function Hydro.max_turbining(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("qmaxim");
-   else
-       error("Model not supported");
-   end
-end
-
 function Hydro.security_storage(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("volmno");
-   else
-       error("Model not supported");
-   end
-end
-
-function Hydro.min_total_outflow(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("mntout");
    else
        error("Model not supported");
    end
@@ -254,24 +209,6 @@ function Hydro.nominal_capacity(self, model)
    end
 end
 
-function Hydro.oem_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("coshid");
-   else
-       error("Model not supported");
-   end
-end
-
-function Hydro.forced_outage_rate(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("tsfhid");
-   else
-       error("Model not supported");
-   end
-end
-
 function Hydro.operating_units(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -290,15 +227,6 @@ function Hydro.flood_control_storage(self, model)
    end
 end
 
-function Hydro.composite_outage_rate(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("tihhid");
-   else
-       error("Model not supported");
-   end
-end
-
 function Hydro.turbinable_spilled_energy(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -312,15 +240,6 @@ function Hydro.min_turbining_violation_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("cvlmtu");
-   else
-       error("Model not supported");
-   end
-end
-
-function Hydro.irrigation(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("qriego");
    else
        error("Model not supported");
    end
@@ -614,15 +533,6 @@ function Hydro.min_spillage_violation_cost(self, model)
    end
 end
 
-function Hydro.min_spillage(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("mnsout");
-   else
-       error("Model not supported");
-   end
-end
-
 function Hydro.spillage_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -717,15 +627,6 @@ function Hydro.max_spillage_violation_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("cvlmxso");
-   else
-       error("Model not supported");
-   end
-end
-
-function Hydro.max_spillage(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("mxsout");
    else
        error("Model not supported");
    end
@@ -848,15 +749,6 @@ function Hydro.turbinable_spilled_outflow(self, model)
    end
 end
 
-function Hydro.target_storage(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("wtarget");
-   else
-       error("Model not supported");
-   end
-end
-
 -------------------------------------------------------------------------
 --Thermal extension
 -------------------------------------------------------------------------
@@ -897,28 +789,10 @@ function Thermal.capacity_marg_cost(self, model)
    end
 end
 
-function Thermal.startup_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("cosarr");
-   else
-       error("Model not supported");
-   end
-end
-
 function Thermal.bus_income(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("gtcmgb");
-   else
-       error("Model not supported");
-   end
-end
-
-function Thermal.min_generation_constraint(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("tgmin");
    else
        error("Model not supported");
    end
@@ -969,15 +843,6 @@ function Thermal.input_startup_cost(self, model)
    end
 end
 
-function Thermal.forced_outage_rate(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("tsfter");
-   else
-       error("Model not supported");
-   end
-end
-
 function Thermal.operating_units(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -996,15 +861,6 @@ function Thermal.nominal_capacity(self, model)
    end
 end
 
-function Thermal.composite_outage_rate(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("tihter");
-   else
-       error("Model not supported");
-   end
-end
-
 function Thermal.single_reserve_req(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -1018,15 +874,6 @@ function Thermal.operative_cost(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("cotfue");
-   else
-       error("Model not supported");
-   end
-end
-
-function Thermal.oem_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("cotoem");
    else
        error("Model not supported");
    end
@@ -1306,15 +1153,6 @@ function Thermal.joint_reserve_price(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("terbdprc");
-   else
-       error("Model not supported");
-   end
-end
-
-function Thermal.shutdown_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("cosshut");
    else
        error("Model not supported");
    end
@@ -1898,15 +1736,6 @@ function Fuel.consumption_rate_marg_cost(self, model)
    end
 end
 
-function Fuel.available(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("fueavl");
-   else
-       error("Model not supported");
-   end
-end
-
 function Fuel.max_consumption_rate(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -2175,15 +2004,6 @@ function Battery.joint_reserve_nexc(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("rsbnexc");
-   else
-       error("Model not supported");
-   end
-end
-
-function Battery.oem_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("oembat");
    else
        error("Model not supported");
    end
@@ -2779,15 +2599,6 @@ function Renewable.scenario(self, model)
    end
 end
 
-function Renewable.oem_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("cogoem");
-   else
-       error("Model not supported");
-   end
-end
-
 function Renewable.dispatch_factor(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -2904,33 +2715,6 @@ function ReservoirSet.stored_energy(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
       return self:load_sddp("eneset");
-   else
-       error("Model not supported");
-   end
-end
-
-function ReservoirSet.alert_energy(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("eneale");
-   else
-       error("Model not supported");
-   end
-end
-
-function ReservoirSet.flood_control_energy(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("eneesp");
-   else
-       error("Model not supported");
-   end
-end
-
-function ReservoirSet.security_energy(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("enemin");
    else
        error("Model not supported");
    end
@@ -3147,15 +2931,6 @@ function FuelContract.top_add_unconsumed(self, model)
    end
 end
 
-function FuelContract.cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("fccost");
-   else
-       error("Model not supported");
-   end
-end
-
 function FuelContract.makeup_final(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -3304,15 +3079,6 @@ function ExpansionProject.invest_capacity(self, model)
    end
 end
 
-function ExpansionProject.invest_cost(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("invcst");
-   else
-       error("Model not supported");
-   end
-end
-
 function ExpansionProject.investment_decision(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -3374,24 +3140,6 @@ end
 -------------------------------------------------------------------------
 --FuelReservoir extension
 -------------------------------------------------------------------------
-
-function FuelReservoir.max_storage(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("frvmax");
-   else
-       error("Model not supported");
-   end
-end
-
-function FuelReservoir.max_injection(self, model)
-   local model = "SDDP" or model;
-   if model == "SDDP" then
-      return self:load_sddp("frinmx");
-   else
-       error("Model not supported");
-   end
-end
 
 function FuelReservoir.max_withdrawal(self, model)
    local model = "SDDP" or model;
