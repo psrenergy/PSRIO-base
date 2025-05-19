@@ -17,7 +17,6 @@ df = pd.read_csv(filename, encoding='latin1', header=1)
 psrio_function = df['PSRIO'].str.replace("()", "", regex=False)
 file_name = df['Filename']
 
-
 classes_dict = defaultdict(list)
 for i in range(len(psrio_function)):
     if pd.isna(file_name[i]):
