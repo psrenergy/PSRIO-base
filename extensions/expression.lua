@@ -786,3 +786,36 @@ function Expression.final_date(self)
 
     return output;
 end
+
+function Expression.get_dummy_plants(self, thermal_name)
+    local tag<const> = "GET_DUMMY_PLANTS";
+
+    info(tag .. ": " .. self:data_info());
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return {};
+    end
+
+    if not self:collection() == Collection.THERMAL then
+        warning(tag .. ": invalid collection type at " .. PSR.source_line(2));
+    end
+
+    if not thermal_name then
+        error(tag .. ": thermal_name must not be empty");
+    end
+    local original_console_verbose = PSR.console_verbose_level();
+    PSR.console_verbose_level(0);
+
+    local dummy1 = tonumber(Thermal(self:study_index()).dummy_plant_1:select_agent(thermal_name):to_list()[1]);
+    local dummy2 = tonumber(Thermal(self:study_index()).dummy_plant_2:select_agent(thermal_name):to_list()[1]);
+    local dummy3 = tonumber(Thermal(self:study_index()).dummy_plant_3:select_agent(thermal_name):to_list()[1]);
+
+    local output = concatenate({self:select_agents_by_code({math.floor(dummy1)}),
+                                self:select_agents_by_code({math.floor(dummy2)}),
+                                self:select_agents_by_code({math.floor(dummy3)})});
+    PSR.console_verbose_level(original_console_verbose);
+    print(tag .. "= " .. output:data_info());
+
+    return output;
+end
