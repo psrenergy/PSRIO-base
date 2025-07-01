@@ -787,7 +787,7 @@ function Expression.final_date(self)
     return output;
 end
 
-function Expression.get_dummy_plants(self, thermal_name)
+function Expression.select_dummy_plants(self, thermal_name)
     local tag<const> = "GET_DUMMY_PLANTS";
 
     info(tag .. ": " .. self:data_info());
