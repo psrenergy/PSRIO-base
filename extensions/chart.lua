@@ -6,6 +6,10 @@ function Chart.add_line_categories(self, e1, label, options)
     self:add_category("line", e1, label, options);
 end
 
+function Chart.add_block_categories(self, e1, label, options)
+    self:add_block_category("line", e1, label, options);
+end
+
 function Chart.add_line_exclude_zeros(self, e1, options)
     self:add_exclude_zeros("line", e1, options);
 end
