@@ -31,9 +31,6 @@ local function calc_pld(data_name, i)
         if (first_year < initial_year) then
             error(data_name .. " first input date year is before the initial year of cmgdem data.");
         end
-        if (first_year > final_year) then
-            error(data_name .. " input date year exceeds the final year of cmgdem data.");
-        end
         
         -- Get the number of stages in cmgdem data
         local data_stages = cmgdem:stages();
