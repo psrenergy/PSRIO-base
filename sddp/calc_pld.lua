@@ -23,6 +23,15 @@ local function calc_pld(data_name, i)
         local final_year = cmgdem:final_year();
         local final_month = cmgdem:month(cmgdem:last_stage());
 
+        local initial_year = cmgdem:initial_year();
+
+        -- First year validation
+        local first_date = input_date_table[3][2];
+        local first_year, _, _ = string.match(first_date, "(%d+)/(%d+)/(%d+)");
+        if (first_year < initial_year) then
+            error(data_name .. " first input date year is before the initial year of cmgdem data.");
+        end
+        
         -- Get the number of stages in cmgdem data
         local data_stages = cmgdem:stages();
         -- Initialize a table to store price data
