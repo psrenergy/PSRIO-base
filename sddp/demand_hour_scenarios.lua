@@ -14,6 +14,6 @@ local function demand_block_scenarios(i)
         end
     end
 
-    return hourly_demand:rename_agents(rename_labels);
+    return block_demand:rename_agents(rename_labels);
 end
 return demand_block_scenarios;
