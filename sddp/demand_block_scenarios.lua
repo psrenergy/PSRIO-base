@@ -4,7 +4,7 @@ local function demand_hour_scenarios(i)
     local system<const> = System(i or 1);
 
     local initial_stage = 1;
-    local hourly_demand = (system.sensitivity * (demand_segment.demand_block * demand.is_enabled:eq(0):select_stage(initial_stage))):convert("GWh"):save_cache();
+    local hourly_demand = (system.sensitivity * (demand_segment.block * demand.is_enabled:eq(0):select_stage(initial_stage))):convert("GWh"):save_cache();
 
     local rename_labels = {};
     for _, demand_label in ipairs(demand:labels()) do
