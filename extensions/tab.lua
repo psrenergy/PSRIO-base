@@ -7,3 +7,8 @@ function Tab.push_table(self, input)
     markdown:add_table(input);
     self:push(markdown);
 end
+
+function Tab.set_icon(self, icon_name, options)
+    local options_ = (options or {});
+    self:add_icon(icon_name, options_);
+end
