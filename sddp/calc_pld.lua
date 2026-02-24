@@ -28,7 +28,8 @@ local function calc_pld(data_name, i)
         -- First year validation
         local first_date = input_date_table[3][2];
         local first_year, _, _ = string.match(first_date, "(%d+)/(%d+)/(%d+)");
-        if (first_year < initial_year) then
+        local n_first_year = tonumber(first_year);
+        if (n_first_year < initial_year) then
             error(data_name .. " first input date year is before the initial year of cmgdem data.");
         end
         
