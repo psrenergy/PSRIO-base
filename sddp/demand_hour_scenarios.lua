@@ -3,14 +3,32 @@ local function demand_hour_scenarios(i)
     local demand<const> = Demand(i or 1);
     local system<const> = System(i or 1);
 
+    local demand_sorce = demand.source_type;
+    local hourly_scn_demand = demand_sorce:eq(5):remove_zeros():agents();
+    local hourly_det_demand = demand_sorce:ne(5):remove_zeros():agents();
+
+
     local initial_stage = 1;
-    local hourly_demand = (system.sensitivity * (demand_segment.hour * demand.is_enabled:eq(0):select_stage(initial_stage))):convert("GWh"):save_cache();
+    local base_demand = (demand_segment.hour * demand.is_enabled:eq(0):select_stage(initial_stage))
+    local final_demand = 0;
+
+    local demamnd_segment_det = base_demand:select_agents(Collection.DEMAND, {hourly_det_demand}):select_agents(Collection.DEMAND_SEGMENT);
+
+    if #hourly_scn_demand > 0 then
+        local base_demand_scn = (demand_segment.hour_scenarios * demand.is_enabled:eq(0):select_stage(initial_stage))
+        local demamnd_segment_scn = base_demand_scn:select_agents(Collection.DEMAND, {hourly_scn_demand}):select_agents(Collection.DEMAND_SEGMENT);
+        final_demand = demamnd_segment_scn + demamnd_segment_det;
+    else
+        final_demand = demamnd_segment_det;
+    end
+    
+    local hourly_demand = (system.sensitivity * final_demand):convert("GWh"):save_cache();
 
     local rename_labels = {};
     for _, demand_label in ipairs(demand:labels()) do
         local segments_demand = hourly_demand:select_agents(Collection.DEMAND, {demand_label});
         for scn = 1, #segments_demand:agents() do
-            table.insert(rename_labels, demand_label .. "(SCN:" .. scn .. ")");
+            table.insert(rename_labels, demand_label .. "(LEV:" .. scn .. ")");
         end
     end
 
