@@ -230,3 +230,14 @@ function Chart.add_line_TODO(self, e1, options)
 
     self:enable_controls();
 end
+
+function Chart.psrplot_graph(self, tag, e1, options)
+    local options = (options or {});
+    local blocks_resolution = e1:has_blocks();
+    local is_not_hourly_resolution = not e1:is_hourly();
+    local block_graph = ((tag ~= "pie") and (tag ~= "histogram"));
+    if blocks_resolution and is_not_hourly_resolution and block_graph then
+        return self:add_block_category(tag, e1, options);
+    end
+    return self:add(tag, e1, options);
+end
