@@ -8,17 +8,25 @@ end
 
 function Chart.add_line_block_categories_parallel(self, e1, options)
     options = (options or {});
-    for scenario = 1, e1:scenarios() do
-        local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
-        self:add_block_category_parallel("line", selected_scenario, options);
+    if e1:scenarios() == 1 then
+        self:add_block_category_parallel("line", e1, options);
+    else
+        for scenario = 1, e1:scenarios() do
+            local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
+            self:add_block_category_parallel("line", selected_scenario, options);
+        end
     end
 end
 
 function Chart.add_column_block_categories_parallel(self, e1, options)
     options = (options or {});
-    for scenario = 1, e1:scenarios() do
-        local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
-        self:add_block_category_parallel("column", selected_scenario, options);
+    if e1:scenarios() == 1 then
+        self:add_block_category_parallel("column", e1, options);
+    else
+        for scenario = 1, e1:scenarios() do
+            local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
+            self:add_block_category_parallel("column", selected_scenario, options);
+        end
     end
 end
 
