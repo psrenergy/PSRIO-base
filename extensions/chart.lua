@@ -253,7 +253,17 @@ function Chart.psrplot_graph(self, tag, e1, options)
     local is_not_hourly_resolution = not e1:is_hourly();
     local block_graph = ((tag ~= "pie") and (tag ~= "histogram"));
     if blocks_resolution and is_not_hourly_resolution and block_graph then
-        return self:add_block_category(tag, e1, options);
+        options = (options or {});
+        if e1:scenarios() == 1 then
+            self:add_block_category(tag, e1, options);
+
+        else
+            for scenario = 1, e1:scenarios() do
+                local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
+                self:add_block_category(tag, selected_scenario, options);
+            end
+        end
+    else 
+        self:add(tag, e1, options);
     end
-    return self:add(tag, e1, options);
 end
