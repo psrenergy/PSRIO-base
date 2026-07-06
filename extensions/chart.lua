@@ -8,12 +8,18 @@ end
 
 function Chart.add_line_block_categories(self, e1, options)
     options = (options or {});
-    self:add_block_category("line", e1, options);
+    for scenario = 1, e1:scenarios() do
+        local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
+        self:add_block_category("line", selected_scenario, options);
+    end
 end
 
 function Chart.add_column_block_categories(self, e1, options)
     options = (options or {});
-    self:add_block_category("column", e1, options);
+    for scenario = 1, e1:scenarios() do
+        local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
+        self:add_block_category("column", selected_scenario, options);
+    end
 end
 
 function Chart.add_line_exclude_zeros(self, e1, options)
