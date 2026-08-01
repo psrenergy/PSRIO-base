@@ -138,6 +138,10 @@ function Chart.add_error_bar_parallel(self, e1, e2, options)
     self:add_parallel("error_bar", e1, e2, options);
 end
 
+function Chart.add_errorbar_block_categories_parallel(self, lower, upper, options)
+    self:add_block_category_parallel("errorbar", lower, upper, options or {});
+end
+
 function Chart.add_pie_parallel(self, e1, options)
     self:add_parallel("pie", e1, options);
 end

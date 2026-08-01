@@ -140,6 +140,10 @@ function Chart.add_error_bar(self, e1, e2, options)
     self:add("error_bar", e1, e2, options);
 end
 
+function Chart.add_errorbar_block_categories(self, lower, upper, options)
+    self:add_block_category("errorbar", lower, upper, options or {});
+end
+
 function Chart.add_pie(self, e1, options)
     self:add("pie", e1, options);
 end
@@ -265,5 +269,17 @@ function Chart.psrplot_graph(self, tag, e1, options)
         end
     else 
         self:add(tag, e1, options);
+    end
+end
+
+function Chart.psrplot_range_graph(self, lower, upper, options)
+    local options = (options or {});
+    local blocks_resolution = lower:has_blocks();
+    local is_not_hourly_resolution = not lower:is_hourly();
+
+    if blocks_resolution and is_not_hourly_resolution then
+        self:add_errorbar_block_categories(lower, upper, options);
+    else
+        self:add_area_range(lower, upper, options);
     end
 end
