@@ -255,8 +255,9 @@ function Chart.psrplot_graph(self, tag, e1, options)
     local options = (options or {});
     local blocks_resolution = e1:has_blocks();
     local is_not_hourly_resolution = not e1:is_hourly();
+    local is_not_subhourly_resolution = not e1:is_subhourly();
     local block_graph = ((tag ~= "pie") and (tag ~= "histogram"));
-    if blocks_resolution and is_not_hourly_resolution and block_graph then
+    if blocks_resolution and is_not_hourly_resolution and block_graph and is_not_subhourly_resolution then
         options = (options or {});
         if e1:scenarios() == 1 then
             self:add_block_category(tag, e1, options);
