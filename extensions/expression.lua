@@ -819,3 +819,34 @@ function Expression.select_dummy_plants(self, thermal_name)
 
     return output;
 end
+
+
+--- EnergyMap ---
+function Expression.energy_map_aggregate_collection(self, associated_collection)
+    local tag<const> = "ENERGY_MAP_AGGREGATE_COLLECTION";
+
+    info(tag .. ": " .. self:data_info());
+
+    if not self:loaded() then
+        warning(tag .. ": null at " .. PSR.source_line(2));
+        return self;
+    end
+
+    if associated_collection == nil then
+        error(tag .. ": associated_collection must not be nil");
+    end
+
+    local original_console_verbose = PSR.console_verbose_level();
+    PSR.console_verbose_level(0);
+
+    local collection = associated_collection;
+    if type(associated_collection) == "string" then
+        collection = PSRCollectionEnum(associated_collection);
+    end
+    local output = self:aggregate_agents(BY_SUM(), collection);
+
+    PSR.console_verbose_level(original_console_verbose);
+    info(tag .. "= " .. output:data_info());
+
+    return output;
+end

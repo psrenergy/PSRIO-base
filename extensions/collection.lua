@@ -270,6 +270,37 @@ function Thermal.load_sddp(self, filename)
 end
 
 ---------------------------------------------------------------
+--- EnergyMap load
+---------------------------------------------------------------
+function load_energy_map(input_collection, input_filename, output_collection, output_filename, study_index)
+    if input_collection == nil then
+        error("LOAD_ENERGY_MAP: input_collection must not be nil");
+    end
+
+    if input_filename == nil then
+        error("LOAD_ENERGY_MAP: input_filename must not be nil");
+    end
+
+    if output_collection == nil then
+        error("LOAD_ENERGY_MAP: output_collection must not be nil");
+    end
+
+    if output_filename == nil then
+        error("LOAD_ENERGY_MAP: output_filename must not be nil");
+    end
+
+    local index = study_index or 1;
+    local input = PSRCollection(input_collection, index);
+    local output_collection_handle = PSRCollection(output_collection, index);
+    local output_collection_enum = output_collection_handle:get_collection_enum();
+
+    local output = input:load(input_filename):energy_map_aggregate_collection(output_collection_enum);
+    output:save(output_filename);
+
+    return output;
+end
+
+---------------------------------------------------------------
 --- OptGen2 load
 --------------------------------------------------------------- 
 local function load_optgen2(self, filename)
