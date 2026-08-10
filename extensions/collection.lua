@@ -294,7 +294,7 @@ function load_energy_map(input_collection, input_filename, output_collection, ou
     local output_collection_handle = PSRCollection(output_collection, index);
     local output_collection_enum = output_collection_handle:get_collection_enum();
 
-    local output = input:load(input_filename):energy_map_aggregate_collection(output_collection_enum);
+    local output = input:load(input_filename):energy_map_aggregate_collection(output_collection_enum, input_filename);
     output:save(output_filename);
 
     return output;

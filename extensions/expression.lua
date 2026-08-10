@@ -822,7 +822,7 @@ end
 
 
 --- EnergyMap ---
-function Expression.energy_map_aggregate_collection(self, associated_collection)
+function Expression.energy_map_aggregate_collection(self, associated_collection, input_filename)
     local tag<const> = "ENERGY_MAP_AGGREGATE_COLLECTION";
 
     info(tag .. ": " .. self:data_info());
@@ -843,7 +843,46 @@ function Expression.energy_map_aggregate_collection(self, associated_collection)
     if type(associated_collection) == "string" then
         collection = PSRCollectionEnum(associated_collection);
     end
-    local output = self:aggregate_agents(BY_SUM(), collection);
+
+    local output;
+    local filename = input_filename;
+
+    local study_index = self:study_index();
+    local generator;
+    local plant_units;
+    local unit_filename;
+
+    if collection == Collection.BUS and filename == "gerter" and self:collection() == Collection.THERMAL then
+        generator = ThermalGenerator(study_index);
+        plant_units = Thermal(study_index).generator_group_count;
+        unit_filename = "gerterun";
+    elseif collection == Collection.BUS and filename == "gerhid" and self:collection() == Collection.HYDRO then
+        generator = HydroGenerator(study_index);
+        plant_units = Hydro(study_index).generator_group_count;
+        unit_filename = "gerhidun";
+    elseif collection == Collection.BUS and filename == "gergnd" and self:collection() == Collection.RENEWABLE then
+        generator = RenewableGenerator(study_index);
+        plant_units = Renewable(study_index).generator_group_count;
+        unit_filename = "gergndun";
+    end
+
+    local has_units = generator and (#generator:labels()) > 0;
+    local unit_generation;
+    if has_units then
+        unit_generation = generator:load(unit_filename);
+    end
+
+    if has_units and unit_generation:loaded() then
+        local plant_generation = self * plant_units:eq(0);
+        local plant_output = plant_generation:aggregate_agents(BY_SUM(), Collection.BUS);
+        local unit_output = unit_generation:aggregate_agents(BY_SUM(), Collection.BUS);
+        output = plant_output + unit_output;
+    else
+        if has_units then
+            warning(tag .. ": " .. unit_filename .. " not found; using plant generation aggregation");
+        end
+        output = self:aggregate_agents(BY_SUM(), collection);
+    end
 
     PSR.console_verbose_level(original_console_verbose);
     info(tag .. "= " .. output:data_info());
