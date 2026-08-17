@@ -23,14 +23,21 @@ local function calc_pld(data_name, i)
         local final_year = cmgdem:final_year();
         local final_month = cmgdem:month(cmgdem:last_stage());
 
-        local initial_year = cmgdem:initial_year();
+        local first_cmgdem_year = cmgdem:initial_year();
 
         -- First year validation
         local first_date = input_date_table[3][2];
         local first_year, _, _ = string.match(first_date, "(%d+)/(%d+)/(%d+)");
         local n_first_year = tonumber(first_year);
-        if (n_first_year < initial_year) then
-            error(data_name .. " first input date year is before the initial year of cmgdem data.");
+        if (n_first_year > first_cmgdem_year) then
+            error(
+                data_name
+                    .. " first input date year ("
+                    .. n_first_year
+                    .. ") is after the first year of cmgdem data ("
+                    .. first_cmgdem_year
+                    .. ")."
+            );
         end
         
         -- Get the number of stages in cmgdem data
