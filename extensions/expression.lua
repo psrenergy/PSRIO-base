@@ -405,7 +405,7 @@ function Expression.select_blocks_psrplot(self, blocks)
     elseif self:has_blocks() then
         output = self:select_blocks(blocks);
     else
-        error(tag .. ": expression must vary by blocks, hours, or subhours");
+        output = self;
     end
 
     PSR.console_verbose_level(original_console_verbose);
