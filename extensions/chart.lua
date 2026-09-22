@@ -264,7 +264,8 @@ function Chart.psrplot_graph(self, tag, e1, options)
 
         else
             for scenario = 1, e1:scenarios() do
-                local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario .. ")");
+                local scenario_index = e1:scenario_index(scenario);
+                local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario_index .. ")");
                 self:add_block_category(tag, selected_scenario, options);
             end
         end
