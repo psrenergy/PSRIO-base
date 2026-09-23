@@ -1,13 +1,16 @@
 function Chart.add_line_parallel(self, e1, options)
+    options = (options or {});
     self:add_parallel("line", e1, options);
 end
 
 function Chart.add_line_categories_parallel(self, e1, label, options)
+    options = (options or {});
     self:add_category_parallel("line", e1, label, options);
 end
 
 function Chart.add_line_block_categories_parallel(self, e1, options)
     options = (options or {});
+    if options.connectNulls == nil then options.connectNulls = true; end
     if e1:scenarios() == 1 then
         self:add_block_category_parallel("line", e1, options);
     else
@@ -31,18 +34,22 @@ function Chart.add_column_block_categories_parallel(self, e1, options)
 end
 
 function Chart.add_line_exclude_zeros_parallel(self, e1, options)
+    options = (options or {});
     self:add_exclude_zeros_parallel("line", e1, options);
 end
 
 function Chart.add_line_stacking_parallel(self, e1, options)
+    options = (options or {});
     self:add_parallel("line_stacking", e1, options);
 end
 
 function Chart.add_line_stacking_categories_parallel(self, e1, label, options)
+    options = (options or {});
     self:add_category_parallel("line_stacking", e1, label, options);
 end
 
 function Chart.add_line_stacking_exclude_zeros_parallel(self, e1, options)
+    options = (options or {});
     self:add_exclude_zeros_parallel("line_stacking", e1, options);
 end
 

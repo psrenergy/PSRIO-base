@@ -1,13 +1,16 @@
 function Chart.add_line(self, e1, options)
+    options = (options or {});
     self:add("line", e1, options);
 end
 
 function Chart.add_line_categories(self, e1, label, options)
+    options = (options or {});
     self:add_category("line", e1, label, options);
 end
 
 function Chart.add_line_block_categories(self, e1, options)
     options = (options or {});
+    if options.connectNulls == nil then options.connectNulls = true; end
     if e1:scenarios() == 1 then
         self:add_block_category("line", e1, options);
         return;
@@ -33,18 +36,22 @@ function Chart.add_column_block_categories(self, e1, options)
 end
 
 function Chart.add_line_exclude_zeros(self, e1, options)
+    options = (options or {});
     self:add_exclude_zeros("line", e1, options);
 end
 
 function Chart.add_line_stacking(self, e1, options)
+    options = (options or {});
     self:add("line_stacking", e1, options);
 end
 
 function Chart.add_line_stacking_categories(self, e1, label, options)
+    options = (options or {});
     self:add_category("line_stacking", e1, label, options);
 end
 
 function Chart.add_line_stacking_exclude_zeros(self, e1, options)
+    options = (options or {});
     self:add_exclude_zeros("line_stacking", e1, options);
 end
 
@@ -223,9 +230,7 @@ end
 function Chart.add_line_TODO(self, e1, options)
     local is_typical_day = e1:is_typical_day();
     
-    if not options then
-        options = {};
-    end
+    options = (options or {});
 
     local initial_stage = e1:initial_stage();
     local final_stage = e1:last_stage();
@@ -258,7 +263,9 @@ function Chart.psrplot_graph(self, tag, e1, options)
     local is_not_subhourly_resolution = not e1:is_subhourly();
     local block_graph = ((tag ~= "pie") and (tag ~= "histogram"));
     if blocks_resolution and is_not_hourly_resolution and block_graph and is_not_subhourly_resolution then
-        options = (options or {});
+        if tag == "line" or tag == "line_stacking" or tag == "line_percent" then
+            if options.connectNulls == nil then options.connectNulls = true; end
+        end
         if e1:scenarios() == 1 then
             self:add_block_category(tag, e1, options);
 
