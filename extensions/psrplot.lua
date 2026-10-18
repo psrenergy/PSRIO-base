@@ -15,6 +15,13 @@ end
 
 function Chart.psrplot_graph(self, tag, e1, options)
     local options = (options or {});
+    -- The study's reference currency in place of the outputs' "$" (k$/MW -> kXPF/MW); the values are unchanged.
+    if e1:loaded() then
+        local currency = Study(e1:study_index()):get_currency_reference();
+        if currency ~= "" then
+            e1 = e1:force_currency("$", currency);
+        end
+    end
     local blocks_resolution = e1:has_blocks();
     local is_not_hourly_resolution = not e1:is_hourly();
     local is_not_subhourly_resolution = not e1:is_subhourly();
