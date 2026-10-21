@@ -45,13 +45,43 @@ function Chart.psrplot_graph(self, tag, e1, options)
     end
 end
 
-function Chart.psrplot_range_graph(self, lower, upper, options)
+function Chart.psrplot_range_graph(self, tag, lower, upper, options)
     local options = (options or {});
+    if tag ~= "line" then
+        self:psrplot_graph(tag, lower, options);
+        self:psrplot_graph(tag, upper, options);
+        return;
+    end
+
+    if lower:loaded() and upper:loaded() then
+        -- One name for the cloud: X:PERC(10) and X:PERC(90) become X:PERC(10-90).
+        local lower_names = lower:agents();
+        local upper_names = upper:agents();
+        local names = {};
+        for i = 1, #lower_names do
+            local base, lower_percentile = lower_names[i]:match("^(.*):PERC%((.-)%)$");
+            local upper_base, upper_percentile = upper_names[i]:match("^(.*):PERC%((.-)%)$");
+            if base ~= nil and base == upper_base then
+                names[i] = base .. ":PERC(" .. lower_percentile .. "-" .. upper_percentile .. ")";
+            else
+                names[i] = lower_names[i];
+            end
+        end
+        lower = lower:rename_agents(names);
+        upper = upper:rename_agents(names);
+
+        -- The study's reference currency in place of the outputs' "$" (k$/MW -> kXPF/MW); the values are unchanged.
+        local currency = Study(lower:study_index()):get_currency_reference();
+        if currency ~= "" then
+            lower = lower:force_currency("$", currency);
+            upper = upper:force_currency("$", currency);
+        end
+    end
     local blocks_resolution = lower:has_blocks();
     local is_not_hourly_resolution = not lower:is_hourly();
 
     if blocks_resolution and is_not_hourly_resolution then
-        self:add_errorbar_block_categories(lower, upper, options);
+        self:add_block_category("area_range", lower, upper, options);
     else
         self:add_area_range(lower, upper, options);
     end
