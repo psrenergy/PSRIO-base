@@ -13,10 +13,7 @@ function psrplot_load(class_name, study_index, filename)
     return Generic(study_index):load(filename);
 end
 
--- The color of a series: its agent's entry in agent_colors, or nil. A series derived from an agent
--- (GCH-069 - (tag), GCH-069:AVG, GCH-069 (scenario:3)) takes the color of the longest agent name it
--- starts with, when one of those suffixes follows that name (so SANTO ANTONIO DO JARI is not
--- SANTO ANTONIO, nor GCH-0690 GCH-069).
+-- Color of a series: its agent's color, also through the suffixes PSRPlot adds (" - (tag)", ":AVG", " (scenario:N)")
 local function psrplot_agent_color(name, agent_colors)
     if agent_colors[name] ~= nil then
         return agent_colors[name];
@@ -34,9 +31,7 @@ local function psrplot_agent_color(name, agent_colors)
     return color;
 end
 
--- Copy of the options for the series of e1. agent_colors (agent name -> color) is resolved against e1's
--- series names into series_colors, which psrplot.js applies by series name; a series without its own
--- color keeps the general color (options.color) or, without one, the default palette.
+-- Copy of the options with agent_colors turned into series_colors (series name -> color), read by psrplot.js
 local function psrplot_colors(e1, options)
     local result = {};
     for key, value in pairs(options or {}) do
