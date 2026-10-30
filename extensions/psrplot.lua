@@ -13,6 +13,58 @@ function psrplot_load(class_name, study_index, filename)
     return Generic(study_index):load(filename);
 end
 
+-- The color of a series: its agent's entry in agent_colors, or nil. A series derived from an agent
+-- (GCH-069 - (tag), GCH-069:AVG, GCH-069 (scenario:3)) takes the color of the longest agent name it
+-- starts with, when a ":" or a space follows that name (so GCH-0690 is not GCH-069).
+local function psrplot_agent_color(name, agent_colors)
+    if agent_colors[name] ~= nil then
+        return agent_colors[name];
+    end
+    local color, length = nil, 0;
+    for agent, agent_color in pairs(agent_colors) do
+        local size = #agent;
+        if size > length and name:sub(1, size) == agent then
+            local next_char = name:sub(size + 1, size + 1);
+            if next_char == ":" or next_char == " " then
+                color, length = agent_color, size;
+            end
+        end
+    end
+    return color;
+end
+
+-- Copy of the options for the series of e1. agent_colors (agent name -> color) is resolved against e1's
+-- series names into series_colors, which psrplot.js applies by series name; a series without its own
+-- color keeps the general color (options.color) or, without one, the default palette.
+local function psrplot_colors(e1, options)
+    local result = {};
+    for key, value in pairs(options or {}) do
+        result[key] = value;
+    end
+
+    local agent_colors = result.agent_colors;
+    result.agent_colors = nil;
+    if result.color == "" then
+        result.color = nil;
+    end
+
+    if agent_colors == nil or next(agent_colors) == nil or not e1:loaded() then
+        return result;
+    end
+
+    local series_colors = {};
+    for _, name in ipairs(e1:agents()) do
+        local color = psrplot_agent_color(name, agent_colors);
+        if color ~= nil and color ~= "" then
+            series_colors[name] = color;
+        end
+    end
+    if next(series_colors) ~= nil then
+        result.series_colors = series_colors;
+    end
+    return result;
+end
+
 function Chart.psrplot_graph(self, tag, e1, options)
     local options = (options or {});
     -- The study's reference currency in place of the outputs' "$" (k$/MW -> kXPF/MW); the values are unchanged.
@@ -31,17 +83,17 @@ function Chart.psrplot_graph(self, tag, e1, options)
             if options.connectNulls == nil then options.connectNulls = true; end
         end
         if e1:scenarios() == 1 then
-            self:add_block_category(tag, e1, options);
+            self:add_block_category(tag, e1, psrplot_colors(e1, options));
 
         else
             for scenario = 1, e1:scenarios() do
                 local scenario_index = e1:scenario_index(scenario);
                 local selected_scenario = e1:select_scenario(scenario):add_suffix(" (scenario:" .. scenario_index .. ")");
-                self:add_block_category(tag, selected_scenario, options);
+                self:add_block_category(tag, selected_scenario, psrplot_colors(selected_scenario, options));
             end
         end
     else 
-        self:add(tag, e1, options);
+        self:add(tag, e1, psrplot_colors(e1, options));
     end
 end
 
@@ -77,6 +129,8 @@ function Chart.psrplot_range_graph(self, tag, lower, upper, options)
             upper = upper:force_currency("$", currency);
         end
     end
+    options = psrplot_colors(lower, options);
+
     local blocks_resolution = lower:has_blocks();
     local is_not_hourly_resolution = not lower:is_hourly();
 
