@@ -15,7 +15,8 @@ end
 
 -- The color of a series: its agent's entry in agent_colors, or nil. A series derived from an agent
 -- (GCH-069 - (tag), GCH-069:AVG, GCH-069 (scenario:3)) takes the color of the longest agent name it
--- starts with, when a ":" or a space follows that name (so GCH-0690 is not GCH-069).
+-- starts with, when one of those suffixes follows that name (so SANTO ANTONIO DO JARI is not
+-- SANTO ANTONIO, nor GCH-0690 GCH-069).
 local function psrplot_agent_color(name, agent_colors)
     if agent_colors[name] ~= nil then
         return agent_colors[name];
@@ -24,8 +25,8 @@ local function psrplot_agent_color(name, agent_colors)
     for agent, agent_color in pairs(agent_colors) do
         local size = #agent;
         if size > length and name:sub(1, size) == agent then
-            local next_char = name:sub(size + 1, size + 1);
-            if next_char == ":" or next_char == " " then
+            local rest = name:sub(size + 1);
+            if rest:sub(1, 1) == ":" or rest:sub(1, 2) == " (" or rest:sub(1, 4) == " - (" then
                 color, length = agent_color, size;
             end
         end
