@@ -269,6 +269,98 @@ function Thermal.load_sddp(self, filename)
     return load_sddp(self, filename);
 end
 
+function ACLine.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function DCLine.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function DCBus.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function EnergyChainDemand.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function EnergyChainFixedConverter.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function EnergyChainNode.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function EnergyChainProducer.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function EnergyChainStorage.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function EnergyChainTransport.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function ExpansionProject.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function FlexibleDemand.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function FlowController.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function GasEmission.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function GasNode.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function GenericConstraint.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function GenericConstraintInterpolation.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function GenericVariable.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function Load.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function PhaseShifter.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function SeriesCapacitor.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function ThreeWindingTransformer.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function Transformer.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
+function WaterWay.load_sddp(self, filename)
+    return load_sddp(self, filename);
+end
+
 ---------------------------------------------------------------
 --- EnergyMap load
 ---------------------------------------------------------------
