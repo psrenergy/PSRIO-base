@@ -1575,6 +1575,8 @@ function Circuit.max_flow(self, model)
    end
 end
 
+Circuit.max_flow_limit = Circuit.max_flow;
+
 function Circuit.income(self, model)
    local model = "SDDP" or model;
    if model == "SDDP" then
@@ -1678,14 +1680,16 @@ function Area.transfer(self, model)
    end
 end
 
-function Area.max_trasnfer(self, model)
-   local model = "SDDP" or model;
+function Area.max_transfer(self, model)
+   local model = model or "SDDP";
    if model == "SDDP" then
       return self:load_sddp("areexpl");
    else
        error("Model not supported");
    end
 end
+
+Area.max_trasnfer = Area.max_transfer;
 
 function Area.min_transfer(self, model)
    local model = "SDDP" or model;
@@ -3080,9 +3084,11 @@ function ExpansionProject.invest_capacity(self, model)
 end
 
 function ExpansionProject.investment_decision(self, model)
-   local model = "SDDP" or model;
+   local model = model or "SDDP";
    if model == "SDDP" then
       return self:load_sddp("optgxp");
+   elseif model == "OptGen" then
+      return self:load("outidec");
    else
        error("Model not supported");
    end
@@ -3313,6 +3319,15 @@ end
 -------------------------------------------------------------------------
 --Transformer extension
 -------------------------------------------------------------------------
+
+function Transformer.cost(self, model)
+   local model = model or "SDDP";
+   if model == "SDDP" then
+      return self:load_sddp("transformer_cost");
+   else
+       error("Model not supported");
+   end
+end
 
 function Transformer.flow(self, model)
    local model = "SDDP" or model;
@@ -3979,6 +3994,15 @@ end
 -------------------------------------------------------------------------
 --ACLine extension
 -------------------------------------------------------------------------
+
+function ACLine.cost(self, model)
+   local model = model or "SDDP";
+   if model == "SDDP" then
+      return self:load_sddp("acline_cost");
+   else
+       error("Model not supported");
+   end
+end
 
 function ACLine.flow(self, model)
    local model = "SDDP" or model;
