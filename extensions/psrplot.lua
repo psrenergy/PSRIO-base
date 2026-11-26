@@ -129,8 +129,9 @@ function Chart.psrplot_range_graph(self, tag, lower, upper, options)
 
     local blocks_resolution = lower:has_blocks();
     local is_not_hourly_resolution = not lower:is_hourly();
+    local is_not_subhourly_resolution = not lower:is_subhourly();
 
-    if blocks_resolution and is_not_hourly_resolution then
+    if blocks_resolution and is_not_hourly_resolution and is_not_subhourly_resolution then
         self:add_block_category("area_range", lower, upper, options);
     else
         self:add_area_range(lower, upper, options);
